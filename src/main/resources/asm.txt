@@ -1,0 +1,15 @@
+B7: #     B8 <- B8  top-of-loop Freq: 986889
+movl    RBX, R8 # spill
+B8: #
+movl    [R11 + #16 + RBX << #2], RCX    # int
+movl    [R11 + #20 + R8 << #2], RCX     # int
+movl    RBX, R8 # spill
+addl    RBX, #2 # int
+imull   RBX, RBX        # int
+movl    [R11 + #24 + R8 << #2], RBX     # int
+movl    [R11 + #28 + R8 << #2], RBX     # int
+addl    R8, #4  # int
+movl    RCX, R8 # spill
+imull   RCX, R8 # int
+cmpl    R8, R9
+jl,s    B7
