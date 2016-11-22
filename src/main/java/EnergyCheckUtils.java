@@ -93,6 +93,10 @@ public class EnergyCheckUtils {
 
 	static double compsumtions[] = new double[1000];
 
+	/**
+	 * Entry point for the energy measurements.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		JsynLoopsMicroBenchs mb = new JsynLoopsMicroBenchs();
 		for ( int j = 0; j < 100; j ++) {
