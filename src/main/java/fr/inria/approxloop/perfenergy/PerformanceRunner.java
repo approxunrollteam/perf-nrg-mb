@@ -20,7 +20,7 @@ public class PerformanceRunner {
             }
             //result = new int[Y];
             //result[0] = 0;
-            jsynMB.testTriangleGenerator();
+            jsynMB.benchmarkDelay();
             Y--;
             Thread.sleep(10);
             if ( r.nextInt() == Y ) {
