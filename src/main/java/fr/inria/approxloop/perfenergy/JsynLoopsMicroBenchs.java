@@ -13,7 +13,7 @@ public class JsynLoopsMicroBenchs {
 
     int arraySize = 2000000;
 
-    double[] outputs      = new double[arraySize];
+    public double[] outputs      = new double[arraySize];
     double[] frequencies  = new double[arraySize];
     double[] amplitudes   = new double[arraySize];
 
@@ -127,15 +127,35 @@ public class JsynLoopsMicroBenchs {
         System.out.println(b);
     }
 
+    private double[] getValues(int n) {
+        if (n == 0)
+            return inputs;
+        else if ( n == 1 ) return amplitudes;
+        else return offsets;
+    }
+
+    private double[] getValues2(int n) {
+        if (n == 0)
+            return amplitudes;
+        else if ( n == 1 ) return offsets;
+        else return inputs;
+    }
+
     public void benchmarkMixer() {
         for (int i = 0; i < 2000000; i++) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
-                double[] inputs = input.getValues(n);
-                double[] gains = gain.getValues(n);
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
                 sum += inputs[i] * gains[i];
             }
             outputs[i] = sum * amplitudes[i];
+        }
+    }
+
+    public void benchmarkOutput() {
+        for (int i = 0; i < 2000000; i++) {
+            outputs[i] = inputs[i];
         }
     }
 

@@ -1,6 +1,14 @@
-import fr.inria.approxloop.perfenergy.EnergyMeasureRunner;
-
 import java.lang.reflect.Field;
+//package fr.inria.measurenergy;
+
+import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Random;
 
 public class EnergyCheckUtils {
 	public native static int scale(int freq);
@@ -18,12 +26,10 @@ public class EnergyCheckUtils {
 	public native static void ProfileDealloc();
 	public native static void SetPowerLimit(int ENABLE);
 	public static int wraparoundValue;
-	public static int socketNum;
 
-	static
-	{
-		String LIB_PATH = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/performance-energy-mb/lib";
-		System.setProperty("java.library.path", LIB_PATH);
+	public static int socketNum;
+	static {
+		System.setProperty("java.library.path", "/home/elmarce/PROJECTS/PHD/JRALP-measure-energy/src/main/java");
 //				System.out.print(System.getProperty("user.dir"));
 		try {
 			Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
@@ -36,10 +42,7 @@ public class EnergyCheckUtils {
 		System.loadLibrary("CPUScaler");
 		wraparoundValue = ProfileInit();
 		socketNum = GetSocketNum();
-	}
-
-	public static void stopEnergyProfiler() {
-		ProfileDealloc();
+		System.out.println("Sockets: " + socketNum);
 	}
 
 	/**
@@ -49,10 +52,10 @@ public class EnergyCheckUtils {
 	 * The third entry is: Package energy
 	 */
 
-	public static double[] getEnergyStats() {
+	public static double[] getEnergyStats(String statsStr) {
 		socketNum = GetSocketNum();
-		String EnergyInfo = EnergyStatCheck().replace(",", ".");
-        System.out.println(EnergyInfo);
+		String EnergyInfo = statsStr.replace(",", ".");
+		System.out.println(EnergyInfo);
 
 		/*One Socket*/
 		if(socketNum == 1) {
@@ -68,7 +71,7 @@ public class EnergyCheckUtils {
 		} else {
 		/*Multiple sockets*/
 			String[] perSockEner = EnergyInfo.split("@");
-			double[] stats = new double[3*socketNum];
+			double[] stats = new double[3 * socketNum];
 			int count = 0;
 
 			for(int i = 0; i < perSockEner.length; i++) {
@@ -84,11 +87,34 @@ public class EnergyCheckUtils {
 
 	}
 
-	public static void main(String[] args) {
-        System.out.println("Energy before:" + EnergyStatCheck());
-        new EnergyMeasureRunner().runJsyn();
-        System.out.println("Energy after:" + EnergyStatCheck());
-		ProfileDealloc();
-	}
+	private static final int N = 500000*2;
 
+	static double outputs[] = new double[N];
+
+	static double compsumtions[] = new double[1000];
+
+	public static void main(String[] args) {
+		JsynLoopsMicroBenchs mb = new JsynLoopsMicroBenchs();
+		for ( int j = 0; j < 100; j ++) {
+			String a = EnergyStatCheck();
+			mb.benchmarkOutput();
+			String b = EnergyStatCheck();
+
+			double d1 = getEnergyStats(a)[2];
+			double d2 = getEnergyStats(b)[2];
+
+			compsumtions[j] = (d2 - d1) / 10.0;
+			System.out.println(mb.outputs[new Random().nextInt(N - 1)]);
+		}
+		ProfileDealloc();
+		System.out.println("---------- DONE ---------");
+		try(BufferedWriter w = new BufferedWriter(new FileWriter(new File("result.txt"))))
+		{
+			for ( int j = 50; j < 100; j ++)
+				w.write(String.valueOf(compsumtions[j]) + "\n");
+		}
+		catch(IOException ex)
+		{
+		}
+	}
 }
