@@ -45,6 +45,12 @@ public class EnergyCheckUtils {
 		System.out.println("Sockets: " + socketNum);
 	}
 
+	public static double getCPUEnergy(String statsStr) {
+		String e = statsStr.replace(",", ".");
+		int b = e.indexOf("#") + 1;
+		return Double.parseDouble(e.substring(b, e.indexOf("#", b + 1)));
+	}
+
 	/**
 	 * @return an array of current energy information.
 	 * The first entry is: Dram/uncore gpu energy(depends on the cpu architecture.

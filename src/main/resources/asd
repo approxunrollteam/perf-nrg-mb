@@ -1,96 +1,96 @@
- 109  DivD  === _  108  46  [ [ 110 ]]  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:38
- 187  MulD  === _  184  46  [ [ 409  412 ]]  !orig=[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
- 299  DivD  === _  322  46  [ [ 316 ]]  !orig=109 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:38
- 300  MulD  === _  307  46  [ [ 102 ]]  !orig=187,[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
- 151  StoreD ===  111  301  14 9  311  [[ 413  392 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=330 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 149  AddP  === _  41  344  3 45  [[ 151 ]]  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 109  DivD  === _  108  46  [ [ 110 ]]  !jvms: PerformanceRunner::testUnrolling @ bci:38
+ 187  MulD  === _  184  46  [ [ 409  412 ]]  !orig=[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
+ 299  DivD  === _  322  46  [ [ 316 ]]  !orig=109 !jvms: PerformanceRunner::testUnrolling @ bci:38
+ 300  MulD  === _  307  46  [ [ 102 ]]  !orig=187,[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
+ 151  StoreD ===  111  301  14 9  311  [[ 413  392 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=330 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 149  AddP  === _  41  344  3 45  [[ 151 ]]  !jvms: PerformanceRunner::testUnrolling @ bci:43
  344  AddP  === _  41  41  34 1  [[ 149 ]] 
- 172  MergeMem    ===  _  1   7  1  1  1  1  301  [[ 414  110  102 ]]  { - - - - N301:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 301  StoreD ===  317  321  30 2  311  [[ 172  151 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=151,330 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 302  AddP  === _  41  303  2 2  [[ 301 ]]  !orig=149 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 303  AddP  === _  41  41  30 4  [[ 302 ]]  !orig=[150] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 172  MergeMem    ===  _  1   7  1  1  1  1  301  [[ 414  110  102 ]]  { - - - - N301:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 301  StoreD ===  317  321  30 2  311  [[ 172  151 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=151,330 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 302  AddP  === _  41  303  2 2  [[ 301 ]]  !orig=149 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 303  AddP  === _  41  41  30 4  [[ 302 ]]  !orig=[150] !jvms: PerformanceRunner::testUnrolling @ bci:43
  341  LShiftL === _  337  147   [[ 344 ]] 
- 304  LShiftL === _  324  147   [[ 303 ]]  !orig=[148] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 178  Bool  === _  177  [[ 17 9 ]] [lt] !orig=[158] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 177  CmpI  === _  176  361   [[ 178 ]]  !orig=[157] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 108  ConvI2D === _  107  [[ 10 9 ]]  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:36
- 107  MulI  === _  308  308   [[ 108 ]]  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:35
- 307  ConvI2D === _  308  [[ 30 0 ]]  !orig=184,[100] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:27
- 308  AddI  === _  326  47  [ [ 107  307  107 ]]  !orig=176,[152] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:44
- 184  ConvI2D === _  176  [[ 18 7 ]]  !orig=[100] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:27
- 176  AddI  === _  326  333   [[ 389  177  184  415 ]]  !orig=[152] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:44
- 322  ConvI2D === _  323  [[ 29 9 ]]  !orig=108 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:36
- 323  MulI  === _  326  326   [[ 322 ]]  !orig=107 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:35
- 324  ConvI2L === _  325  [[ 30 4 ]]  #long:1..maxint-1:www !orig=[146] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 325  CastII ===  194  326  [[  324 ]]  #int:1..max-1:www range check dependency !orig=[145] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 304  LShiftL === _  324  147   [[ 303 ]]  !orig=[148] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 178  Bool  === _  177  [[ 17 9 ]] [lt] !orig=[158] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 177  CmpI  === _  176  361   [[ 178 ]]  !orig=[157] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 108  ConvI2D === _  107  [[ 10 9 ]]  !jvms: PerformanceRunner::testUnrolling @ bci:36
+ 107  MulI  === _  308  308   [[ 108 ]]  !jvms: PerformanceRunner::testUnrolling @ bci:35
+ 307  ConvI2D === _  308  [[ 30 0 ]]  !orig=184,[100] !jvms: PerformanceRunner::testUnrolling @ bci:27
+ 308  AddI  === _  326  47  [ [ 107  307  107 ]]  !orig=176,[152] !jvms: PerformanceRunner::testUnrolling @ bci:44
+ 184  ConvI2D === _  176  [[ 18 7 ]]  !orig=[100] !jvms: PerformanceRunner::testUnrolling @ bci:27
+ 176  AddI  === _  326  333   [[ 389  177  184  415 ]]  !orig=[152] !jvms: PerformanceRunner::testUnrolling @ bci:44
+ 322  ConvI2D === _  323  [[ 29 9 ]]  !orig=108 !jvms: PerformanceRunner::testUnrolling @ bci:36
+ 323  MulI  === _  326  326   [[ 322 ]]  !orig=107 !jvms: PerformanceRunner::testUnrolling @ bci:35
+ 324  ConvI2L === _  325  [[ 30 4 ]]  #long:1..maxint-1:www !orig=[146] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 325  CastII ===  194  326  [[  324 ]]  #int:1..max-1:www range check dependency !orig=[145] !jvms: PerformanceRunner::testUnrolling @ bci:43
  337  ConvI2L === _  335  [[ 34 1 ]]  #long:0..maxint-2:www
- 335  CastII ===  194  326  [[  337 ]]  #int:0..max-2:www range check dependency !orig=[145] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 326  Phi   ===  309  382  1   [[ 308  323  323  325  176  335 ]]  #int !orig=[94] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 309  CountedLoop   ===  309   405  1  [[ 309  310  313  321  326 ]] inner main of N309 !orig=[180],[174],[91] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 320  MergeMem    ===  _  1   7  1  1  1  1  321  [[ 313  316 ]]  { - - - - N321:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=172,[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 321  Phi   ===  309  366  1   [[ 301  320 ]]  #memory  Memory: @double[int:>=0]:exact+any *, idx=7; !orig=[173],[171],[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 311  DivD  === _  312  315   [[ 301  151 ]]  !orig=115 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:42
- 315  Proj  ===  316  [[ 311  ]] #5 !orig=113 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 316  CallLeaf    ===   314   1  320  8  1  299  1  [[ 315  317 ]] # dcos double/half  double, half  !orig=110 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 317  Proj  ===  316  [[ 301   102 ]] #0 !orig=111,[121] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 115  DivD  === _  105  113   [[]]  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:42
- 105  Proj  ===  102  [[ 115  ]] #5 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 102  CallLeaf    ===   317   1  172  8  1  300  1  [[ 103  105 ]] # dsin double/half  double, half  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 103  Proj  ===  102  [[ 110  ]] #0 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 113  Proj  ===  110  [[ 115  ]] #5 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 110  CallLeaf    ===   103   1  172  8  1  109  1  [[ 111  113 ]] # dcos double/half  double, half  !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 111  Proj  ===  110  [[ 179   151 ]] #0 !orig=[121] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 179  CountedLoopEnd ===  111   178  [[ 241  160 ]] [lt] P=0,999020, C=48906,000000 !orig=[159] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 160  IfTrue ===  179  [[ 390  ]] #1 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 312  Proj  ===  313  [[ 311  ]] #5 !orig=105 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 313  CallLeaf    ===   309   1  320  8  1  310  1  [[ 312  314 ]] # dsin double/half  double, half  !orig=102 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 314  Proj  ===  313  [[ 316  ]] #0 !orig=103 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 310  Phi   ===  309  363  1   [[ 313 ]]  #double !orig=[185],[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
- 362  DivD  === _  377  46  [ [ 402 ]]  !orig=109 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:38
- 363  MulD  === _  381  46  [ [ 310  412 ]]  !orig=187,[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
- 364  DivD  === _  383  46  [ [ 395 ]]  !orig=299,109 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:38
- 365  MulD  === _  379  46  [ [ 399 ]]  !orig=300,187,[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
- 366  StoreD ===  403  370  36 7  393  [[ 321  413 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=151,330 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 367  AddP  === _  41  368  3 45  [[ 366 ]]  !orig=149 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 335  CastII ===  194  326  [[  337 ]]  #int:0..max-2:www range check dependency !orig=[145] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 326  Phi   ===  309  382  1   [[ 308  323  323  325  176  335 ]]  #int !orig=[94] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 309  CountedLoop   ===  309   405  1  [[ 309  310  313  321  326 ]] inner main of N309 !orig=[180],[174],[91] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 320  MergeMem    ===  _  1   7  1  1  1  1  321  [[ 313  316 ]]  { - - - - N321:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=172,[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 321  Phi   ===  309  366  1   [[ 301  320 ]]  #memory  Memory: @double[int:>=0]:exact+any *, idx=7; !orig=[173],[171],[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 311  DivD  === _  312  315   [[ 301  151 ]]  !orig=115 !jvms: PerformanceRunner::testUnrolling @ bci:42
+ 315  Proj  ===  316  [[ 311  ]] #5 !orig=113 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 316  CallLeaf    ===   314   1  320  8  1  299  1  [[ 315  317 ]] # dcos double/half  double, half  !orig=110 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 317  Proj  ===  316  [[ 301   102 ]] #0 !orig=111,[121] !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 115  DivD  === _  105  113   [[]]  !jvms: PerformanceRunner::testUnrolling @ bci:42
+ 105  Proj  ===  102  [[ 115  ]] #5 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 102  CallLeaf    ===   317   1  172  8  1  300  1  [[ 103  105 ]] # dsin double/half  double, half  !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 103  Proj  ===  102  [[ 110  ]] #0 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 113  Proj  ===  110  [[ 115  ]] #5 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 110  CallLeaf    ===   103   1  172  8  1  109  1  [[ 111  113 ]] # dcos double/half  double, half  !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 111  Proj  ===  110  [[ 179   151 ]] #0 !orig=[121] !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 179  CountedLoopEnd ===  111   178  [[ 241  160 ]] [lt] P=0,999020, C=48906,000000 !orig=[159] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 160  IfTrue ===  179  [[ 390  ]] #1 !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 312  Proj  ===  313  [[ 311  ]] #5 !orig=105 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 313  CallLeaf    ===   309   1  320  8  1  310  1  [[ 312  314 ]] # dsin double/half  double, half  !orig=102 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 314  Proj  ===  313  [[ 316  ]] #0 !orig=103 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 310  Phi   ===  309  363  1   [[ 313 ]]  #double !orig=[185],[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
+ 362  DivD  === _  377  46  [ [ 402 ]]  !orig=109 !jvms: PerformanceRunner::testUnrolling @ bci:38
+ 363  MulD  === _  381  46  [ [ 310  412 ]]  !orig=187,[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
+ 364  DivD  === _  383  46  [ [ 395 ]]  !orig=299,109 !jvms: PerformanceRunner::testUnrolling @ bci:38
+ 365  MulD  === _  379  46  [ [ 399 ]]  !orig=300,187,[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
+ 366  StoreD ===  403  370  36 7  393  [[ 321  413 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=151,330 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 367  AddP  === _  41  368  3 45  [[ 366 ]]  !orig=149 !jvms: PerformanceRunner::testUnrolling @ bci:43
  368  AddP  === _  41  41  37 3  [[ 367 ]]  !orig=344
- 369  MergeMem    ===  _  1   7  1  1  1  1  370  [[ 399  402  414 ]]  { - - - - N370:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=172,[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 370  StoreD ===  396  392  37 1  393  [[ 366  369 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=301,151,330 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 371  AddP  === _  41  372  2 2  [[ 370 ]]  !orig=302,149 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 372  AddP  === _  41  41  37 4  [[ 371 ]]  !orig=303,[150] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 369  MergeMem    ===  _  1   7  1  1  1  1  370  [[ 399  402  414 ]]  { - - - - N370:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=172,[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 370  StoreD ===  396  392  37 1  393  [[ 366  369 ]]  @double[int:>=0]:exact+any *, idx=7;  Memory: @double[int:>=0]:NotNull:exact+any *, idx=7; !orig=301,151,330 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 371  AddP  === _  41  372  2 2  [[ 370 ]]  !orig=302,149 !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 372  AddP  === _  41  41  37 4  [[ 371 ]]  !orig=303,[150] !jvms: PerformanceRunner::testUnrolling @ bci:43
  373  LShiftL === _  387  147   [[ 368 ]]  !orig=341
- 374  LShiftL === _  385  147   [[ 372 ]]  !orig=304,[148] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 375  Bool  === _  376  [[]]  [lt] !orig=178,[158] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 376  CmpI  === _  382  361   [[ 375 ]]  !orig=177,[157] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 377  ConvI2D === _  378  [[ 36 2 ]]  !orig=108 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:36
- 378  MulI  === _  380  380   [[ 377 ]]  !orig=107 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:35
- 379  ConvI2D === _  380  [[ 36 5 ]]  !orig=307,184,[100] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:27
- 380  AddI  === _  389  47  [ [ 378  378  379 ]]  !orig=308,176,[152] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:44
- 381  ConvI2D === _  382  [[ 36 3 ]]  !orig=184,[100] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:27
- 382  AddI  === _  389  333   [[ 376  381  326  415 ]]  !orig=176,[152] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:44
- 383  ConvI2D === _  384  [[ 36 4 ]]  !orig=322,108 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:36
- 384  MulI  === _  389  389   [[ 383 ]]  !orig=323,107 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:35
- 385  ConvI2L === _  386  [[ 37 4 ]]  #long:1..maxint-1:www !orig=324,[146] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 386  CastII ===  194  389  [[  385 ]]  #int:1..max-1:www range check dependency !orig=325,[145] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
+ 374  LShiftL === _  385  147   [[ 372 ]]  !orig=304,[148] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 375  Bool  === _  376  [[]]  [lt] !orig=178,[158] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 376  CmpI  === _  382  361   [[ 375 ]]  !orig=177,[157] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 377  ConvI2D === _  378  [[ 36 2 ]]  !orig=108 !jvms: PerformanceRunner::testUnrolling @ bci:36
+ 378  MulI  === _  380  380   [[ 377 ]]  !orig=107 !jvms: PerformanceRunner::testUnrolling @ bci:35
+ 379  ConvI2D === _  380  [[ 36 5 ]]  !orig=307,184,[100] !jvms: PerformanceRunner::testUnrolling @ bci:27
+ 380  AddI  === _  389  47  [ [ 378  378  379 ]]  !orig=308,176,[152] !jvms: PerformanceRunner::testUnrolling @ bci:44
+ 381  ConvI2D === _  382  [[ 36 3 ]]  !orig=184,[100] !jvms: PerformanceRunner::testUnrolling @ bci:27
+ 382  AddI  === _  389  333   [[ 376  381  326  415 ]]  !orig=176,[152] !jvms: PerformanceRunner::testUnrolling @ bci:44
+ 383  ConvI2D === _  384  [[ 36 4 ]]  !orig=322,108 !jvms: PerformanceRunner::testUnrolling @ bci:36
+ 384  MulI  === _  389  389   [[ 383 ]]  !orig=323,107 !jvms: PerformanceRunner::testUnrolling @ bci:35
+ 385  ConvI2L === _  386  [[ 37 4 ]]  #long:1..maxint-1:www !orig=324,[146] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 386  CastII ===  194  389  [[  385 ]]  #int:1..max-1:www range check dependency !orig=325,[145] !jvms: PerformanceRunner::testUnrolling @ bci:43
  387  ConvI2L === _  388  [[ 37 3 ]]  #long:0..maxint-2:www !orig=337
- 388  CastII ===  194  389  [[  387 ]]  #int:0..max-2:www range check dependency !orig=335,[145] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:43
- 389  Phi   ===  390  290  17 6  [[ 380  382  384  384  386  388 ]]  #int !orig=326,[94] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 390  CountedLoop   ===  390   288  160  [[ 389  390  392  407  409 ]] inner stride: 2 main of N390 !orig=309,[180],[174],[91] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 391  MergeMem    ===  _  1   7  1  1  1  1  392  [[ 395  407 ]]  { - - - - N392:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=320,172,[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 392  Phi   ===  390  249  15 1  [[ 370  391 ]]  #memory  Memory: @double[int:>=0]:exact+any *, idx=7; !orig=321,[173],[171],[93] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:21
- 393  DivD  === _  406  394   [[ 366  370 ]]  !orig=311,115 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:42
- 394  Proj  ===  395  [[ 393  ]] #5 !orig=315,113 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 395  CallLeaf    ===   408   1  391  8  1  364  1  [[ 394  396 ]] # dcos double/half  double, half  !orig=316,110 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 396  Proj  ===  395  [[ 370   399 ]] #0 !orig=317,111,[121] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 397  DivD  === _  398  401   [[]]  !orig=115 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:42
- 398  Proj  ===  399  [[ 397  ]] #5 !orig=105 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 399  CallLeaf    ===   396   1  369  8  1  365  1  [[ 398  400 ]] # dsin double/half  double, half  !orig=102 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 400  Proj  ===  399  [[ 402  ]] #0 !orig=103 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 401  Proj  ===  402  [[ 397  ]] #5 !orig=113 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 402  CallLeaf    ===   400   1  369  8  1  362  1  [[ 401  403 ]] # dcos double/half  double, half  !orig=110 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 403  Proj  ===  402  [[ 366   404 ]] #0 !orig=111,[121] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:39
- 404  CountedLoopEnd ===  403   47  [[ 405  410 ]]  P=0,999020, C=48906,000000 !orig=179,[159] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 405  IfTrue ===  404  [[ 309  ]] #1 !orig=160 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:18
- 406  Proj  ===  407  [[ 393  ]] #5 !orig=312,105 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 407  CallLeaf    ===   390   1  391  8  1  409  1  [[ 406  408 ]] # dsin double/half  double, half  !orig=313,102 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 408  Proj  ===  407  [[ 395  ]] #0 !orig=314,103 !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:30
- 409  Phi   ===  390  248  18 7  [[ 407 ]]  #double !orig=310,[185],[101] !jvms: fr.inria.approxloop.perfenergy.PerformanceRunner::testUnrolling @ bci:29
+ 388  CastII ===  194  389  [[  387 ]]  #int:0..max-2:www range check dependency !orig=335,[145] !jvms: PerformanceRunner::testUnrolling @ bci:43
+ 389  Phi   ===  390  290  17 6  [[ 380  382  384  384  386  388 ]]  #int !orig=326,[94] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 390  CountedLoop   ===  390   288  160  [[ 389  390  392  407  409 ]] inner stride: 2 main of N390 !orig=309,[180],[174],[91] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 391  MergeMem    ===  _  1   7  1  1  1  1  392  [[ 395  407 ]]  { - - - - N392:double[int:>=0]:exact+any * }  Memory: @BotPTR *+bot, idx=Bot; !orig=320,172,[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 392  Phi   ===  390  249  15 1  [[ 370  391 ]]  #memory  Memory: @double[int:>=0]:exact+any *, idx=7; !orig=321,[173],[171],[93] !jvms: PerformanceRunner::testUnrolling @ bci:21
+ 393  DivD  === _  406  394   [[ 366  370 ]]  !orig=311,115 !jvms: PerformanceRunner::testUnrolling @ bci:42
+ 394  Proj  ===  395  [[ 393  ]] #5 !orig=315,113 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 395  CallLeaf    ===   408   1  391  8  1  364  1  [[ 394  396 ]] # dcos double/half  double, half  !orig=316,110 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 396  Proj  ===  395  [[ 370   399 ]] #0 !orig=317,111,[121] !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 397  DivD  === _  398  401   [[]]  !orig=115 !jvms: PerformanceRunner::testUnrolling @ bci:42
+ 398  Proj  ===  399  [[ 397  ]] #5 !orig=105 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 399  CallLeaf    ===   396   1  369  8  1  365  1  [[ 398  400 ]] # dsin double/half  double, half  !orig=102 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 400  Proj  ===  399  [[ 402  ]] #0 !orig=103 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 401  Proj  ===  402  [[ 397  ]] #5 !orig=113 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 402  CallLeaf    ===   400   1  369  8  1  362  1  [[ 401  403 ]] # dcos double/half  double, half  !orig=110 !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 403  Proj  ===  402  [[ 366   404 ]] #0 !orig=111,[121] !jvms: PerformanceRunner::testUnrolling @ bci:39
+ 404  CountedLoopEnd ===  403   47  [[ 405  410 ]]  P=0,999020, C=48906,000000 !orig=179,[159] !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 405  IfTrue ===  404  [[ 309  ]] #1 !orig=160 !jvms: PerformanceRunner::testUnrolling @ bci:18
+ 406  Proj  ===  407  [[ 393  ]] #5 !orig=312,105 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 407  CallLeaf    ===   390   1  391  8  1  409  1  [[ 406  408 ]] # dsin double/half  double, half  !orig=313,102 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 408  Proj  ===  407  [[ 395  ]] #0 !orig=314,103 !jvms: PerformanceRunner::testUnrolling @ bci:30
+ 409  Phi   ===  390  248  18 7  [[ 407 ]]  #double !orig=310,[185],[101] !jvms: PerformanceRunner::testUnrolling @ bci:29

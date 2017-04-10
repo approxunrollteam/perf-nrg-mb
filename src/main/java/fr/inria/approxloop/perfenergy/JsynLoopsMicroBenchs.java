@@ -35,13 +35,13 @@ public class JsynLoopsMicroBenchs {
     //@DontInline
     public void benchmarkSineWaveGenerator() {
         long a = System.nanoTime();
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 2000000; i+=2) {
             t = (t0 + p * (double) (i)) * frequencies[i];
             double phase = 2 * (t - Math.floor(t + 0.5));
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
         }
         long b = System.nanoTime() - a;
-        System.out.println("Result:" + b);
+        System.out.println(b);
     }
 
     //@DontInline
