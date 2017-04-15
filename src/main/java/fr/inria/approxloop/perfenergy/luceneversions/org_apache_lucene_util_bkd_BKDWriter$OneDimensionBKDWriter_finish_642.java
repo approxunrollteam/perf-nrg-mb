@@ -77,4 +77,34 @@ public class org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_6
         }
     }
 
+    public void benchmark_MN34() {
+        arr[0] = leafBlockFPs.get(0);
+        for (int i = 0; i < 1; i ++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
+        for (int i = 4; i < leafBlockFPs.size() - 4; i +=4) {
+            arr[i] = leafBlockFPs.get(i);
+            arr[i - 1] = (arr[i - 4] * 3 >> 2 + arr[i] >> 2);
+            arr[i - 2] = (arr[i - 4] + arr[i]) >> 1;
+            arr[i - 3] = (arr[i - 4] >> 2 + arr[i] * 3 >> 2);
+        }
+        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i ++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
+    }
+
+    public void benchmark_MN4() {
+        for (int i = 0; i < leafBlockFPs.size() - 4; i ++) {
+            arr[i] = leafBlockFPs.get(i);
+            i++;
+            arr[i] = leafBlockFPs.get(i);
+            i+=2;
+            arr[i] = leafBlockFPs.get(i);
+            arr[i - 1] = (arr[i - 2] + arr[i]) >> 1;
+        }
+        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size() ; i ++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
+    }
+
 }

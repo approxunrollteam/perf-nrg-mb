@@ -63,4 +63,33 @@ public class org_apache_lucene_queryparser_classic_QueryParserTokenManager_ReIni
         }
     }
 
+    public void benchmark_MN4() {
+        int i;
+        jjrounds[37] = 0x80000000;
+        for (i = 35; i >= 1; i -= 1) {
+            jjrounds[i] = 0x80000000;
+            i--;
+            jjrounds[i] = 0x80000000;
+            i-=2;
+            jjrounds[i] = 0x80000000;
+            jjrounds[i + 1] = (jjrounds[i] + jjrounds[i + 2]) >> 1;
+        }
+    }
+
+    public void benchmark_MN34() {
+        int i;
+        for (i = 37; i > 36; i --) {
+            jjrounds[37] = 0x80000000;
+        }
+        for (i = 33; i >= 4; i -= 4) {
+            jjrounds[i] = 0x80000000;
+            jjrounds[i + 1] = jjrounds[i] * 3 >> 2 + jjrounds[i + 4] >> 2;
+            jjrounds[i + 2] = (jjrounds[i] + jjrounds[i + 4]) >> 1;
+            jjrounds[i + 3] = jjrounds[i + 4] * 3 >> 2 + jjrounds[i] >> 2;
+        }
+        for (i = 4; i >= 0; i -= 1) {
+            jjrounds[i] = 0x80000000;
+        }
+    }
+
 }

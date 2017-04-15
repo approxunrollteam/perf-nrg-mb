@@ -70,4 +70,27 @@ public class org_apache_lucene_util_packed_Packed64SingleBlock_create_211 {
         }
     }
 
+    public void benchmark_MN4() {
+        reader_blocks[0] = readLong();
+        for (int i = 0; i < (reader_blocks.length) - 4; i ++) {
+            reader_blocks[i] = readLong();
+            i++;
+            reader_blocks[i] = readLong();
+            i+= 2;
+            reader_blocks[i] = readLong();
+            reader_blocks[i - 1] = (reader_blocks[i] + reader_blocks[i - 2]) >> 1;
+
+        }
+    }
+
+    public void benchmark_MN34() {
+        reader_blocks[0] = readLong();
+        for (int i = 2; i < (reader_blocks.length) - 1; i += 2) {
+            reader_blocks[i] = readLong();
+            reader_blocks[i - 1] = (reader_blocks[i] * 3 >> 2 + reader_blocks[i - 4] >> 2);
+            reader_blocks[i - 2] = (reader_blocks[i] + reader_blocks[i - 4]) >> 1;
+            reader_blocks[i - 3] = (reader_blocks[i] >> 2 + reader_blocks[i - 4] * 3 >> 2);
+        }
+    }
+
 }

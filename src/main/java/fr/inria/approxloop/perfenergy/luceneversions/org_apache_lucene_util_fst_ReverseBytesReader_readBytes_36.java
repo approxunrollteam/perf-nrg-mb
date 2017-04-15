@@ -76,15 +76,56 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
         }
     }
 
-
-
     public void benchmark_MN() {
         pos = 10;
+        for (int i = 0; i < 1; i ++) {
+            b[i] = bytes[pos--];
+        }
+        for (int i = 4; i < len - 4; i += 4) {
+            int k = offset + i;
+            b[k] = bytes[pos--];
+            b[k - 1] = (b[k] * 3 >> 4 + b[k - 4]) >> 2;
+            b[k - 2] = (b[k] + b[k - 4]) >> 1;
+            b[k - 3] = (b[k - 4] * 3 >> 4 + b[k]) >> 2;
+        }
+        for (int i = len - 4; i < len; i ++) {
+            b[i] = bytes[pos--];
+        }
+    }
+
+    public void benchmark_MN34() {
+        pos = 10;
         b[0] = bytes[pos--];
+        for (int i = 4; i < len; i += 2) {
+            int k = offset + i;
+            b[k] = bytes[pos--];
+            b[k - 1] = b[k] * 3 >> 2 + b[k - 4] >> 2;
+            b[k - 2] = (b[k] + b[k - 4]) >> 1;
+            b[k - 3] = b[k - 4] * 3 >> 2 + b[k] >> 2;
+        }
+    }
+
+    public void benchmark_MN4() {
+        pos = 10;
+        for (int i = 0; i < 1; i ++) {
+            int k = offset + i;
+            b[k] = bytes[pos--];
+        }
         for (int i = 2; i < len; i += 2) {
             int k = offset + i;
             b[k] = bytes[pos--];
-            b[k - 1] = (b[k] + b[k - 2]) << 1;
+
+            i++;
+
+            k = offset + i;
+            b[k] = bytes[pos--];
+
+            pos--;
+
+            i+= 2;
+            k = offset + i;
+            b[k] = bytes[pos--];
+            b[k - 1] = (b[k] + b[k - 2]) >> 1;
         }
     }
 

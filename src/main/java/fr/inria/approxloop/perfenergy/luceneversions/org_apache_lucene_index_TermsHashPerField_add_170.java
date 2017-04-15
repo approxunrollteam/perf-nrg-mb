@@ -83,4 +83,34 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
         }
     }
 
+    public void benchmark_MN4() {
+        for (int i = 0; i < streamCount - 1; i++) {
+            final int upto = newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+            i++;
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+            i+=2;
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+            intUptos[intUptoStart + i + 1] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i + 2]) >> 1;
+        }
+    }
+
+    public void benchmark_MN34() {
+        for (int i = 0; i < 1; i++) {
+            final int upto = newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+        }
+        for (int i = 4; i < streamCount - 4; i += 4) {
+            final int upto = newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+            intUptos[intUptoStart + i - 1] = intUptos[intUptoStart + i] * 3 >> 2 + intUptos[intUptoStart + i - 4] >> 1;
+            intUptos[intUptoStart + i - 2] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i - 4]) >> 1;
+            intUptos[intUptoStart + i - 3] = intUptos[intUptoStart + i - 4] * 3 >> 2 + intUptos[intUptoStart + i] >> 1;
+        }
+        for (int i = streamCount - 4; i < streamCount; i++) {
+            final int upto = newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+        }
+    }
+
 }

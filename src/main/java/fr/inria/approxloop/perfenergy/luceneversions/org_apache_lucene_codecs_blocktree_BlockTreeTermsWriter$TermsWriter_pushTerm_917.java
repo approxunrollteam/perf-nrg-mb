@@ -92,7 +92,7 @@ public class org_apache_lucene_codecs_blocktree_BlockTreeTermsWriter$TermsWriter
         for (int i = 0; i < 1; i ++) {
             prefixStarts[i] = pending.size();
         }
-        for (int i = pos + 2; i < text.length - 4; i += 4) {
+        for (int i = pos + 4; i < text.length - 4; i += 4) {
             prefixStarts[i] = pending.size();
             prefixStarts[i - 1] = (prefixStarts[i] * 3 >> 2 + prefixStarts[i - 4] >> 1);
             prefixStarts[i - 2] = (prefixStarts[i] + prefixStarts[i - 2]) >> 1;
@@ -105,10 +105,7 @@ public class org_apache_lucene_codecs_blocktree_BlockTreeTermsWriter$TermsWriter
 
     public void benchmark_MN4() {
         prefixStarts[pos] = pending.size();
-        for (int i = 0; i < 1; i ++) {
-            prefixStarts[i] = pending.size();
-        }
-        for (int i = pos + 2; i < text.length - 4; i += 2) {
+        for (int i = pos; i < text.length - 4; i ++) {
             prefixStarts[i] = pending.size();
             i++;
             prefixStarts[i] = pending.size();
