@@ -18,12 +18,40 @@ public class org_apache_lucene_queryparser_classic_QueryParserTokenManager_ReIni
         for (i = 37; i > 0; i -= 2)
             jjrounds[i] = 0x80000000;
     }
+
     public void benchmark_NN() {
         int i;
         for (i = 37; i > 0; i -= 2) {
             jjrounds[i] = 0x80000000;
             jjrounds[i - 1] = jjrounds[i];
         }
+    }
+
+    public void benchmark_NN34() {
+        int i;
+        for (i = 37; i > 4; i -= 4) {
+            jjrounds[i] = 0x80000000;
+            jjrounds[i - 1] = jjrounds[i];
+            jjrounds[i - 2] = jjrounds[i];
+            jjrounds[i - 3] = jjrounds[i];
+        }
+        for (i = 4; --i > 0;)
+            jjrounds[i] = 0x80000000;
+    }
+
+    public void benchmark_NN4() {
+        int i;
+        for (i = 37; i > 4; i -= 2) {
+            jjrounds[i] = 0x80000000;
+            i++;
+            jjrounds[i] = 0x80000000;
+            i++;
+            jjrounds[i] = 0x80000000;
+            i++;
+            jjrounds[i] = jjrounds[i - 1];
+        }
+        for (i = 4; --i > 0;)
+            jjrounds[i] = 0x80000000;
     }
 
     public void benchmark_MN() {

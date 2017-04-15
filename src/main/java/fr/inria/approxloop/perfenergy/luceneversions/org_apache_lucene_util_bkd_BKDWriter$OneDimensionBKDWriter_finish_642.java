@@ -38,6 +38,35 @@ public class org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_6
             arr[i] = leafBlockFPs.get(i);
             arr[i + 1] = arr[i];
         }
+        for (int i = leafBlockFPs.size() - 1; i < leafBlockFPs.size(); i ++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
+    }
+
+    public void benchmark_NN4() {
+        for (int i = 0; i < leafBlockFPs.size() - 4; i += 2) {
+            arr[i] = leafBlockFPs.get(i);
+            i++;
+            arr[i] = leafBlockFPs.get(i);
+            i++;
+            arr[i] = leafBlockFPs.get(i);
+            arr[i + 1] = arr[i];
+        }
+        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
+    }
+
+    public void benchmark_NN34() {
+        for (int i = 0; i < leafBlockFPs.size() - 4; i += 4) {
+            arr[i] = leafBlockFPs.get(i);
+            arr[i + 1] = arr[i];
+            arr[i + 2] = arr[i];
+            arr[i + 3] = arr[i];
+        }
+        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i ++) {
+            arr[i] = leafBlockFPs.get(i);
+        }
     }
 
     public void benchmark_MN() {

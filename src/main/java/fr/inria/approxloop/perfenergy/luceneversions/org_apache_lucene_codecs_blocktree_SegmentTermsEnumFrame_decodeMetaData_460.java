@@ -34,6 +34,33 @@ public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMeta
         }
     }
 
+    public void benchmark_NN34() {
+        for (int i = 0; i < len - 4; i += 4) {
+            b[i] = readByte();
+            b[i + 1] = b[i];
+            b[i + 2] = b[i];
+            b[i + 3] = b[i];
+        }
+        for (int i = len - 4; i < len; i ++) {
+            b[i] = readByte();
+        }
+    }
+
+    public void benchmark_NN4() {
+        for (int i = 0; i < len - 4; i += 2) {
+            b[i] = readByte();
+            i++;
+            b[i] = readByte();
+            i++;
+            b[i] = readByte();
+            b[i + 1] = b[i];
+        }
+        for (int i = len - 4; i < len; i ++) {
+            b[i] = readByte();
+        }
+    }
+
+
     public void benchmark_MN() {
         b[0] = readByte();
         for (int i = 2; i < len - 1; i += 2) {

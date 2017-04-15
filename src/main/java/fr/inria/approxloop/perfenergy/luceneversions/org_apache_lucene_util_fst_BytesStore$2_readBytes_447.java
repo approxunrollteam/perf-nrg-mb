@@ -37,6 +37,33 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
         }
     }
 
+    public void benchmark_NN4() {
+        for (int i = 0; i < len - 4; i += 2) {
+            b[offset + i] = readByte();
+            i++;
+            b[offset + i] = readByte();
+            i++;
+            b[offset + i] = readByte();
+            i++;
+            b[offset + i + 1] = b[offset + i];
+        }
+        for (int i = len - 4; i < len; i++) {
+            b[offset + i] = readByte();
+        }
+    }
+
+    public void benchmark_NN34() {
+        for (int i = 0; i < len - 4; i += 4) {
+            b[offset + i] = readByte();
+            b[offset + i + 1] = b[offset + i];
+            b[offset + i + 2] = b[offset + i];
+            b[offset + i + 3] = b[offset + i];
+        }
+        for (int i = len - 4; i < len; i++) {
+            b[offset + i] = readByte();
+        }
+    }
+
     public void benchmark_MN() {
         b[offset] = readByte();
         for (int i = 2; i < len - 1; i += 2) {

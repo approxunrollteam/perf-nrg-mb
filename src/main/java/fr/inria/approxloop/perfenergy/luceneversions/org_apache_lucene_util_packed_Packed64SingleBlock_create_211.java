@@ -29,12 +29,38 @@ public class org_apache_lucene_util_packed_Packed64SingleBlock_create_211 {
     }
 
     public void benchmark_NN() {
-
         for (int i = 0; i < (reader_blocks.length) - 1; i += 2) {
             reader_blocks[i] = readLong();
             reader_blocks[i + 1] = reader_blocks[i];
         }
     }
+
+    public void benchmark_NN4() {
+        for (int i = 0; i < (reader_blocks.length) - 4; i += 2) {
+            reader_blocks[i] = readLong();
+            i++;
+            reader_blocks[i] = readLong();
+            i++;
+            reader_blocks[i] = readLong();
+            reader_blocks[i + 1] = reader_blocks[i];
+        }
+        for (int i = (reader_blocks.length) - 4; i < (reader_blocks.length); i++) {
+            reader_blocks[i] = readLong();
+        }
+    }
+
+    public void benchmark_NN34() {
+        for (int i = 0; i < (reader_blocks.length) - 4; i += 4) {
+            reader_blocks[i] = readLong();
+            reader_blocks[i + 1] = reader_blocks[i];
+            reader_blocks[i + 2] = reader_blocks[i];
+            reader_blocks[i + 3] = reader_blocks[i];
+        }
+        for (int i = (reader_blocks.length) - 4; i < (reader_blocks.length); i++) {
+            reader_blocks[i] = readLong();
+        }
+    }
+
 
     public void benchmark_MN() {
         reader_blocks[0] = readLong();

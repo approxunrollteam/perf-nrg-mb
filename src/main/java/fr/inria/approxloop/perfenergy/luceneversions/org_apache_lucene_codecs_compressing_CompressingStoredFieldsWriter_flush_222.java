@@ -16,7 +16,7 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
             endOffsets[j] = r.nextInt();
     }
 
-    public void benchmark_org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222() {
+    public void benchmark() {
         final int[] lengths = endOffsets;
 
         for (int i = numBufferedDocs - 1; i > 0; i -= 1) {
@@ -25,7 +25,7 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
         }
     }
 
-    public void benchmark_org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222_PERF() {
+    public void benchmark_PERF() {
         final int[] lengths = endOffsets;
 
         for (int i = numBufferedDocs - 1; i > 0; i -= 2) {
@@ -34,7 +34,7 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
         }
     }
 
-    public void benchmark_org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222_NN() {
+    public void benchmark_NN() {
         final int[] lengths = endOffsets;
         for (int i = numBufferedDocs - 1; i > 0; i -= 2) {
             lengths[i] = endOffsets[i] - endOffsets[i - 1];
@@ -43,7 +43,39 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
         }
     }
 
-    public void benchmark_org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222_MN() {
+    public void benchmark_NN4() {
+        final int[] lengths = endOffsets;
+        for (int i = numBufferedDocs - 1; i > 4; i -= 2) {
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            i++;
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            i++;
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            lengths[i + 1] = lengths[i];
+            assert lengths[i] >= 0;
+        }
+        for (int i = 4; i > 0; i -= 2) {
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            assert lengths[i] >= 0;
+        }
+    }
+
+    public void benchmark_NN34() {
+        final int[] lengths = endOffsets;
+        for (int i = numBufferedDocs - 1; i > 4; i -= 4) {
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            lengths[i - 1] = lengths[i];
+            lengths[i - 2] = lengths[i];
+            lengths[i - 3] = lengths[i];
+            assert lengths[i] >= 0;
+        }
+        for (int i = numBufferedDocs - 4; i > 0; i -= 1) {
+            lengths[i] = endOffsets[i] - endOffsets[i - 1];
+            assert lengths[i] >= 0;
+        }
+    }
+
+    public void benchmark_MN() {
         final int[] lengths = endOffsets;
         lengths[0] = endOffsets[0] - endOffsets[numBufferedDocs];
         for (int i = numBufferedDocs - 2; i > 0; i -= 2) {

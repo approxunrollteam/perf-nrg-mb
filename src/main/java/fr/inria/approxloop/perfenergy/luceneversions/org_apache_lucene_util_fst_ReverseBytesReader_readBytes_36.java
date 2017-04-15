@@ -21,21 +21,22 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
         }
     }
 
-    public void benchmark_org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36() {
+    public void benchmark() {
         pos = 10;
         for (int i = 0; i < len; i++) {
             b[offset + i] = bytes[pos--];
         }
     }
 
-    public void benchmark_org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36_PERF() {
+    public void benchmark_PERF() {
         pos = 10;
         for (int i = 0; i < len; i += 2) {
             b[offset + i] = bytes[pos--];
         }
     }
 
-    public void benchmark_org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36_NN() {
+    public void benchmark_NN() {
+        pos = 10;
         for (int i = 0; i < len - 1; i += 2) {
             int k = offset + i;
             b[k] = bytes[pos--];
@@ -43,7 +44,42 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
         }
     }
 
-    public void benchmark_org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36_MN() {
+    public void benchmark_NN34() {
+        pos = 10;
+        for (int i = 0; i < len - 1; i += 4) {
+            int k = offset + i;
+            b[k] = bytes[pos--];
+            b[k + 1] = b[k];
+            b[k + 2] = b[k];
+            b[k + 3] = b[k];
+        }
+        for (int i = len - 1; i < len; i ++) {
+            b[offset + i] = bytes[pos--];
+        }
+    }
+
+    public void benchmark_NN4() {
+        pos = 10;
+        for (int i = 0; i < len - 1; i += 2) {
+            int k = offset + i;
+            b[k] = bytes[pos--];
+            i++;
+            k = offset + i;
+            b[k] = bytes[pos--];
+            i++;
+            k = offset + i;
+            b[k] = bytes[pos--];
+            b[k + 1] = b[k];
+        }
+        for (int i = len - 1; i < len; i++) {
+            b[offset + i] = bytes[pos--];
+        }
+    }
+
+
+
+    public void benchmark_MN() {
+        pos = 10;
         b[0] = bytes[pos--];
         for (int i = 2; i < len; i += 2) {
             int k = offset + i;
