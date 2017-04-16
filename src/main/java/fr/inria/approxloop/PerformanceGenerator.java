@@ -24,11 +24,11 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
  */
 public class PerformanceGenerator extends CodeGenerator {
 
-    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    private static String path = "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
     private String projectName = "lucene";
-    private String experimentDescription;
+    private String experimentDescription = "JRALP Measure";
     private String outputPath =
-            "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/";
+            "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
 
 
     private int measuring = 2;
@@ -83,7 +83,6 @@ public class PerformanceGenerator extends CodeGenerator {
     public static void main(String[] args) throws Exception {
         PerformanceGenerator r = new PerformanceGenerator();
         r.initialize(new File(r.getClass().getClassLoader().getResource("").toURI()));
-        r.setExperimentDescription("Count operations per second");
         File mbs = new File(path);
         r.usesClassAsUid = mbs.isDirectory();
         TakeLoopsToDb.walk(new File(path));
