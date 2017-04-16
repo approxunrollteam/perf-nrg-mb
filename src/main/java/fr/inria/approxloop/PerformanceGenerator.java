@@ -113,7 +113,7 @@ public class PerformanceGenerator extends CodeGenerator {
         input.put("after_run", after_run);
         input.put("after_mb", after_mb);
         input.put("datum_init", datum_init);
-        input.put("dbPath", TakeLoopsToDb.dbPath);
+        input.put("dbpath", TakeLoopsToDb.dbPath);
 
         //Controls the warmup and execution count
 
