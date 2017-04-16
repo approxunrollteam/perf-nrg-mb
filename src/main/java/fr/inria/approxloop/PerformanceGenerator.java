@@ -24,13 +24,14 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
  */
 public class PerformanceGenerator extends CodeGenerator {
 
-    private static String path = "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
-    private String projectName = "lucene";
-    private String experimentDescription = "JRALP Measure";
+    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
+    private String projectName = "jsyn";
+
     private String outputPath =
-            "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
-    boolean testing = true;
+            "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
+    boolean testing = false;
 /*
+    private String experimentDescription = "JRALP Measure";
     private int measuring = 2;
     //private String before_run = "";
     private String before_run = testing ?
@@ -42,7 +43,7 @@ public class PerformanceGenerator extends CodeGenerator {
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";*/
 
-
+    private String experimentDescription = "Count operatios per second";
     private String before_run = "";
     //private String before_run = "String a = EnergyCheckUtils.EnergyStatCheck();";
     private String after_run = "";

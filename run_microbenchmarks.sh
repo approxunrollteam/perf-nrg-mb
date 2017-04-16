@@ -9,7 +9,7 @@ else
     exit -1
 fi
 
-
+rm src/main/java/PerformanceRunner.java
 
 cd target/
 
@@ -22,6 +22,3 @@ else
     exit -1
 fi
 
-cd ..
-
-rm src/main/java/PerformanceRunner.java
