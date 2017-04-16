@@ -5,6 +5,7 @@ package fr.inria.approxloop;
  */
 
 import com.j256.ormlite.stmt.query.In;
+import fr.inria.approxloop.loopstodb.TakeLoopsToDb;
 import fr.inria.approxloop.orm.Loop;
 import fr.inria.approxloop.perfenergy.CodeGenerator;
 import freemarker.template.Configuration;
@@ -23,8 +24,8 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
  */
 public class PerformanceGenerator extends CodeGenerator {
 
-    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/smileversions";
-
+    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    private String projectName = "lucene";
     private String experimentDescription;
     private String outputPath =
             "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/";
@@ -41,9 +42,11 @@ public class PerformanceGenerator extends CodeGenerator {
     private boolean usesClassAsUid = false;
 
     private int loopBeingMicroBenchmarked = 0;
+    private int start = 0;
 
 
     private HashMap<Integer, String> endings;
+
 
     public void walk(File file) {
         System.out.println(file);
@@ -57,7 +60,7 @@ public class PerformanceGenerator extends CodeGenerator {
             else if (f.getName().endsWith(".java"))
                 try {
                     String mbName = f.getName().substring(0, f.getName().indexOf(".java"));
-                    generateAndRun("smile", mbName, 0);
+                    generateAndRun(projectName, mbName);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -70,23 +73,23 @@ public class PerformanceGenerator extends CodeGenerator {
         r.setExperimentDescription("Count operations per second");
         File mbs = new File(path);
         r.usesClassAsUid = mbs.isDirectory();
-        r.loopBeingMicroBenchmarked = 104;
+        TakeLoopsToDb.walk(new File(path));
         r.walk(mbs);
     }
 
     public PerformanceGenerator() {
         endings = new HashMap<>();
-        endings.put(0, "");
-        endings.put(1, "PERF");
-        endings.put(128, "NN");
-        endings.put(129, "MN");
+        //endings.put(0, "");
+        //endings.put(1, "PERF");
+        //endings.put(128, "NN");
+        //endings.put(129, "MN");
         endings.put(130, "NN4");
         endings.put(131, "MN4");
         endings.put(132, "NN34");
         endings.put(133, "MN34");
     }
 
-    private void generateAndRun(String project, String microbenchmarkClass, int start) throws Exception {
+    private void generateAndRun(String project, String microbenchmarkClass) throws Exception {
         HashMap<String, Object> input = new HashMap<>();
         input.put("microbenchmarkClass", microbenchmarkClass);
         input.put("experimentDescription", experimentDescription);
@@ -97,20 +100,19 @@ public class PerformanceGenerator extends CodeGenerator {
         input.put("datum_init", datum_init);
 
         //Controls the warmup and execution count
-        input.put("warmupcount", 10);
-        input.put("executioncount", 30);
-
-        //Determines if the data must be stored to the db
-        input.put("store_to_db", true);
+        boolean testing = false;
+        input.put("warmupcount", testing ? 1 : 10);
+        input.put("executioncount", testing ? 1 : 30);
+        input.put("store_to_db", !testing);
 
         for (Map.Entry<Integer, String> e : endings.entrySet()) {
             String ending = e.getValue().isEmpty() ? "" : "_" + e.getValue();
             HashMap<String, Loop> loops = getLoops(project, e.getKey());
             if (usesClassAsUid) {
-                if (start <= loopBeingMicroBenchmarked) {
+                if (start >= loopBeingMicroBenchmarked) {
                     if (loops.containsKey(microbenchmarkClass)) {
                         System.out.println("===============");
-                        System.out.println(loopBeingMicroBenchmarked + " - GENERATING: " + microbenchmarkClass + ending);
+                        System.out.println(start + " - GENERATING: " + microbenchmarkClass + ending);
                         System.out.println("===============");
                         input.put("approximationStrategy", e.getKey());
                         String uid = microbenchmarkClass.substring(0, microbenchmarkClass.lastIndexOf("_")).replace("_", ".");
@@ -122,12 +124,12 @@ public class PerformanceGenerator extends CodeGenerator {
                         run();
                     }
                 }
-                loopBeingMicroBenchmarked++;
+                start++;
             } else {
                 for (Loop lp : loops.values()) {
-                    if (start <= loopBeingMicroBenchmarked) {
+                    if (start >= loopBeingMicroBenchmarked) {
                         System.out.println("===============");
-                        System.out.println(loopBeingMicroBenchmarked + " - GENERATING: " + lp.getUid() + ending);
+                        System.out.println(start + " - GENERATING: " + lp.getUid() + ending);
                         System.out.println("===============");
                         input.put("approximationStrategy", lp.getStrategy());
                         input.put("loopUID", lp.getUid());
@@ -136,7 +138,7 @@ public class PerformanceGenerator extends CodeGenerator {
                         generate(input, "PerformanceRunner", outputPath);
                         run();
                     }
-                    loopBeingMicroBenchmarked++;
+                    start++;
                 }
             }
         }

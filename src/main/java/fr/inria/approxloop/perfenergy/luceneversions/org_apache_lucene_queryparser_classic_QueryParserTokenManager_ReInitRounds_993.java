@@ -43,11 +43,11 @@ public class org_apache_lucene_queryparser_classic_QueryParserTokenManager_ReIni
         int i;
         for (i = 37; i > 4; i -= 2) {
             jjrounds[i] = 0x80000000;
-            i++;
+            i--;
             jjrounds[i] = 0x80000000;
-            i++;
+            i--;
             jjrounds[i] = 0x80000000;
-            i++;
+            i--;
             jjrounds[i] = jjrounds[i - 1];
         }
         for (i = 4; --i > 0;)

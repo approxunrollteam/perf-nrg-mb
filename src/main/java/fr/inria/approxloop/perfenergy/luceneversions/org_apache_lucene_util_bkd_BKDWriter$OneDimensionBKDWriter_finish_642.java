@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_642 {
 
-    public int[] arr;
+    public int[] arr = new int[100];
     public List<Integer> leafBlockFPs;
 
     public org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_642() {

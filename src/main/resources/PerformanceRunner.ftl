@@ -5,6 +5,7 @@ import fr.inria.approxloop.perfenergy.OpenImaJVersions;
 import fr.inria.approxloop.perfenergy.LuceneVersions;
 import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 import fr.inria.approxloop.perfenergy.smileversions.*;
+import fr.inria.approxloop.perfenergy.luceneversions.*;
 
 /**
  * Created by elmarce on 26/02/16.

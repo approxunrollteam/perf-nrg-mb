@@ -17,14 +17,14 @@ public class TakeLoopsToDb {
             TakeVersionsToDBProcessor p = new TakeVersionsToDBProcessor();
             final Launcher launcher = new Launcher();
             launcher.getEnvironment().setNoClasspath(true);
-            launcher.addInputResource(strInputPaths);
+            launcher.addInputResource(f.getParentFile().getAbsolutePath());
             launcher.setSourceOutputDirectory("./target/trash");
             p.setDBPath(dbPath);
             launcher.addProcessor(p);
             launcher.run();
             p.close();
         } catch (Exception | StackOverflowError ex) {
-            System.out.println("\n Could not process: " + strInputPaths);
+            System.out.println("\n Could not process: " + f.getAbsolutePath());
             ex.printStackTrace();
         }
 
