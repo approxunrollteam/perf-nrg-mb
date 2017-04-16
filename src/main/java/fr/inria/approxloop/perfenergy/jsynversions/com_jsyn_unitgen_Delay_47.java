@@ -37,6 +37,47 @@ public class com_jsyn_unitgen_Delay_47 {
             i++;
             outputs[i] = buffer[cursor];
             buffer[cursor] = (float) inputs[i];
+
+            i++;
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+
+            i++;
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+        }
+    }
+
+    public void benchmark_NN4() {
+        int cursor = 0;
+        int numSamples = arraySize;
+        for (int i = 0; i < 2000; i++) {
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            }
+
+            i++;
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            };
+
+            i++;
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            }
+
+            i++;
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
         }
     }
 
