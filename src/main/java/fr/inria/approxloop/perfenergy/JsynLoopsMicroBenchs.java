@@ -14,22 +14,22 @@ public class JsynLoopsMicroBenchs {
     int arraySize = 2000000;
 
     public double[] outputs      = new double[arraySize];
-    double[] frequencies  = new double[arraySize];
-    double[] amplitudes   = new double[arraySize];
+    public double[] frequencies  = new double[arraySize];
+    public double[] amplitudes   = new double[arraySize];
 
-    double[] inputs     = new double[arraySize];
-    double[] feedbacks  = new double[arraySize];
-    double[] depths     = new double[arraySize];
-    double[] offsets    = new double[arraySize];
-    double[] buffer    = new double[arraySize];
+    public double[] inputs     = new double[arraySize];
+    public double[] feedbacks  = new double[arraySize];
+    public double[] depths     = new double[arraySize];
+    public double[] offsets    = new double[arraySize];
+    public double[] buffer    = new double[arraySize];
 
     public double t0 = 0.0;
     public double t = t0;
     public double p = 1.0 / 44100.0;
 
-    private double zm1;
-    private double[] xs = new double[6];
-    private double[] ys = new double[6];
+    public double zm1;
+    public double[] xs = new double[6];
+    public double[] ys = new double[6];
 
     //@Approximated
     //@DontInline
@@ -84,8 +84,8 @@ public class JsynLoopsMicroBenchs {
         System.out.println("Result:" + b);
     }
 
-    double a0_jsyn, a1_jsyn, a2_jsyn, b1_jsyn, b2_jsyn;
-    double x0_jsyn, x1_jsyn, x2_jsyn, y1_jsyn, y2_jsyn;
+    public double a0_jsyn, a1_jsyn, a2_jsyn, b1_jsyn, b2_jsyn;
+    public double x0_jsyn, x1_jsyn, x2_jsyn, y1_jsyn, y2_jsyn;
 
     //@Approximated
     //@DontInline

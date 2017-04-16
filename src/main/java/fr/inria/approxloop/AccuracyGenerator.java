@@ -34,7 +34,7 @@ public class AccuracyGenerator extends CodeGenerator {
             "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/openimaj-master/thirdparty/klt-tracker/src/main/java/org/openimaj/video/tracking/klt/TrackingContext.java"*/
 
     };
-
+/*
     static String[] loopUIDs = {
             "org.openimaj.image.MBFImage.flatten_247", // -- ORIG
             "org.openimaj.image.MBFImage.flatten_257", // -- ORIG -- PERF
@@ -54,16 +54,9 @@ public class AccuracyGenerator extends CodeGenerator {
             "org.openimaj.image.ImageUtilities.Unknown_117",
             "org.openimaj.image.FImage.multiplyInplace_1199"
     };
-
-    private static HashMap<String, Loop> originals;
-    private static HashMap<String, Loop> mn;
-    private static HashMap<String, Loop> nn;
-    private static HashMap<String, Loop> mn_4;
-    private static HashMap<String, Loop> nn_4;
-    private static HashMap<String, Loop> mn_34;
-    private static HashMap<String, Loop> nn_34;
-    private static HashMap<String, Loop> perf;
-    private static String template_dir = "smile_templates";
+*/
+    private static String template_dir = "lucene_templates";
+    private static String commandName = "./run_accuracy_lucene.sh";
     private static HashMap<Integer, String> strategies;
 
 
@@ -123,7 +116,7 @@ public class AccuracyGenerator extends CodeGenerator {
     }
 
     private void run() {
-        executeCommand("./run_accuracy_smile.sh");
+        executeCommand(commandName);
     }
 
     public static void main(String[] params) throws Exception {
@@ -137,13 +130,13 @@ public class AccuracyGenerator extends CodeGenerator {
         String project = "smile";
         
         //originals = gen.getLoops(project, 0);
-        nn = gen.getLoops(project, 128);
-        mn = gen.getLoops(project, 129);
-        nn_4 = gen.getLoops(project, 130);
-        mn_4 = gen.getLoops(project, 131);
-        nn_34 = gen.getLoops(project, 132);
-        mn_34 = gen.getLoops(project, 133);
-        perf = gen.getLoops(project, 1);
+        HashMap<String, Loop> nn = gen.getLoops(project, 128);
+        HashMap<String, Loop> mn = gen.getLoops(project, 129);
+        HashMap<String, Loop> nn_4 = gen.getLoops(project, 130);
+        HashMap<String, Loop> mn_4 = gen.getLoops(project, 131);
+        HashMap<String, Loop> nn_34 = gen.getLoops(project, 132);
+        HashMap<String, Loop> mn_34 = gen.getLoops(project, 133);
+        HashMap<String, Loop> perf = gen.getLoops(project, 1);
 
         strategies = new HashMap<>();
         strategies.put(0, "original");
