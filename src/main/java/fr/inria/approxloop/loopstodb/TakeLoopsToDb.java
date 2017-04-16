@@ -9,7 +9,7 @@ import java.io.File;
  */
 public class TakeLoopsToDb {
 
-    public static String dbPath = "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/DBs/approx_unroll_data_with_errors.db3";
+    public static String dbPath = "/home/elmarce/PROJECTS/DATA/approx_unroll_data_with_errors.db3";
     static String strInputPaths = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/smileversions";
 
     public static void processFile(File f) {

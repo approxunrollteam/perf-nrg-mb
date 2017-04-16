@@ -29,7 +29,7 @@ public class PerformanceGenerator extends CodeGenerator {
     private String experimentDescription = "JRALP Measure";
     private String outputPath =
             "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
-
+    boolean testing = true;
 
     private int measuring = 2;
     //private String before_run = "";
@@ -110,9 +110,10 @@ public class PerformanceGenerator extends CodeGenerator {
         input.put("after_run", after_run);
         input.put("after_mb", after_mb);
         input.put("datum_init", datum_init);
+        input.put("dbPath", TakeLoopsToDb.dbPath);
 
         //Controls the warmup and execution count
-        boolean testing = false;
+
         input.put("warmupcount", testing ? 1 : 10);
         input.put("executioncount", testing ? 1 : 30);
         input.put("store_to_db", !testing);
