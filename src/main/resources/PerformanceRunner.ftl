@@ -82,7 +82,7 @@ System.out.print(output + " - ");
 }
 */
 
-    static String dbPath = "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/DBs/approx_unroll_data_with_errors.db3";
+    static String dbPath = "${dbpath}";
     public static void main(String[] args) throws Exception {
         new PerformanceRunner().runOperationsPerSecond(${warmupcount}, ${executioncount}, dbPath);
     }
