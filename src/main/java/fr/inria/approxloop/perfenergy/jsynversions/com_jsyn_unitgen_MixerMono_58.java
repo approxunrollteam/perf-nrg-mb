@@ -32,6 +32,62 @@ public class com_jsyn_unitgen_MixerMono_58 extends JsynLoopsMicroBenchs {
             outputs[i] = sum * amplitudes[i];
         }
     }
+    public void benchmark_MN34() {
+        for (int i = 0; i < 1; i++) {
+            double sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+        }
+
+        for (int i = 4; i < 2000000; i++) {
+            double sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+            outputs[i - 1] = (outputs[i] * 0.75f + outputs[i - 4] * 0.25f);
+            outputs[i - 2] = (outputs[i] + outputs[i - 4]) * 0.5f;
+            outputs[i - 3] = (outputs[i] * 0.25f + outputs[i - 4] * 0.75f);
+        }
+    }
+
+    public void benchmark_MN4() {
+        for (int i = 0; i < 2000000; i++) {
+            double sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+
+            i++;
+            sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+
+            i += 2;
+            sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+            outputs[i - 1] = 0.5f * (outputs[i] + outputs[i - 2]);
+        }
+    }
+
 
     public void benchmark_NN34() {
         for (int i = 0; i < 2000; i+=4) {
