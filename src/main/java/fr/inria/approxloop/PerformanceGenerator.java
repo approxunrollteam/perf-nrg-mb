@@ -30,7 +30,7 @@ public class PerformanceGenerator extends CodeGenerator {
     private String outputPath =
             "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
     boolean testing = true;
-
+/*
     private int measuring = 2;
     //private String before_run = "";
     private String before_run = testing ?
@@ -40,9 +40,9 @@ public class PerformanceGenerator extends CodeGenerator {
     private String after_run = "String b = EnergyCheckUtils.EnergyStatCheck(); \n" +
             "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(b) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
     private String after_mb = "datums[i - start]++;";
-    private String datum_init = "double[] datums = new double[executionPhases];";
+    private String datum_init = "double[] datums = new double[executionPhases];";*/
 
-    /*
+
     private String before_run = "";
     //private String before_run = "String a = EnergyCheckUtils.EnergyStatCheck();";
     private String after_run = "";
@@ -51,7 +51,7 @@ public class PerformanceGenerator extends CodeGenerator {
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";
     private int measuring = 0;
-    */
+
 
     private boolean usesClassAsUid = false;
 

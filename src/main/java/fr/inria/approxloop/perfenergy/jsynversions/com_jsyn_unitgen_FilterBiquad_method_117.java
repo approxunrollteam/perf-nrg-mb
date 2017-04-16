@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_FilterBiquad_117 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_FilterBiquad_method_117 extends JsynLoopsMicroBenchs {
 
     public void benchmark() {
         for (int i = 0; i < 20000; i +=2)

@@ -3,7 +3,7 @@ package fr.inria.approxloop.perfenergy.jsynversions;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_Delay_47 {
+public class com_jsyn_unitgen_Delay_method_47 {
     int arraySize = 2000;
     public double[] buffer = new double[arraySize];
     public double[] outputs = new double[arraySize];

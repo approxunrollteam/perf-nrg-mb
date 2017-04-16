@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_MixerMono_58 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
 
     private double[] getValues(int n) {
         if (n == 0)

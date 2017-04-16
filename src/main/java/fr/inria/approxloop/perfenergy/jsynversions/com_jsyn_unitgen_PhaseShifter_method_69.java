@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_PhaseShifter_69 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBenchs {
 
     public void benchmark() {
 
