@@ -33,13 +33,14 @@ public class PerformanceGenerator extends CodeGenerator {
 
     private int measuring = 2;
     //private String before_run = "";
-    private String before_run = "datums[i - start] = 0.0000000000001; String a = EnergyCheckUtils.EnergyStatCheck();";
+    private String before_run = testing ?
+            "datums[i - start] = 0.0000000000001; String a = EnergyCheckUtils.EnergyStatCheck(); System.out.println(a);":
+            "datums[i - start] = 0.0000000000001; String a = EnergyCheckUtils.EnergyStatCheck();";
     //private String after_run = "";
     private String after_run = "String b = EnergyCheckUtils.EnergyStatCheck(); \n" +
             "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(b) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";
-
 
     /*
     private String before_run = "";
@@ -85,7 +86,9 @@ public class PerformanceGenerator extends CodeGenerator {
         r.initialize(new File(r.getClass().getClassLoader().getResource("").toURI()));
         File mbs = new File(path);
         r.usesClassAsUid = mbs.isDirectory();
+        System.out.println("READING LOOPS");
         TakeLoopsToDb.walk(new File(path));
+        System.out.println("RUNNING MBs");
         r.walk(mbs);
     }
 
