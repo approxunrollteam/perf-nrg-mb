@@ -90,9 +90,9 @@ public class org_apache_lucene_util_packed_Packed64SingleBlock_create_211 {
         int i;
         for ( i = 4; i < (reader_blocks.length) - 4; i += 4) {
             reader_blocks[i] = readLong();
-            reader_blocks[i - 1] = (reader_blocks[i] * 3 >> 2 + reader_blocks[i - 4] >> 2);
+            reader_blocks[i - 1] = (reader_blocks[i] * 3 >> 2) + (reader_blocks[i - 4] >> 2);
             reader_blocks[i - 2] = (reader_blocks[i] + reader_blocks[i - 4]) >> 1;
-            reader_blocks[i - 3] = (reader_blocks[i] >> 2 + reader_blocks[i - 4] * 3 >> 2);
+            reader_blocks[i - 3] = (reader_blocks[i] >> 2) + (reader_blocks[i - 4] * 3 >> 2);
         }
         for (int k = i; k < (reader_blocks.length) - 4; k ++) {
             reader_blocks[i] = readLong();

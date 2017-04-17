@@ -8,7 +8,7 @@ import java.util.Random;
 public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
 
     public int len = 100;
-    public int[] b = new int[100];
+    public byte[] b = new byte[100];
     public int offset = 0;
 
     public byte readByte() {
@@ -68,7 +68,7 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
         b[offset] = readByte();
         for (int i = 2; i < len - 1; i += 2) {
             b[offset + i] = readByte();
-            b[offset + i + 1] = (b[offset + i] + b[offset + i - 2]) >> 1;
+            b[offset + i + 1] = (byte)((b[offset + i] + b[offset + i - 2]) >> 1);
         }
     }
 
@@ -80,7 +80,7 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
             b[offset + i] = readByte();
             i+=2;
             b[offset + i] = readByte();
-            b[offset + i - 1] = (b[offset + i] + b[offset + i - 2]) >> 1;
+            b[offset + i - 1] = (byte)((b[offset + i] + b[offset + i - 2]) >> 1);
         }
         for (int i = len - 4; i < len; i++) {
             b[offset + i] = readByte();
@@ -94,9 +94,9 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
         }
         for (int i = 4; i < len - 4; i++) {
             b[offset + i] = readByte();
-            b[offset + i - 1] = b[offset + i] * 3 >> 2 + b[offset + i - 4] >> 2;
-            b[offset + i - 2] = (b[offset + i - 4] + b[offset + i - 4]) >> 1;
-            b[offset + i - 3] = b[offset + i] * 3 >> 2 + b[offset + i - 4] >> 2;
+            b[offset + i - 1] = (byte)((b[offset + i] * 3 >> 2) + (b[offset + i - 4] >> 2));
+            b[offset + i - 2] = (byte)((b[offset + i - 4] + b[offset + i - 4]) >> 1);
+            b[offset + i - 3] = (byte)((b[offset + i] * 3 >> 2) + (b[offset + i - 4] >> 2));
         }
         for (int i = len - 4; i < len; i++) {
             b[offset + i] = readByte();

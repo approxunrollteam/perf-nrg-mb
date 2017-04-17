@@ -55,14 +55,14 @@ public class CodeGenerator {
         HashMap<String, Loop> result = new HashMap<>();
         while (resultSet.next()) {
             String uid = resultSet.getString(1);
-            result.put(uid.replace(".", "_"), new Loop(uid, resultSet.getString(2), resultSet.getInt(3)));
+            result.put(uid.replace(".", "_"), new Loop(uid, resultSet.getString(2),
+                    resultSet.getInt(3)));
         }
         connector.close();
         return result;
     }
 
-
-    protected void executeCommand(String command) {
+    protected void executeCommand(String... command) {
         int r;
         try {
             // Use a ProcessBuilder
@@ -78,7 +78,7 @@ public class CodeGenerator {
             r = p.waitFor(); // Let the process finish.
         } catch (Exception e) {
             e.printStackTrace();
-            send("marcelino.rguez.cancio@gmail.com", "1qaz2wsx3edc*-", "Problems!", "The program was unable to run.");
+            //send("marcelino.rguez.cancio@gmail.com", "1qaz2wsx3edc*-", "Problems!", "The program was unable to run.");
             r = -1;
         }
         if (r != 0)

@@ -1,7 +1,4 @@
-package fr.inria.approxloop.facesaccuracy;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.css.Rect;
+package fr.inria.approxloop.accuracy;
 
 import java.awt.geom.Rectangle2D;
 import java.io.BufferedReader;
@@ -9,14 +6,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.IllegalFormatException;
 import java.util.List;
 
 /**
  * Created by elmarce on 13/02/17.
  */
-public class OutputIntersection {
+public class OpenImaJFaceRectIntersection {
 
     static class RectFrame {
         int frame = 0;

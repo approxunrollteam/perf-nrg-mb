@@ -1,3 +1,15 @@
+org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.java
+org/apache/lucene/codecs/blocktree/SegmentTermsEnumFrame.java
+org/apache/lucene/codecs/compressing/CompressingStoredFieldsWriter.java
+org/apache/lucene/index/TermsHashPerField.java
+org/apache/lucene/queryparser/classic/QueryParserTokenManager.java
+org/apache/lucene/util/bkd/BKDWriter.java
+org/apache/lucene/util/fst/BytesStore.java
+org/apache/lucene/util/fst/ReverseBytesReader.java
+org/apache/lucene/util/packed/Packed64SingleBlock.java
+
+
+
  109  DivD  === _  108  46  [ [ 110 ]]  !jvms: PerformanceRunner::testUnrolling @ bci:38
  187  MulD  === _  184  46  [ [ 409  412 ]]  !orig=[101] !jvms: PerformanceRunner::testUnrolling @ bci:29
  299  DivD  === _  322  46  [ [ 316 ]]  !orig=109 !jvms: PerformanceRunner::testUnrolling @ bci:38

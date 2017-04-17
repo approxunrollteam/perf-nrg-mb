@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460 {
 
-    public int[] b = new int[10];
+    public byte[] b = new byte[10];
     public int len = 10;
 
     public byte readByte() {
@@ -65,7 +65,7 @@ public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMeta
         b[0] = readByte();
         for (int i = 2; i < len - 1; i += 2) {
             b[i] = readByte();
-            b[i + 1] = (b[i] + b[i - 2]) >> 1;
+            b[i + 1] = (byte)((b[i] + b[i - 2]) >> 1);
         }
     }
 
@@ -76,9 +76,9 @@ public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMeta
         }
         for (int i = 4; i < len - 4; i += 4) {
             b[i] = readByte();
-            b[i - 1] = b[i] * 3 >> 2 + b[i - 4] >> 1;
-            b[i - 2] = (b[i] + b[i - 4]) >> 1;
-            b[i - 3] = b[i - 4] * 3 >> 2 + b[i] >> 1;
+            b[i - 1] = (byte)((b[i] * 3 >> 2) + (b[i - 4] >> 1));
+            b[i - 2] = (byte)((b[i] + b[i - 4]) >> 1);
+            b[i - 3] = (byte)((b[i - 4] * 3 >> 2) + (b[i] >> 1));
         }
         for (int i = len - 4; i < len; i ++) {
             b[i] = readByte();
@@ -93,7 +93,7 @@ public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMeta
             b[i] = readByte();
             i+=2;
             b[i] = readByte();
-            b[i - 1] = (b[i] + b[i - 2]) >> 1;
+            b[i - 1] = (byte)((b[i] + b[i - 2]) >> 1);
         }
         for (int i = len - 4; i < len; i ++) {
             b[i] = readByte();

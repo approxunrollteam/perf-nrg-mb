@@ -1,21 +1,15 @@
-package fr.inria.approxloop.facesaccuracy;
+package fr.inria.approxloop.accuracy;
 
 import fr.inria.approxloop.orm.ExprimentDAO;
-import fr.inria.approxloops.sqlite.SQLiteConnector;
 
-import java.awt.geom.Rectangle2D;
 import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by elmarce on 14/02/17.
  */
-public class AccuracyMain {
+public class OpenImaJAccuracyMain {
     public static void main(String[] args) throws Exception {
 
         boolean useLoopNames = false;
@@ -109,7 +103,7 @@ public class AccuracyMain {
         };*/
 
         File dir = new File(path);
-        OutputIntersection o = new OutputIntersection();
+        OpenImaJFaceRectIntersection o = new OpenImaJFaceRectIntersection();
         HashMap<String, List<Double>> result = new HashMap<>();
         for (File f : dir.listFiles()) {
             if (f.isFile() && !f.getName().startsWith(originalName)) {

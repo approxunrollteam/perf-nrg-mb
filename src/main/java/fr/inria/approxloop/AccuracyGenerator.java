@@ -3,13 +3,9 @@ package fr.inria.approxloop;
 import fr.inria.approxloop.loopstodb.TakeLoopsToDb;
 import fr.inria.approxloop.orm.Loop;
 import fr.inria.approxloop.perfenergy.CodeGenerator;
-import fr.inria.approxloops.sqlite.SQLiteConnector;
 
 import java.io.File;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,14 +13,27 @@ import java.util.Map;
  */
 public class AccuracyGenerator extends CodeGenerator {
 
+    static String inputProjectPath = "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/lucene/";
+    static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    static String project = "lucene";
     static String[] ouputFiles = {
+            inputProjectPath + "/core/src/java/org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/codecs/blocktree/SegmentTermsEnumFrame.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/codecs/compressing/CompressingStoredFieldsWriter.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/index/TermsHashPerField.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/util/fst/BytesStore.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/util/fst/ReverseBytesReader.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/util/packed/Packed64SingleBlock.java",
+            inputProjectPath + "/core/src/java/org/apache/lucene/util/bkd/BKDWriter.java",
+            inputProjectPath + "/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserTokenManager.java"
+            /*
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/core/src/main/java/smile/classification/AdaBoost.java",
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/core/src/main/java/smile/classification/DecisionTree.java",
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/data/src/main/java/smile/data/Dataset.java",
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/math/src/main/java/smile/math/random/UniversalGenerator.java",
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/core/src/main/java/smile/util/SmileUtils.java",
             "/media/elmarce/Windows/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/smile-master/demo/src/main/java/smile/demo/classification/AdaBoostUSPS.java"
-                        /*
+             */           /*
             "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/openimaj-master/demos/approxdemos/src/main/java/org/openimaj/approxdemos/KLTHaarFaceTrackerDemoApproxEval.java",
             "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/openimaj-master/core/core-image/src/main/java/org/openimaj/image/FImage.java",
             "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/openimaj-master/core/core-image/src/main/java/org/openimaj/image/ImageUtilities.java",
@@ -83,7 +92,6 @@ public class AccuracyGenerator extends CodeGenerator {
         return file;
     }
 
-
     private void generateAndRun(HashMap<String, Loop> approximate, int init) {
         int  i = -1;
         for (Map.Entry<String, Loop> e : approximate.entrySet()) {
@@ -111,23 +119,23 @@ public class AccuracyGenerator extends CodeGenerator {
                 String templateName = getTemplateNameFromFile(outputFile);
                 generate(input, templateName, outputFile, true);
             }
-            run();
+            run(e.getValue().getUid());
         }
     }
 
-    private void run() {
-        executeCommand(commandName);
+    private void run(String loop) {
+        executeCommand(commandName, loop);
     }
 
     public static void main(String[] params) throws Exception {
 
         //HashMap<String, List<String>> loopsPerFile = getLoopFiles(loopUIDs, ouputFiles);
-        TakeLoopsToDb.main(params);
+        TakeLoopsToDb.walk(new File(path));
         AccuracyGenerator gen = new AccuracyGenerator();
         gen.initialize(new File(gen.getClass().getClassLoader().getResource(template_dir).toURI()));
 
         //String project = "OpenImaJ";
-        String project = "smile";
+
         
         //originals = gen.getLoops(project, 0);
         HashMap<String, Loop> nn = gen.getLoops(project, 128);
@@ -156,7 +164,7 @@ public class AccuracyGenerator extends CodeGenerator {
 
         //Loop 4 does not executes the innter loop
 
-        //gen.generateAndRun(mn_34, 0);
+        gen.generateAndRun(mn_34, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -164,7 +172,7 @@ public class AccuracyGenerator extends CodeGenerator {
         System.out.println("*****************************************");
         System.out.println("*****************************************");
 
-        //gen.generateAndRun(nn_34, 0);
+        gen.generateAndRun(nn_34, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -186,24 +194,24 @@ public class AccuracyGenerator extends CodeGenerator {
         System.out.println("           LINEAR INTERPOLATION 4");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        //gen.generateAndRun(mn_4, 0);
+        gen.generateAndRun(mn_4, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           NEAREST 4");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        //gen.generateAndRun(nn_4, 0);
+        gen.generateAndRun(nn_4, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           PERFORATION");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        gen.generateAndRun(perf, 0);
+        //gen.generateAndRun(perf, 0);
 
         //Collect original data first
-        gen.run();
+        //gen.run("original");
     }
 
 

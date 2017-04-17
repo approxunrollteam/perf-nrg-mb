@@ -111,9 +111,9 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
         }
         for (int i = numBufferedDocs - 4; i > 0; i -= 2) {
             lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = (lengths[i] * 3 >> 2 + lengths[i + 4]) >> 1;
+            lengths[i + 1] = (lengths[i] * 3 >> 2) + (lengths[i + 4] >> 1);
             lengths[i + 2] = (lengths[i] + lengths[i + 4]) >> 1;
-            lengths[i + 3] = (lengths[i + 4] * 3 >> 2 + lengths[i]) >> 1;
+            lengths[i + 3] = ((lengths[i + 4] * 3 >> 2) + (lengths[i]) >> 1);
             assert lengths[i] >= 0;
         }
     }

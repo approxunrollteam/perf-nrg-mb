@@ -1,16 +1,15 @@
-package fr.inria.approxloop.facesaccuracy;
+package fr.inria.approxloop.accuracy;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 /**
  * Created by elmarce on 19/02/17.
  */
-public class SearchAccuracy {
+public class LuceneAccuracyMain {
 
     static String path = "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/OUTPUT/Lucene/";
     public static void main(String[] args) throws IOException {

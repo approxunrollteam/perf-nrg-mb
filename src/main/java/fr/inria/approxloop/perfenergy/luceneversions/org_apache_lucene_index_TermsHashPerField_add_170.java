@@ -111,9 +111,9 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
         for (i = 4; i < streamCount - 4; i += 4) {
             final int upto = newSlice(FIRST_LEVEL_SIZE);
             intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i - 1] = intUptos[intUptoStart + i] * 3 >> 2 + intUptos[intUptoStart + i - 4] >> 1;
+            intUptos[intUptoStart + i - 1] = (intUptos[intUptoStart + i] * 3 >> 2) + (intUptos[intUptoStart + i - 4] >> 1);
             intUptos[intUptoStart + i - 2] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i - 4]) >> 1;
-            intUptos[intUptoStart + i - 3] = intUptos[intUptoStart + i - 4] * 3 >> 2 + intUptos[intUptoStart + i] >> 1;
+            intUptos[intUptoStart + i - 3] = (intUptos[intUptoStart + i - 4] * 3 >> 2) + (intUptos[intUptoStart + i] >> 1);
         }
         for (int k = i; k < streamCount; k++) {
             final int upto = newSlice(FIRST_LEVEL_SIZE);

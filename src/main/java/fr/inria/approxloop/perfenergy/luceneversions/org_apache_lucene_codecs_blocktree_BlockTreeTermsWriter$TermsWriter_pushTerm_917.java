@@ -94,9 +94,9 @@ public class org_apache_lucene_codecs_blocktree_BlockTreeTermsWriter$TermsWriter
         }
         for (int i = pos + 4; i < text.length - 4; i += 4) {
             prefixStarts[i] = pending.size();
-            prefixStarts[i - 1] = (prefixStarts[i] * 3 >> 2 + prefixStarts[i - 4] >> 1);
+            prefixStarts[i - 1] = (prefixStarts[i] * 3 >> 2) + (prefixStarts[i - 4] >> 1);
             prefixStarts[i - 2] = (prefixStarts[i] + prefixStarts[i - 2]) >> 1;
-            prefixStarts[i - 3] = (prefixStarts[i - 4] * 3 >> 2 + prefixStarts[i] >> 1);
+            prefixStarts[i - 3] = (prefixStarts[i - 4] * 3 >> 2) + (prefixStarts[i] >> 1);
         }/**/
         for (int i = text.length - 4; i < text.length; i ++) {
             prefixStarts[i] = pending.size();

@@ -10,14 +10,14 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
 
     public int len = 100;
     public int pos = 0;
-    public int[] b = new int[100];
-    public int[] bytes = new int[200];
+    public byte[] b = new byte[100];
+    public byte[] bytes = new byte[200];
     public int offset = 0;
 
     public org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36() {
         Random r = new Random();
         for (int i = 0; i < 200; i++) {
-            bytes[i] = r.nextInt();
+            bytes[i] = (byte)r.nextInt();
         }
     }
 
@@ -83,9 +83,9 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
         for (int i = 4; i < len - 4; i += 4) {
             int k = offset + i;
             b[k] = bytes[pos--];
-            b[k - 1] = (b[k] * 3 >> 4 + b[k - 4]) >> 2;
-            b[k - 2] = (b[k] + b[k - 4]) >> 1;
-            b[k - 3] = (b[k - 4] * 3 >> 4 + b[k]) >> 2;
+            b[k - 1] = (byte)((b[k] * 3 >> 4) + (b[k - 4] >> 2));
+            b[k - 2] = (byte)((b[k] + b[k - 4]) >> 1);
+            b[k - 3] = (byte)((b[k - 4] * 3 >> 4) + (b[k] >> 2));
         }
         for (int i = len - 4; i < len; i ++) {
             b[i] = bytes[pos--];
@@ -98,9 +98,9 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
         for (int i = 4; i < len; i += 2) {
             int k = offset + i;
             b[k] = bytes[pos--];
-            b[k - 1] = b[k] * 3 >> 2 + b[k - 4] >> 2;
-            b[k - 2] = (b[k] + b[k - 4]) >> 1;
-            b[k - 3] = b[k - 4] * 3 >> 2 + b[k] >> 2;
+            b[k - 1] = (byte)((b[k] * 3 >> 2) + (b[k - 4] >> 2));
+            b[k - 2] = (byte)((b[k] + b[k - 4]) >> 1);
+            b[k - 3] = (byte)((b[k - 4] * 3 >> 2) + (b[k] >> 2));
         }
     }
 
@@ -117,7 +117,7 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
             i+= 2;
             k = offset + i;
             b[k] = bytes[pos--];
-            b[k - 1] = (b[k] + b[k - 2]) >> 1;
+            b[k - 1] = (byte)((b[k] + b[k - 2]) >> 1);
         }
         for (int k = i; k < len; k ++) {
             b[offset + i] = bytes[pos--];

@@ -33,12 +33,28 @@ runmaven 1 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/my
 
 cd /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/mylucenedemo/target/
 ls
-java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies fr.inria.diverse.IndexFiles
+java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.IndexFiles -docs /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/documents
 
 if [ $? -eq 0 ]; then
-    echo "Accuracy measurement succeed"
+    echo "Index program - Accuracy measurement succeed"
 else
-    echo "Accuracy measurement failed"
+    echo "Index program - Accuracy measurement failed"
     exit -1
 fi
 
+java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.SearchFiles -index /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index -query string Napoleon -paging 1000 > Napoleon_$1
+
+if [ $? -eq 0 ]; then
+    echo "Search program - Accuracy measurement succeed"
+else
+    echo "Search program - Accuracy measurement failed"
+fi
+
+rm -r /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index
+
+if [ $? -eq 0 ]; then
+    echo "Index files removed! OK"
+else
+    echo "Unable to remove Index files!"
+    exit -1
+fi

@@ -83,9 +83,9 @@ public class org_apache_lucene_queryparser_classic_QueryParserTokenManager_ReIni
         }
         for (i = 33; i >= 4; i -= 4) {
             jjrounds[i] = 0x80000000;
-            jjrounds[i + 1] = jjrounds[i] * 3 >> 2 + jjrounds[i + 4] >> 2;
+            jjrounds[i + 1] = (jjrounds[i] * 3 >> 2) + (jjrounds[i + 4] >> 2);
             jjrounds[i + 2] = (jjrounds[i] + jjrounds[i + 4]) >> 1;
-            jjrounds[i + 3] = jjrounds[i + 4] * 3 >> 2 + jjrounds[i] >> 2;
+            jjrounds[i + 3] = (jjrounds[i + 4] * 3 >> 2) + (jjrounds[i] >> 2);
         }
         for (i = 4; i >= 0; i -= 1) {
             jjrounds[i] = 0x80000000;

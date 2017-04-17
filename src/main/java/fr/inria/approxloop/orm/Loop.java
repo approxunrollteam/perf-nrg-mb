@@ -6,7 +6,13 @@ package fr.inria.approxloop.orm;
 public class Loop {
     private String code;
     private String uid;
+    private String pos;
     private int strategy;
+
+    public Loop(String uid, String code, int strategy, String pos) {
+        this(uid, code, strategy);
+        this.setPos(pos);
+    }
 
     public Loop(String uid, String code, int strategy) {
         this.setUid(uid);
@@ -41,5 +47,13 @@ public class Loop {
 
     public void setStrategy(int strategy) {
         this.strategy = strategy;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
     }
 }
