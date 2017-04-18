@@ -34,76 +34,94 @@ public class org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_6
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < leafBlockFPs.size() - 1; i += 2) {
-            arr[i] = leafBlockFPs.get(i);
-            arr[i + 1] = arr[i];
-        }
-        for (int i = leafBlockFPs.size() - 1; i < leafBlockFPs.size(); i ++) {
-            arr[i] = leafBlockFPs.get(i);
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < leafBlockFPs.size() - 1; fr_ii += 2) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii + 1] = arr[fr_ii];
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < leafBlockFPs.size() - 4; i += 2) {
-            arr[i] = leafBlockFPs.get(i);
-            i++;
-            arr[i] = leafBlockFPs.get(i);
-            i++;
-            arr[i] = leafBlockFPs.get(i);
-            arr[i + 1] = arr[i];
-        }
-        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i++) {
-            arr[i] = leafBlockFPs.get(i);
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < leafBlockFPs.size() - 4; fr_ii += 2) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                fr_ii++;
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                fr_ii++;
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii + 1] = arr[fr_ii];
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 
     public void benchmark_NN34() {
-        for (int i = 0; i < leafBlockFPs.size() - 4; i += 4) {
-            arr[i] = leafBlockFPs.get(i);
-            arr[i + 1] = arr[i];
-            arr[i + 2] = arr[i];
-            arr[i + 3] = arr[i];
-        }
-        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i ++) {
-            arr[i] = leafBlockFPs.get(i);
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < leafBlockFPs.size() - 4; fr_ii += 4) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii + 1] = arr[fr_ii];
+                arr[fr_ii + 2] = arr[fr_ii];
+                arr[fr_ii + 3] = arr[fr_ii];
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 
     public void benchmark_MN() {
-        arr[0] = leafBlockFPs.get(0);
-        for (int i = 2; i < leafBlockFPs.size(); i += 2) {
-            arr[i] = leafBlockFPs.get(i);
-            arr[i - 1] = (arr[i - 2] + arr[i]) / 2;
+        {
+            arr[0] = leafBlockFPs.get(0);
+            int fr_ii;
+            for (fr_ii = 2; fr_ii < leafBlockFPs.size(); fr_ii += 2) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii - 1] = (arr[fr_ii - 2] + arr[fr_ii]) / 2;
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 
     public void benchmark_MN34() {
-        arr[0] = leafBlockFPs.get(0);
-        for (int i = 0; i < 1; i ++) {
-            arr[i] = leafBlockFPs.get(i);
-        }
-        for (int i = 4; i < leafBlockFPs.size() - 4; i +=4) {
-            arr[i] = leafBlockFPs.get(i);
-            arr[i - 1] = (arr[i - 4] * 3 >> 2) + (arr[i] >> 2);
-            arr[i - 2] = (arr[i - 4] + arr[i]) >> 1;
-            arr[i - 3] = (arr[i - 4] >> 2) + (arr[i] * 3 >> 2);
-        }
-        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size(); i ++) {
-            arr[i] = leafBlockFPs.get(i);
+        {
+            arr[0] = leafBlockFPs.get(0);
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < leafBlockFPs.size() - 4; fr_ii += 4) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii - 1] = (arr[fr_ii - 4] * 3 >> 2) + (arr[fr_ii] >> 2);
+                arr[fr_ii - 2] = (arr[fr_ii - 4] + arr[fr_ii]) >> 1;
+                arr[fr_ii - 3] = (arr[fr_ii - 4] >> 2) + (arr[fr_ii] * 3 >> 2);
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 
     public void benchmark_MN4() {
-        for (int i = 0; i < leafBlockFPs.size() - 4; i ++) {
-            arr[i] = leafBlockFPs.get(i);
-            i++;
-            arr[i] = leafBlockFPs.get(i);
-            i+=2;
-            arr[i] = leafBlockFPs.get(i);
-            arr[i - 1] = (arr[i - 2] + arr[i]) >> 1;
-        }
-        for (int i = leafBlockFPs.size() - 4; i < leafBlockFPs.size() ; i ++) {
-            arr[i] = leafBlockFPs.get(i);
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < leafBlockFPs.size() - 4; fr_ii++) {
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                fr_ii++;
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                fr_ii += 2;
+                arr[fr_ii] = leafBlockFPs.get(fr_ii);
+                arr[fr_ii - 1] = (arr[fr_ii - 2] + arr[fr_ii]) >> 1;
+            }
+            for (int i = fr_ii; i < leafBlockFPs.size(); i++) {
+                arr[i] = leafBlockFPs.get(i);
+            }
         }
     }
 

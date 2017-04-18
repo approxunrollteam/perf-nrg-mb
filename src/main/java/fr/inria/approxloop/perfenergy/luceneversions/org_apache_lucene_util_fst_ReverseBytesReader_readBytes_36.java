@@ -17,7 +17,7 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
     public org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36() {
         Random r = new Random();
         for (int i = 0; i < 200; i++) {
-            bytes[i] = (byte)r.nextInt();
+            bytes[i] = (byte) r.nextInt();
         }
     }
 
@@ -37,90 +37,116 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
 
     public void benchmark_NN() {
         pos = len;
-        for (int i = 0; i < len - 1; i += 2) {
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            b[k + 1] = b[k];
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 1; fr_ii += 2) {
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                b[k + 1] = b[k];
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = bytes[pos--];
+            }
         }
     }
 
     public void benchmark_NN34() {
-        pos = len;
-        for (int i = 0; i < len - 1; i += 4) {
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            b[k + 1] = b[k]; pos--;
-            b[k + 2] = b[k]; pos--;
-            b[k + 3] = b[k]; pos--;
-        }
-        for (int i = len - 1; i < len; i ++) {
-            b[offset + i] = bytes[pos--];
+        {
+            pos = len;
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 4; fr_ii += 4) {
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                b[k + 1] = b[k];
+                pos--;
+                b[k + 2] = b[k];
+                pos--;
+                b[k + 3] = b[k];
+                pos--;
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = bytes[pos--];
+            }
         }
     }
 
     public void benchmark_NN4() {
         pos = len;
-        for (int i = 0; i < len - 4; i += 2) {
-            b[offset + i] = bytes[pos--];
-            i++;
-            b[offset + i] = bytes[pos--];
-            i++;
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            pos--;
-            b[k + 1] = b[k];
-        }
-        for (int i = len - 4; i < len; i++) {
-            b[offset + i] = bytes[pos--];
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 4; fr_ii += 2) {
+                b[offset + fr_ii] = bytes[pos--];
+                fr_ii++;
+                b[offset + fr_ii] = bytes[pos--];
+                fr_ii++;
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                pos--;
+                b[k + 1] = b[k];
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = bytes[pos--];
+            }
         }
     }
 
     public void benchmark_MN() {
         pos = len;
-        for (int i = 0; i < 1; i ++) {
-            b[i] = bytes[pos--];
-        }
-        for (int i = 4; i < len - 4; i += 4) {
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            b[k - 1] = (byte)((b[k] * 3 >> 4) + (b[k - 4] >> 2));
-            b[k - 2] = (byte)((b[k] + b[k - 4]) >> 1);
-            b[k - 3] = (byte)((b[k - 4] * 3 >> 4) + (b[k] >> 2));
-        }
-        for (int i = len - 4; i < len; i ++) {
-            b[i] = bytes[pos--];
+        {
+            b[0] = bytes[pos--];
+            int fr_ii;
+            for (fr_ii = 2; fr_ii < len - 4; fr_ii += 2) {
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                b[k - 1] = (byte) ((b[k] + b[k - 2]) >> 1);
+                pos--;
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[i] = bytes[pos--];
+            }
         }
     }
 
     public void benchmark_MN34() {
         pos = len;
-        b[0] = bytes[pos--];
-        for (int i = 4; i < len; i += 2) {
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            b[k - 1] = (byte)((b[k] * 3 >> 2) + (b[k - 4] >> 2));
-            b[k - 2] = (byte)((b[k] + b[k - 4]) >> 1);
-            b[k - 3] = (byte)((b[k - 4] * 3 >> 2) + (b[k] >> 2));
+        {
+            b[offset] = bytes[pos--];
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < len - 4; fr_ii += 4) {
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                b[k - 1] = (byte) ((b[k] * 3 >> 2) + (b[k - 4] >> 2));
+                pos--;
+                b[k - 2] = (byte) ((b[k] + b[k - 4]) >> 1);
+                pos--;
+                b[k - 3] = (byte) ((b[k - 4] * 3 >> 2) + (b[k] >> 2));
+                pos--;
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = bytes[pos--];
+            }
         }
     }
 
     public void benchmark_MN4() {
         pos = len;
-        int i;
-        for (i = 0; i < len - 4; i += 2) {
-            int k = offset + i;
-            b[k] = bytes[pos--];
-            i++;
-            k = offset + i;
-            b[k] = bytes[pos--];
-            pos--;
-            i+= 2;
-            k = offset + i;
-            b[k] = bytes[pos--];
-            b[k - 1] = (byte)((b[k] + b[k - 2]) >> 1);
-        }
-        for (int k = i; k < len; k ++) {
-            b[offset + i] = bytes[pos--];
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 4; fr_ii += 2) {
+                int k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                fr_ii++;
+                k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                pos--;
+                fr_ii += 2;
+                k = offset + fr_ii;
+                b[k] = bytes[pos--];
+                b[k - 1] = (byte) ((b[k] + b[k - 2]) >> 1);
+            }
+            for (int k = fr_ii; k < len; k++) {
+                b[offset + k] = bytes[pos--];
+            }
         }
     }
 

@@ -28,93 +28,128 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     public void benchmark_PERF() {
         final int[] lengths = endOffsets;
 
-        for (int i = numBufferedDocs - 1; i > 0; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            assert lengths[i] >= 0;
+        int fr_ii;
+        for (fr_ii = numBufferedDocs - 1; fr_ii > 0; fr_ii -= 2) {
+            lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+            assert lengths[fr_ii] >= 0;
         }
+
     }
 
     public void benchmark_NN() {
         final int[] lengths = endOffsets;
-        for (int i = numBufferedDocs - 1; i > 0; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = lengths[i];
-            assert lengths[i] >= 0;
+        {
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 1; fr_ii > 0; fr_ii -= 2) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii + 1] = lengths[fr_ii];
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; i -= 1) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 
     public void benchmark_NN4() {
         final int[] lengths = endOffsets;
-        for (int i = numBufferedDocs - 1; i > 4; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            i--;
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            i--;
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = lengths[i];
-            assert lengths[i] >= 0;
-        }
-        for (int i = 4; i > 0; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            assert lengths[i] >= 0;
+        {
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 1; fr_ii > 4; fr_ii -= 2) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                fr_ii--;
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                fr_ii--;
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii + 1] = lengths[fr_ii];
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; i -= 2) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 
     public void benchmark_NN34() {
         final int[] lengths = endOffsets;
-        for (int i = numBufferedDocs - 1; i > 4; i -= 4) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i - 1] = lengths[i];
-            lengths[i - 2] = lengths[i];
-            lengths[i - 3] = lengths[i];
-            assert lengths[i] >= 0;
-        }
-        for (int i = numBufferedDocs - 4; i > 0; i -= 1) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            assert lengths[i] >= 0;
+        {
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 1; fr_ii > 4; fr_ii -= 4) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii - 1] = lengths[fr_ii];
+                lengths[fr_ii - 2] = lengths[fr_ii];
+                lengths[fr_ii - 3] = lengths[fr_ii];
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; i -= 1) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 
     public void benchmark_MN() {
         final int[] lengths = endOffsets;
-        lengths[0] = endOffsets[0] - endOffsets[numBufferedDocs];
-        for (int i = numBufferedDocs - 2; i > 0; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = (lengths[i] + lengths[i + 2]) >> 1;
-            assert lengths[i] >= 0;
+        {
+            lengths[0] = endOffsets[0] - endOffsets[numBufferedDocs];
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 2; fr_ii > 0; fr_ii -= 2) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii + 1] = (lengths[fr_ii] + lengths[fr_ii + 2]) >> 1;
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; i -= 1) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 
     public void benchmark_MN4() {
         final int[] lengths = endOffsets;
-        lengths[0] = endOffsets[0] - endOffsets[numBufferedDocs];
-        for (int i = numBufferedDocs - 1; i > 4; i -= 1) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            i--;
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            i-=2;
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = (lengths[i] + lengths[i + 2]) >> 1;
-            assert lengths[i] >= 0;
-        }
-        for (int i = 4; i > 0; i -= 1) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            assert lengths[i] >= 0;
+        {
+            /*
+            for (int i = numBufferedDocs - 1; i > 0; i -= 1) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
+            */
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 1; fr_ii > 4; fr_ii -= 1) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                fr_ii--;
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                fr_ii -= 2;
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii + 1] = (lengths[fr_ii] + lengths[fr_ii + 2]) >> 1;
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; i -= 1) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 
     public void benchmark_MN34() {
         final int[] lengths = endOffsets;
-        for (int i = numBufferedDocs - 1; i > numBufferedDocs - 2; i -= 1) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            assert lengths[i] >= 0;
-        }
-        for (int i = numBufferedDocs - 4; i > 0; i -= 2) {
-            lengths[i] = endOffsets[i] - endOffsets[i - 1];
-            lengths[i + 1] = (lengths[i] * 3 >> 2) + (lengths[i + 4] >> 1);
-            lengths[i + 2] = (lengths[i] + lengths[i + 4]) >> 1;
-            lengths[i + 3] = ((lengths[i + 4] * 3 >> 2) + (lengths[i]) >> 1);
-            assert lengths[i] >= 0;
+        {
+            lengths[0] = endOffsets[numBufferedDocs - 1] - endOffsets[numBufferedDocs - 2];
+            assert lengths[0] >= 0;
+            int fr_ii;
+            for (fr_ii = numBufferedDocs - 5; fr_ii > 4; fr_ii -= 4) {
+                lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
+                lengths[fr_ii + 1] = (lengths[fr_ii] * 3 >> 2) + (lengths[fr_ii + 4] >> 1);
+                lengths[fr_ii + 2] = (lengths[fr_ii] + lengths[fr_ii + 4]) >> 1;
+                lengths[fr_ii + 3] = ((lengths[fr_ii + 4] * 3 >> 2) + (lengths[fr_ii]) >> 1);
+                assert lengths[fr_ii] >= 0;
+            }
+            for (int i = fr_ii; i > 0; --i) {
+                lengths[i] = endOffsets[i] - endOffsets[i - 1];
+                assert lengths[i] >= 0;
+            }
         }
     }
 

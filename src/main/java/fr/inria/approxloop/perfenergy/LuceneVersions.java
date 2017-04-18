@@ -74,7 +74,7 @@ public class LuceneVersions {
      * public void benchmark_BytesStore_readBytes() {
      * int offset = 0;
      * for(int i=0;i<len;i++) {
-     * b[offset+i] = readByte();
+     * longs[offset+i] = readVLong();
      * }
      * }
      * <p>

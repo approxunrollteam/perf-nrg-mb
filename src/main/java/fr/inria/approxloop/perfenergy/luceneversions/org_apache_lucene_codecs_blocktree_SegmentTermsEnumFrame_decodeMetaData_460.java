@@ -7,96 +7,132 @@ import java.util.Random;
  */
 public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460 {
 
-    public byte[] b = new byte[10];
-    public int len = 10;
+    private final HasFr ste;
+    public long[] longs = new long[10];
+    org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460 bytesReader;
 
-    public byte readByte() {
+    public org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460() {
+        bytesReader = this;
+        ste = new HasFr();
+    }
+
+    public static class HaslongsSize {
+        public int longsSize = 10;
+    }
+
+    public static class HasFr {
+        public HaslongsSize fr = new HaslongsSize();
+    }
+
+    //ste.fr.longsSize
+
+    public long readVLong() {
         Random r = new Random();
-        return (byte) r.nextInt(256);
+        return r.nextLong();
     }
 
     public void benchmark() {
-        for (int i = 0; i < len; i++) {
-            b[i] = readByte();
+        for (int i = 0; i < ste.fr.longsSize; i++) {
+            longs[i] = bytesReader.readVLong();
         }
     }
 
     public void benchmark_PERF() {
-        for (int i = 0; i < len; i += 2) {
-            b[i] = readByte();
+        for (int i = 0; i < ste.fr.longsSize; i += 2) {
+            longs[i] = bytesReader.readVLong();
         }
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < len - 1; i += 2) {
-            b[i] = readByte();
-            b[i + 1] = b[i];
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < ste.fr.longsSize - 1; fr_ii += 2) {
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii + 1] = longs[fr_ii];
+            }
+            for (int i = fr_ii; i < ste.fr.longsSize; i++) {
+                longs[i] = bytesReader.readVLong();
+            }
         }
     }
 
     public void benchmark_NN34() {
-        for (int i = 0; i < len - 4; i += 4) {
-            b[i] = readByte();
-            b[i + 1] = b[i];
-            b[i + 2] = b[i];
-            b[i + 3] = b[i];
-        }
-        for (int i = len - 4; i < len; i ++) {
-            b[i] = readByte();
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < ste.fr.longsSize - 4; fr_ii += 4) {
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii + 1] = longs[fr_ii];
+                longs[fr_ii + 2] = longs[fr_ii];
+                longs[fr_ii + 3] = longs[fr_ii];
+            }
+            for (int i = fr_ii; i < ste.fr.longsSize; i++) {
+                longs[i] = bytesReader.readVLong();
+            }
         }
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < len - 4; i += 2) {
-            b[i] = readByte();
-            i++;
-            b[i] = readByte();
-            i++;
-            b[i] = readByte();
-            b[i + 1] = b[i];
-        }
-        for (int i = len - 4; i < len; i ++) {
-            b[i] = readByte();
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < ste.fr.longsSize - 4; fr_ii += 2) {
+                longs[fr_ii] = bytesReader.readVLong();
+                fr_ii++;
+                longs[fr_ii] = bytesReader.readVLong();
+                fr_ii++;
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii + 1] = longs[fr_ii];
+            }
+            for (int i = fr_ii; i < ste.fr.longsSize; i++) {
+                longs[i] = bytesReader.readVLong();
+            }
         }
     }
 
 
     public void benchmark_MN() {
-        b[0] = readByte();
-        for (int i = 2; i < len - 1; i += 2) {
-            b[i] = readByte();
-            b[i + 1] = (byte)((b[i] + b[i - 2]) >> 1);
+        {
+            longs[0] = bytesReader.readVLong();
+            int fr_ii;
+            for (fr_ii = 2; fr_ii < ste.fr.longsSize - 1; fr_ii += 2) {
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii + 1] = (byte) ((longs[fr_ii] + longs[fr_ii - 2]) >> 1);
+            }
+            for (int k = fr_ii; fr_ii < ste.fr.longsSize - 1; fr_ii ++) {
+                longs[k] = bytesReader.readVLong();
+            }
         }
     }
 
     public void benchmark_MN34() {
-        b[0] = readByte();
-        for (int i = 0; i < 1; i ++) {
-            b[i] = readByte();
-        }
-        for (int i = 4; i < len - 4; i += 4) {
-            b[i] = readByte();
-            b[i - 1] = (byte)((b[i] * 3 >> 2) + (b[i - 4] >> 1));
-            b[i - 2] = (byte)((b[i] + b[i - 4]) >> 1);
-            b[i - 3] = (byte)((b[i - 4] * 3 >> 2) + (b[i] >> 1));
-        }
-        for (int i = len - 4; i < len; i ++) {
-            b[i] = readByte();
+        {
+            longs[0] = bytesReader.readVLong();
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < ste.fr.longsSize - 4; fr_ii += 4) {
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii - 1] = (byte) ((longs[fr_ii] * 3 >> 2) + (longs[fr_ii - 4] >> 1));
+                longs[fr_ii - 2] = (byte) ((longs[fr_ii] + longs[fr_ii - 4]) >> 1);
+                longs[fr_ii - 3] = (byte) ((longs[fr_ii - 4] * 3 >> 2) + (longs[fr_ii] >> 1));
+            }
+            for (int k = fr_ii; k < ste.fr.longsSize; k++) {
+                longs[k] = bytesReader.readVLong();
+            }
         }
     }
 
     public void benchmark_MN4() {
-        b[0] = readByte();
-        for (int i = 0; i < len - 4; i ++) {
-            b[i] = readByte();
-            i++;
-            b[i] = readByte();
-            i+=2;
-            b[i] = readByte();
-            b[i - 1] = (byte)((b[i] + b[i - 2]) >> 1);
-        }
-        for (int i = len - 4; i < len; i ++) {
-            b[i] = readByte();
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < ste.fr.longsSize - 4; fr_ii++) {
+                longs[fr_ii] = bytesReader.readVLong();
+                fr_ii++;
+                longs[fr_ii] = bytesReader.readVLong();
+                fr_ii += 2;
+                longs[fr_ii] = bytesReader.readVLong();
+                longs[fr_ii - 1] = (byte) ((longs[fr_ii] + longs[fr_ii - 2]) >> 1);
+            }
+            for (int i = fr_ii; i < ste.fr.longsSize; i++) {
+                longs[i] = bytesReader.readVLong();
+            }
         }
     }
 

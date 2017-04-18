@@ -5,11 +5,10 @@ function runmaven {
     mvn clean
 
     if [ $1 -eq 1 ]; then
-        mvn assembly:assembly -DdescriptorId=jar-with-dependencies -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+        mvn assembly:assembly -q -DdescriptorId=jar-with-dependencies -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
     else
-        mvn install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+        mvn install -q -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
     fi
-
 
     if [ $? -eq 0 ]; then
         echo "Maven succeed"
@@ -20,35 +19,18 @@ function runmaven {
     fi
 }
 
-runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/analysis/common/
+function runsearch {
+    java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.SearchFiles -index /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index -query $1 -paging 1000 > /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/OUTPUT/lucen2/$2.$3.$1
+    if [ $? -eq 0 ]; then
+        echo "Search program - Accuracy measurement succeed"
+    else
+        echo "Search program - Accuracy measurement failed"
+    fi
+}
+
 runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/core/
-runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/expressions/
-runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/facet/
-runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/queries/
 runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/queryparser/
-runmaven 0 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/maven-build/lucene/codecs/
 runmaven 1 /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/mylucenedemo/
-
-
-
-cd /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/mylucenedemo/target/
-ls
-java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.IndexFiles -docs /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/documents
-
-if [ $? -eq 0 ]; then
-    echo "Index program - Accuracy measurement succeed"
-else
-    echo "Index program - Accuracy measurement failed"
-    exit -1
-fi
-
-java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.SearchFiles -index /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index -query string Napoleon -paging 1000 > Napoleon_$1
-
-if [ $? -eq 0 ]; then
-    echo "Search program - Accuracy measurement succeed"
-else
-    echo "Search program - Accuracy measurement failed"
-fi
 
 rm -r /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index
 
@@ -58,3 +40,29 @@ else
     echo "Unable to remove Index files!"
     exit -1
 fi
+
+cd /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/mylucenedemo/target/
+ls
+java -cp mylucenedemo-1.0-SNAPSHOT-jar-with-dependencies.jar fr.inria.diverse.IndexFiles -docs /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/documents -index /home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_DATA/TEXT/index
+
+if [ $? -eq 0 ]; then
+    echo "Index program - Accuracy measurement succeed"
+else
+    echo "Index program - Accuracy measurement failed"
+    exit -1
+fi
+
+runsearch WWII $1 $2
+runsearch atomic $1 $2
+runsearch electron $1 $2
+runsearch Napoleon $1 $2
+runsearch Einstein $1 $2
+runsearch relativity $1 $2
+runsearch painting $1 $2
+runsearch France $1 $2
+runsearch modernism $1 $2
+runsearch WWI $1 $2
+
+
+
+

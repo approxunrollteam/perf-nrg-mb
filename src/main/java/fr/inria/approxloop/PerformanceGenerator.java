@@ -24,12 +24,17 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
  */
 public class PerformanceGenerator extends CodeGenerator {
 
-    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
-    private String projectName = "lucene";
+    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
+    //private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    private String projectName = "jsyn";
+    //private String projectName = "lucene";
 
     private String outputPath =
             "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
     boolean testing = false;
+
+    private int loopBeingMicroBenchmarked = 0;
+    private int start = 0;
 /*
     private String experimentDescription = "JRALP Measure";
     private int measuring = 2;
@@ -38,8 +43,8 @@ public class PerformanceGenerator extends CodeGenerator {
             "datums[i - start] = 0.0000000000001; String a = EnergyCheckUtils.EnergyStatCheck(); System.out.println(a);":
             "datums[i - start] = 0.0000000000001; String a = EnergyCheckUtils.EnergyStatCheck();";
     //private String after_run = "";
-    private String after_run = "String b = EnergyCheckUtils.EnergyStatCheck(); \n" +
-            "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(b) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
+    private String after_run = "String longs = EnergyCheckUtils.EnergyStatCheck(); \n" +
+            "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";*/
 
@@ -47,8 +52,8 @@ public class PerformanceGenerator extends CodeGenerator {
     private String before_run = "";
     //private String before_run = "String a = EnergyCheckUtils.EnergyStatCheck();";
     private String after_run = "";
-    //private String after_run = "String b = EnergyCheckUtils.EnergyStatCheck(); \n" +
-    //        "datums[i - start] = EnergyCheckUtils.getCPUEnergy(b) - EnergyCheckUtils.getCPUEnergy(a);";
+    //private String after_run = "String longs = EnergyCheckUtils.EnergyStatCheck(); \n" +
+    //        "datums[i - start] = EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a);";
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";
     private int measuring = 0;
@@ -56,8 +61,7 @@ public class PerformanceGenerator extends CodeGenerator {
 
     private boolean usesClassAsUid = false;
 
-    private int loopBeingMicroBenchmarked = 0;
-    private int start = 0;
+
 
 
     private HashMap<Integer, String> endings;
@@ -95,10 +99,10 @@ public class PerformanceGenerator extends CodeGenerator {
 
     public PerformanceGenerator() {
         endings = new HashMap<>();
-        //endings.put(0, "");
-        //endings.put(1, "PERF");
-        //endings.put(128, "NN");
-        //endings.put(129, "MN");
+        endings.put(0, "");
+        endings.put(1, "PERF");
+        endings.put(128, "NN");
+        endings.put(129, "MN");
         endings.put(130, "NN4");
         endings.put(131, "MN4");
         endings.put(132, "NN34");

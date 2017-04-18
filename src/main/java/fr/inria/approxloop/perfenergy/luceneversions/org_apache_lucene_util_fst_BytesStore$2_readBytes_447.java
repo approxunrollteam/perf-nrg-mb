@@ -31,76 +31,97 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < len - 1; i += 2) {
-            b[offset + i] = readByte();
-            b[offset + i + 1] = b[offset + i];
+        {
+            int fr_ii;
+            for ( fr_ii = 0; fr_ii < len - 1; fr_ii += 2) {
+                b[offset + fr_ii] = readByte();
+                b[offset + fr_ii + 1] = b[offset + fr_ii];
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = readByte();
+            }
         }
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < len - 4; i += 2) {
-            b[offset + i] = readByte();
-            i++;
-            b[offset + i] = readByte();
-            i++;
-            b[offset + i] = readByte();
-            i++;
-            b[offset + i + 1] = b[offset + i];
-        }
-        for (int i = len - 4; i < len; i++) {
-            b[offset + i] = readByte();
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 4; fr_ii += 2) {
+                b[offset + fr_ii] = readByte();
+                fr_ii++;
+                b[offset + fr_ii] = readByte();
+                fr_ii++;
+                b[offset + fr_ii] = readByte();
+                fr_ii++;
+                b[offset + fr_ii + 1] = b[offset + fr_ii];
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = readByte();
+            }
         }
     }
 
     public void benchmark_NN34() {
-        for (int i = 0; i < len - 4; i += 4) {
-            b[offset + i] = readByte();
-            b[offset + i + 1] = b[offset + i];
-            b[offset + i + 2] = b[offset + i];
-            b[offset + i + 3] = b[offset + i];
-        }
-        for (int i = len - 4; i < len; i++) {
-            b[offset + i] = readByte();
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < len - 4; fr_ii += 4) {
+                b[offset + fr_ii] = readByte();
+                b[offset + fr_ii + 1] = b[offset + fr_ii];
+                b[offset + fr_ii + 2] = b[offset + fr_ii];
+                b[offset + fr_ii + 3] = b[offset + fr_ii];
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = readByte();
+            }
         }
     }
 
     public void benchmark_MN() {
-        b[offset] = readByte();
-        for (int i = 2; i < len - 1; i += 2) {
-            b[offset + i] = readByte();
-            b[offset + i + 1] = (byte)((b[offset + i] + b[offset + i - 2]) >> 1);
+        {
+            b[offset] = readByte();
+            int fr_ii;
+            for (fr_ii = 2; fr_ii < len - 1; fr_ii += 2) {
+                b[offset + fr_ii] = readByte();
+                b[offset + fr_ii + 1] = (byte) ((b[offset + fr_ii] + b[offset + fr_ii - 2]) >> 1);
+            }
+            for (int i = fr_ii; i < len; i++) {
+                b[offset + i] = readByte();
+            }
         }
     }
 
     public void benchmark_MN4() {
+        {
         b[offset] = readByte();
-        for (int i = 0; i < len - 4; i++) {
-            b[offset + i] = readByte();
-            i++;
-            b[offset + i] = readByte();
-            i+=2;
-            b[offset + i] = readByte();
-            b[offset + i - 1] = (byte)((b[offset + i] + b[offset + i - 2]) >> 1);
+        int fr_ii;
+        for (fr_ii = 0; fr_ii < len - 4; fr_ii++) {
+            b[offset + fr_ii] = readByte();
+            fr_ii++;
+            b[offset + fr_ii] = readByte();
+            fr_ii += 2;
+            b[offset + fr_ii] = readByte();
+            b[offset + fr_ii - 1] = (byte) ((b[offset + fr_ii] + b[offset + fr_ii - 2]) >> 1);
         }
-        for (int i = len - 4; i < len; i++) {
+        for (int i = fr_ii; i < len; i++) {
             b[offset + i] = readByte();
         }
     }
+    }
 
     public void benchmark_MN34() {
+        {
         b[offset] = readByte();
-        for (int i = 0; i < 1; i++) {
+        int fr_ii;
+        for (fr_ii = 4; fr_ii < len - 4; fr_ii++) {
+            b[offset + fr_ii] = readByte();
+            b[offset + fr_ii - 1] = (byte) ((b[offset + fr_ii] * 3 >> 2) + (b[offset + fr_ii - 4] >> 2));
+            b[offset + fr_ii - 2] = (byte) ((b[offset + fr_ii - 4] + b[offset + fr_ii - 4]) >> 1);
+            b[offset + fr_ii - 3] = (byte) ((b[offset + fr_ii] * 3 >> 2) + (b[offset + fr_ii - 4] >> 2));
+        }
+        for (int i = fr_ii; i < len; i++) {
             b[offset + i] = readByte();
         }
-        for (int i = 4; i < len - 4; i++) {
-            b[offset + i] = readByte();
-            b[offset + i - 1] = (byte)((b[offset + i] * 3 >> 2) + (b[offset + i - 4] >> 2));
-            b[offset + i - 2] = (byte)((b[offset + i - 4] + b[offset + i - 4]) >> 1);
-            b[offset + i - 3] = (byte)((b[offset + i] * 3 >> 2) + (b[offset + i - 4] >> 2));
-        }
-        for (int i = len - 4; i < len; i++) {
-            b[offset + i] = readByte();
-        }
+    }
     }
 
 }

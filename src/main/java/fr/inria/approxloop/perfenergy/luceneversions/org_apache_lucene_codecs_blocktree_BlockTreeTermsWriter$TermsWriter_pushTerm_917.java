@@ -39,82 +39,96 @@ public class org_apache_lucene_codecs_blocktree_BlockTreeTermsWriter$TermsWriter
     }
 
     public void benchmark_NN() {
-        for (int i = pos; i < text.length - 1; i += 2) {
-            prefixStarts[i] = pending.size();
-            prefixStarts[i + 1] = prefixStarts[i];
+        {
+            int fr_ii;
+            for (fr_ii = pos; fr_ii < text.length - 1; fr_ii += 2) {
+                prefixStarts[fr_ii] = pending.size();
+                prefixStarts[fr_ii + 1] = prefixStarts[fr_ii];
+            }
+            for (int i = fr_ii; i < text.length; i++) {
+                prefixStarts[i] = pending.size();
+            }
         }
     }
 
     public void benchmark_NN4() {
-        for (int i = pos; i < text.length - 4; i += 2) {
-            prefixStarts[i] = pending.size();
-            i++;
-            prefixStarts[i] = pending.size();
-            i++;
-            prefixStarts[i] = pending.size();
-            i++;
-            prefixStarts[i + 1] = prefixStarts[i];
-        }
-        for (int i = text.length - 4; i < text.length; i++) {
-            prefixStarts[i] = pending.size();
+        {
+            int fr_ii;
+            for (fr_ii = pos; fr_ii < text.length - 4; fr_ii += 2) {
+                prefixStarts[fr_ii] = pending.size();
+                fr_ii++;
+                prefixStarts[fr_ii] = pending.size();
+                fr_ii++;
+                prefixStarts[fr_ii] = pending.size();
+                fr_ii++;
+                prefixStarts[fr_ii + 1] = prefixStarts[fr_ii];
+            }
+            for (int k = fr_ii; k < text.length; k++) {
+                prefixStarts[fr_ii] = pending.size();
+            }
         }
     }
 
     public void benchmark_NN34() {
-        for (int i = pos; i < text.length - 4; i += 4) {
-            prefixStarts[i] = pending.size();
-            prefixStarts[i + 1] = prefixStarts[i];
-            prefixStarts[i + 2] = prefixStarts[i];
-            prefixStarts[i + 3] = prefixStarts[i];
-        }
-        for (int i = text.length - 4; i < text.length; i++) {
-            prefixStarts[i] = pending.size();
+        {
+            int fr_ii;
+            for (fr_ii = pos; fr_ii < text.length - 4; fr_ii += 4) {
+                prefixStarts[fr_ii] = pending.size();
+                prefixStarts[fr_ii + 1] = prefixStarts[fr_ii];
+                prefixStarts[fr_ii + 2] = prefixStarts[fr_ii];
+                prefixStarts[fr_ii + 3] = prefixStarts[fr_ii];
+            }
+            for (int k = fr_ii; k < text.length; k++) {
+                prefixStarts[fr_ii] = pending.size();
+            }
         }
     }
 
 
     public void benchmark_MN() {
-        prefixStarts[pos] = pending.size();
-        for (int i = 0; i < 1; i ++) {
-            prefixStarts[i] = pending.size();
-        }
-        for (int i = pos + 2; i < text.length; i += 2) {
-            prefixStarts[i] = pending.size();
-            prefixStarts[i - 1] = (prefixStarts[i] + prefixStarts[i - 2]) >> 1;
-        }/**/
-        for (int i = text.length - 1; i < text.length; i ++) {
-            prefixStarts[i] = pending.size();
+        {
+            prefixStarts[pos] = pending.size();
+            int fr_ii;
+            for (fr_ii = pos + 2; fr_ii < text.length; fr_ii += 2) {
+                prefixStarts[fr_ii] = pending.size();
+                prefixStarts[fr_ii - 1] = (prefixStarts[fr_ii] + prefixStarts[fr_ii - 2]) >> 1;
+            }/**/
+            for (int i = fr_ii; i < text.length; i++) {
+                prefixStarts[i] = pending.size();
+            }
         }
     }
 
     public void benchmark_MN34() {
-        prefixStarts[pos] = pending.size();
-        for (int i = 0; i < 1; i ++) {
-            prefixStarts[i] = pending.size();
-        }
-        for (int i = pos + 4; i < text.length - 4; i += 4) {
-            prefixStarts[i] = pending.size();
-            prefixStarts[i - 1] = (prefixStarts[i] * 3 >> 2) + (prefixStarts[i - 4] >> 1);
-            prefixStarts[i - 2] = (prefixStarts[i] + prefixStarts[i - 2]) >> 1;
-            prefixStarts[i - 3] = (prefixStarts[i - 4] * 3 >> 2) + (prefixStarts[i] >> 1);
-        }/**/
-        for (int i = text.length - 4; i < text.length; i ++) {
-            prefixStarts[i] = pending.size();
+        {
+            prefixStarts[pos] = pending.size();
+            int fr_ii;
+            for (fr_ii = pos + 4; fr_ii < text.length - 4; fr_ii += 4) {
+                prefixStarts[fr_ii] = pending.size();
+                prefixStarts[fr_ii - 1] = (prefixStarts[fr_ii] * 3 >> 2) + (prefixStarts[fr_ii - 4] >> 1);
+                prefixStarts[fr_ii - 2] = (prefixStarts[fr_ii] + prefixStarts[fr_ii - 2]) >> 1;
+                prefixStarts[fr_ii - 3] = (prefixStarts[fr_ii - 4] * 3 >> 2) + (prefixStarts[fr_ii] >> 1);
+            }/**/
+            for (int k = fr_ii; fr_ii < text.length; fr_ii++) {
+                prefixStarts[fr_ii] = pending.size();
+            }
         }
     }
 
     public void benchmark_MN4() {
-        prefixStarts[pos] = pending.size();
-        for (int i = pos; i < text.length - 4; i ++) {
-            prefixStarts[i] = pending.size();
-            i++;
-            prefixStarts[i] = pending.size();
-            i+=2;
-            prefixStarts[i] = pending.size();
-            prefixStarts[i - 1] = (prefixStarts[i] + prefixStarts[i - 2]) >> 1;
-        }/**/
-        for (int i = text.length - 4; i < text.length; i ++) {
-            prefixStarts[i] = pending.size();
+        {
+            int fr_ii;
+            for (fr_ii = pos; fr_ii < text.length - 4; fr_ii++) {
+                prefixStarts[fr_ii] = pending.size();
+                fr_ii++;
+                prefixStarts[fr_ii] = pending.size();
+                fr_ii += 2;
+                prefixStarts[fr_ii] = pending.size();
+                prefixStarts[fr_ii - 1] = (prefixStarts[fr_ii] + prefixStarts[fr_ii - 2]) >> 1;
+            }/**/
+            for (int i = fr_ii; i < text.length; i++) {
+                prefixStarts[i] = pending.size();
+            }
         }
     }
 

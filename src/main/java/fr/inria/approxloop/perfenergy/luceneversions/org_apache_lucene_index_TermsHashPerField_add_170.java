@@ -9,9 +9,14 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
 
     public int intUptoStart = 1;
     public int[] intUptos = new int[100];
-    public final static int FIRST_LEVEL_SIZE = 5;
+    public int FIRST_LEVEL_SIZE = 5;
     public int streamCount = 2;
-    public int bytePool_byteOffset = -(1 << 15);
+    public int byteOffset = -(1 << 15);
+    public org_apache_lucene_index_TermsHashPerField_add_170 bytePool;
+
+    public org_apache_lucene_index_TermsHashPerField_add_170() {
+        bytePool = this;
+    }
 
     public int newSlice(final int size) {
         Random r = new Random();
@@ -19,105 +24,125 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
     }
 
     public void benchmark() {
-        for (int i = 0; i < streamCount; i++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+        for(int i=0;i<streamCount;i++) {
+            final int upto = bytePool.bytePool.newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart+i] = upto + bytePool.byteOffset;
         }
     }
 
     public void benchmark_PERF() {
         for (int i = 0; i < streamCount; i += 2) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+            final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + i] = upto + bytePool.byteOffset;
         }
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < streamCount - 1; i++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i + 1] = intUptos[intUptoStart + i];
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < streamCount - 1; fr_ii++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii + 1] = intUptos[intUptoStart + fr_ii];
+            }
+            for(int i=fr_ii;i<streamCount;i++) {
+                final int upto = bytePool.bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart+i] = upto + bytePool.byteOffset;
+            }
         }
     }
 
     public void benchmark_NN34() {
-        int i;
-        for (i = 0; i < streamCount - 4; i += 4) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i + 1] = intUptos[intUptoStart + i];
-            intUptos[intUptoStart + i + 2] = intUptos[intUptoStart + i];
-            intUptos[intUptoStart + i + 3] = intUptos[intUptoStart + i];
-        }
-        for (int k = i; k < streamCount; k++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + k] = upto + bytePool_byteOffset;
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < streamCount - 4; fr_ii += 4) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii + 1] = intUptos[intUptoStart + fr_ii];
+                intUptos[intUptoStart + fr_ii + 2] = intUptos[intUptoStart + fr_ii];
+                intUptos[intUptoStart + fr_ii + 3] = intUptos[intUptoStart + fr_ii];
+            }
+            for (int k = fr_ii; k < streamCount; k++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + k] = upto + bytePool.byteOffset;
+            }
         }
     }
 
     public void benchmark_NN4() {
-        int i;
-        for (i = 0; i < streamCount - 4; i+=2) {
-            int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            i++;
-            upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            i++;
-            upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i + 1] = intUptos[intUptoStart + i];
-        }
-        for (int k = i; k < streamCount; k++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + k] = upto + bytePool_byteOffset;
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < streamCount - 4; fr_ii += 2) {
+                int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                fr_ii++;
+                upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                fr_ii++;
+                upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii + 1] = intUptos[intUptoStart + fr_ii];
+            }
+            for (int k = fr_ii; k < streamCount; k++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + k] = upto + bytePool.byteOffset;
+            }
         }
     }
 
 
     public void benchmark_MN() {
-        final int upto1 = newSlice(FIRST_LEVEL_SIZE);
-        intUptos[intUptoStart] = upto1 + bytePool_byteOffset;
-        for (int i = 2; i < streamCount - 1; i++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i + 1] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i + 2]) >> 1;
+        final int upto1 = bytePool.newSlice(FIRST_LEVEL_SIZE);
+        {
+            intUptos[intUptoStart] = upto1 + bytePool.byteOffset;
+            int fr_ii;
+            for (fr_ii = 2; fr_ii < streamCount - 1; fr_ii++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii + 1] = (intUptos[intUptoStart + fr_ii] + intUptos[intUptoStart + fr_ii + 2]) >> 1;
+            }
+            for(int i=fr_ii;i<streamCount;i++) {
+                final int upto = bytePool.bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart+i] = upto + bytePool.byteOffset;
+            }
         }
     }
 
     public void benchmark_MN4() {
-        int i;
-        for (i = 0; i < streamCount - 4; i++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            i++;
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            i+=2;
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i + 1] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i + 2]) >> 1;
-        }
-        for (int k = i; k < streamCount - 1; k++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < streamCount - 4; fr_ii++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                fr_ii++;
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                fr_ii += 2;
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii + 1] = (intUptos[intUptoStart + fr_ii] + intUptos[intUptoStart + fr_ii + 2]) >> 1;
+            }
+            for (int k = fr_ii; k < streamCount - 1; k++) {
+                final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + k] = upto + bytePool.byteOffset;
+            }
         }
     }
 
     public void benchmark_MN34() {
-        for (int i = 0; i < 1; i++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-        }
-        int i;
-        for (i = 4; i < streamCount - 4; i += 4) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + i] = upto + bytePool_byteOffset;
-            intUptos[intUptoStart + i - 1] = (intUptos[intUptoStart + i] * 3 >> 2) + (intUptos[intUptoStart + i - 4] >> 1);
-            intUptos[intUptoStart + i - 2] = (intUptos[intUptoStart + i] + intUptos[intUptoStart + i - 4]) >> 1;
-            intUptos[intUptoStart + i - 3] = (intUptos[intUptoStart + i - 4] * 3 >> 2) + (intUptos[intUptoStart + i] >> 1);
-        }
-        for (int k = i; k < streamCount; k++) {
-            final int upto = newSlice(FIRST_LEVEL_SIZE);
-            intUptos[intUptoStart + k] = upto + bytePool_byteOffset;
+        {
+            int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+            intUptos[intUptoStart + 0] = upto + bytePool.byteOffset;
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < streamCount - 4; fr_ii += 4) {
+                upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
+                intUptos[intUptoStart + fr_ii - 1] = (intUptos[intUptoStart + fr_ii] * 3 >> 2) + (intUptos[intUptoStart + fr_ii - 4] >> 1);
+                intUptos[intUptoStart + fr_ii - 2] = (intUptos[intUptoStart + fr_ii] + intUptos[intUptoStart + fr_ii - 4]) >> 1;
+                intUptos[intUptoStart + fr_ii - 3] = (intUptos[intUptoStart + fr_ii - 4] * 3 >> 2) + (intUptos[intUptoStart + fr_ii] >> 1);
+            }
+            for (int k = fr_ii; k < streamCount; k++) {
+                upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
+                intUptos[intUptoStart + k] = upto + bytePool.byteOffset;
+            }
         }
     }
 

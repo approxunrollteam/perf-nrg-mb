@@ -3,6 +3,7 @@ package fr.inria.approxloop.loopstodb;
 import fr.inria.approxloop.orm.Loop;
 import fr.inria.approxloops.sqlite.SQLiteConnector;
 import spoon.processing.AbstractProcessor;
+import spoon.reflect.code.CtBlock;
 import spoon.reflect.code.CtFor;
 import spoon.reflect.code.CtLoop;
 import spoon.reflect.declaration.CtClass;
@@ -11,6 +12,7 @@ import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.visitor.filter.TypeFilter;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -19,10 +21,11 @@ import java.util.Map;
 public class TakeVersionsToDBProcessor extends AbstractProcessor<CtFor> {
 
     private String dbPath;
-    private HashMap<String, Loop> loops = new HashMap<>();
+    private HashMap<String, Loop> elementsToStore = new HashMap<>();
     private static String suffixes[] = {"NN34", "MN34", "NN4", "MN4", "PERF", "NN", "MN"};
     private static int strategies[] = {132, 133, 130, 131, 1, 128, 129, 0};
     SQLiteConnector connector = null;
+    HashSet<String> isBlock = new HashSet<>();
 
     private int getStrategyFromName(String name) {
         int strategy = 0;
@@ -54,15 +57,36 @@ public class TakeVersionsToDBProcessor extends AbstractProcessor<CtFor> {
     }
 
 
-    private void addLoop(String uid, int strategy, CtFor ctFor) {
+    private void addLoop(String uid, int strategy, CtElement e) {
         //Now the code
         String key = uid + "::" + strategy;
-        if (loops.containsKey(key)) {
-            Loop l = loops.get(key);
-            l.setCode(l.getCode() + "\n" + ctFor.toString());
+        if ( isBlock.contains(key) ) {
+            return;
         } else {
-            loops.put(key, new Loop(uid, ctFor.toString(), strategy));
+            if (e instanceof CtBlock) isBlock.add(key);
+
+            if (elementsToStore.containsKey(key)) {
+                Loop l = elementsToStore.get(key);
+                l.setCode(l.getCode() + "\n" + e.toString());
+            } else {
+                elementsToStore.put(key, new Loop(uid, e.toString(), strategy));
+            }
         }
+    }
+
+    /**
+     * If the loop is inside a block that is not the block of the method, take the block
+     * @param ctFor
+     * @return
+     */
+    private CtElement elementToStore(CtFor ctFor, CtMethod m) {
+        CtElement p = ctFor.getParent();
+        while (p != m) {
+            if (p instanceof CtLoop) return null;
+            else if (p instanceof CtBlock && !p.equals(m.getBody())) return p;
+            p = p.getParent();
+        }
+        return ctFor;
     }
 
     @Override
@@ -70,21 +94,18 @@ public class TakeVersionsToDBProcessor extends AbstractProcessor<CtFor> {
         CtMethod m = ctFor.getParent(new TypeFilter<>(CtMethod.class));
         if (m == null) return;
 
-        // get only outermost loops
-        CtElement p = ctFor.getParent();
-        while (p != m) {
-            p = p.getParent();
-            if (p instanceof CtLoop)
-                return;
-        }
+        // get only outermost elementsToStore
+        CtElement e = elementToStore(ctFor, m);
+        if (e == null) return;
+
         String mName = m.getSimpleName();
         try {
             CtClass cl = ctFor.getParent(new TypeFilter<>(CtClass.class));
             if (cl.getSimpleName().endsWith("Versions")) {
                 int strategy = getStrategyFromName(mName);
-                addLoop(getUidFromName(mName), strategy, ctFor);
+                addLoop(getUidFromName(mName), strategy, e);
             } else {
-                addLoop(getUidFromName(cl.getSimpleName()), getStrategyFromName(mName), ctFor);
+                addLoop(getUidFromName(cl.getSimpleName()), getStrategyFromName(mName), e);
             }
         } catch (Exception ex) {
             System.out.println("Cannot process: " + ctFor.toString());
@@ -110,7 +131,7 @@ public class TakeVersionsToDBProcessor extends AbstractProcessor<CtFor> {
             e.printStackTrace();
         }
 
-        for (Map.Entry<String, Loop> e : loops.entrySet()) {
+        for (Map.Entry<String, Loop> e : elementsToStore.entrySet()) {
             connector.write(e.getValue().getUid(), e.getValue().getCode(), e.getValue().getStrategy());
         }
 

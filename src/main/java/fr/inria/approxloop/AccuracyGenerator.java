@@ -16,6 +16,7 @@ public class AccuracyGenerator extends CodeGenerator {
     static String inputProjectPath = "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/INPUT_PROGRAMS/SOURCE/lucene-solr-master/lucene/";
     static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
     static String project = "lucene";
+
     static String[] ouputFiles = {
             inputProjectPath + "/core/src/java/org/apache/lucene/codecs/blocktree/BlockTreeTermsWriter.java",
             inputProjectPath + "/core/src/java/org/apache/lucene/codecs/blocktree/SegmentTermsEnumFrame.java",
@@ -119,12 +120,17 @@ public class AccuracyGenerator extends CodeGenerator {
                 String templateName = getTemplateNameFromFile(outputFile);
                 generate(input, templateName, outputFile, true);
             }
-            run(e.getValue().getUid());
+            run(e.getValue().getUid(), strategies.get(loop.getStrategy()), i);
         }
     }
 
-    private void run(String loop) {
-        executeCommand(commandName, loop);
+    private void run(String loop, String strategy, int index) {
+        try {
+            executeCommand(commandName, loop, strategy);
+        } catch (Exception ex) {
+            System.out.println(index + " -- " + strategy + " -- " + loop);
+            throw ex;
+        }
     }
 
     public static void main(String[] params) throws Exception {
@@ -156,15 +162,22 @@ public class AccuracyGenerator extends CodeGenerator {
         strategies.put(132, "NN34");
         strategies.put(133, "MN34");
 
+
+
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           LINEAR INTERPOLATION 3/4");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
+        int i = 0;
+        for (Map.Entry<String, Loop> e : mn_34.entrySet()) {
+            System.out.println(i + " - " + e.getKey());
+            i++;
+        }
 
         //Loop 4 does not executes the innter loop
 
-        gen.generateAndRun(mn_34, 0);
+        //gen.generateAndRun(mn_34, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -172,7 +185,12 @@ public class AccuracyGenerator extends CodeGenerator {
         System.out.println("*****************************************");
         System.out.println("*****************************************");
 
-        gen.generateAndRun(nn_34, 0);
+        i = 0;
+        for (Map.Entry<String, Loop> e : nn.entrySet()) {
+            System.out.println(i + " - " + e.getKey());
+            i++;
+        }
+        //gen.generateAndRun(nn_34, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -180,7 +198,12 @@ public class AccuracyGenerator extends CodeGenerator {
         System.out.println("*****************************************");
         System.out.println("*****************************************");
 
-        //gen.generateAndRun(mn, 3);
+        i = 0;
+        for (Map.Entry<String, Loop> e : mn.entrySet()) {
+            System.out.println(i + " - " + e.getKey());
+            i++;
+        }
+        //gen.generateAndRun(mn, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -194,14 +217,25 @@ public class AccuracyGenerator extends CodeGenerator {
         System.out.println("           LINEAR INTERPOLATION 4");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        gen.generateAndRun(mn_4, 0);
+        i = 0;
+        for (Map.Entry<String, Loop> e : mn_4.entrySet()) {
+            System.out.println(i + " - " + e.getKey());
+            i++;
+        }
+        //gen.generateAndRun(mn_4, 7);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           NEAREST 4");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        gen.generateAndRun(nn_4, 0);
+        i = 0;
+        for (Map.Entry<String, Loop> e : nn_4.entrySet()) {
+            System.out.println(i + " - " + e.getKey());
+            i++;
+        }
+
+        gen.generateAndRun(nn_4, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");

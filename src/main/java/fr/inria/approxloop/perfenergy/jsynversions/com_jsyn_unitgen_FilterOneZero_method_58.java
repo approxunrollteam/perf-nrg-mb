@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_FilterOneZero_method_L58 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenchs {
 
     public double a0v, a1v, x1;
 
@@ -18,19 +18,18 @@ public class com_jsyn_unitgen_FilterOneZero_method_L58 extends JsynLoopsMicroBen
     }
 
     public void benchmark_MN34() {
-        for (int i = 0; i < 1; i++) {
-            double x0 = inputs[i];
-            outputs[i] = (a0v * x0) + (a1v * x1);
+        {
+            double x0 = inputs[0];
+            outputs[0] = (a0v * x0) + (a1v * x1);
             x1 = x0;
-        }
-
-        for (int i = 4; i < 2000000; i++) {
-            double x0 = inputs[i];
-            outputs[i] = (a0v * x0) + (a1v * x1);
-            x1 = x0;
-            outputs[i - 1] = (outputs[i] * 0.75f + outputs[i - 4] * 0.25f);
-            outputs[i - 2] = (outputs[i] + outputs[i - 4]) * 0.5f;
-            outputs[i - 3] = (outputs[i] * 0.25f + outputs[i - 4] * 0.75f);
+            for (int i = 4; i < 2000000; i++) {
+                x0 = inputs[i];
+                outputs[i] = (a0v * x0) + (a1v * x1);
+                x1 = x0;
+                outputs[i - 1] = (outputs[i] * 0.75f + outputs[i - 4] * 0.25f);
+                outputs[i - 2] = (outputs[i] + outputs[i - 4]) * 0.5f;
+                outputs[i - 3] = (outputs[i] * 0.25f + outputs[i - 4] * 0.75f);
+            }
         }
     }
 
@@ -54,7 +53,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_L58 extends JsynLoopsMicroBen
     }
 
     public void benchmark_NN34() {
-        for (int i = 0; i < 2000000; i+=4) {
+        for (int i = 0; i < 2000000; i += 4) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -65,7 +64,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_L58 extends JsynLoopsMicroBen
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < 2000000; i+=2) {
+        for (int i = 0; i < 2000000; i += 2) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
