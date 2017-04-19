@@ -15,6 +15,35 @@ public class com_jsyn_unitgen_SawtoothOscillator_method_36 extends JsynLoopsMicr
         }
     }
 
+    public void benchmark_PERF() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = phase * amplitudes[i];
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = phase * amplitudes[i];
+            outputs[i + 1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+        t = (t0 + p * (double) (0)) * frequencies[0];
+        double phase = 2 * (t - Math.floor(t + 0.5));
+        outputs[0] = phase * amplitudes[0];
+        for (int i = 2; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = phase * amplitudes[i];
+            outputs[i - 1] = (outputs[i - 2] + outputs[i]) * 0.5f;
+        }
+    }
+
     public void benchmark_MN34() {
         for (int i = 0; i < 1; i++) {
             t = (t0 + p * (double) (i)) * frequencies[i];

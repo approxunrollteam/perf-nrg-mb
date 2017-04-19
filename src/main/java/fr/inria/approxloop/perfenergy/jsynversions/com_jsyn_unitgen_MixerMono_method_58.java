@@ -32,6 +32,52 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
             outputs[i] = sum * amplitudes[i];
         }
     }
+
+    public void benchmark_PERF() {
+        for (int i = 0; i < 2000; i+=2) {
+            double sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000; i+=2) {
+            double sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+            outputs[i + 1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+        double sum = 0;
+        for (int n = 0; n < 3; n++) {
+            double[] inputs = getValues(n);
+            double[] gains = getValues2(n);
+            sum += inputs[0] * gains[0];
+        }
+        outputs[0] = sum * amplitudes[0];
+        for (int i = 2; i < 2000; i+=2) {
+            sum = 0;
+            for (int n = 0; n < 3; n++) {
+                double[] inputs = getValues(n);
+                double[] gains = getValues2(n);
+                sum += inputs[i] * gains[i];
+            }
+            outputs[i] = sum * amplitudes[i];
+            outputs[i - 1] = (outputs[i] + outputs[i - 2] ) * 0.5f;
+        }
+    }
+
     public void benchmark_MN34() {
         for (int i = 0; i < 1; i++) {
             double sum = 0;

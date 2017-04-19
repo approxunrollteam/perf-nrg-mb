@@ -27,6 +27,83 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
             outputs[i] = inputs[i] + (x * depths[i]);
         }
     }
+    public void benchmark_PERF() {
+
+        double gain;
+
+        for (int i = 0; i < 2000; i+=2) {
+            double currentOffset = offsets[i];
+            gain = 1.0 - (currentOffset * currentOffset);
+            if (gain < -1.0) {
+                gain = -1.0;
+            }
+            double x = inputs[i] + (zm1 * feedbacks[i]);
+            for (int stage = 0; stage < xs.length; stage++) {
+                double temp = ys[stage] = (gain * (ys[stage] - x)) + xs[stage];
+                xs[stage] = x;
+                x = temp;
+            }
+            zm1 = x;
+            outputs[i] = inputs[i] + (x * depths[i]);
+        }
+    }
+
+    public void benchmark_NN() {
+
+        double gain;
+
+        for (int i = 0; i < 2000; i+=2) {
+            double currentOffset = offsets[i];
+            gain = 1.0 - (currentOffset * currentOffset);
+            if (gain < -1.0) {
+                gain = -1.0;
+            }
+            double x = inputs[i] + (zm1 * feedbacks[i]);
+            for (int stage = 0; stage < xs.length; stage++) {
+                double temp = ys[stage] = (gain * (ys[stage] - x)) + xs[stage];
+                xs[stage] = x;
+                x = temp;
+            }
+            zm1 = x;
+            outputs[i] = inputs[i] + (x * depths[i]);
+            outputs[i + 1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+
+        double gain;
+        double currentOffset = offsets[0];
+        gain = 1.0 - (currentOffset * currentOffset);
+        if (gain < -1.0) {
+            gain = -1.0;
+        }
+        double x = inputs[0] + (zm1 * feedbacks[0]);
+        for (int stage = 0; stage < xs.length; stage++) {
+            double temp = ys[stage] = (gain * (ys[stage] - x)) + xs[stage];
+            xs[stage] = x;
+            x = temp;
+        }
+        zm1 = x;
+        outputs[0] = inputs[0] + (x * depths[0]);
+
+        for (int i = 2; i < 2000; i+=2) {
+            currentOffset = offsets[i];
+            gain = 1.0 - (currentOffset * currentOffset);
+            if (gain < -1.0) {
+                gain = -1.0;
+            }
+            x = inputs[i] + (zm1 * feedbacks[i]);
+            for (int stage = 0; stage < xs.length; stage++) {
+                double temp = ys[stage] = (gain * (ys[stage] - x)) + xs[stage];
+                xs[stage] = x;
+                x = temp;
+            }
+            zm1 = x;
+            outputs[i] = inputs[i] + (x * depths[i]);
+            outputs[i - 1] = 0.5f * (outputs[i] + outputs[i - 2]);
+        }
+    }
 
     public void benchmark_MN34() {
         double gain;

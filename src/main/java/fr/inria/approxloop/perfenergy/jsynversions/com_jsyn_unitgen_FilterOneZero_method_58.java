@@ -17,6 +17,35 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
         }
     }
 
+    public void benchmark_PERF() {
+        for (int i = 0; i < 2000; i+=2) {
+            double x0 = inputs[i];
+            outputs[i] = (a0v * x0) + (a1v * x1);
+            x1 = x0;
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000; i+=2) {
+            double x0 = inputs[i];
+            outputs[i] = (a0v * x0) + (a1v * x1);
+            x1 = x0;
+            outputs[i+1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+        double x0 = inputs[0];
+        outputs[0] = (a0v * x0) + (a1v * x1);
+        x1 = x0;
+        for (int i = 2; i < 2000; i+=2) {
+            x0 = inputs[i];
+            outputs[i] = (a0v * x0) + (a1v * x1);
+            x1 = x0;
+            outputs[i - 1] = (outputs[i] + outputs[i - 2]) * 0.5f;
+        }
+    }
+
     public void benchmark_MN34() {
         {
             double x0 = inputs[0];

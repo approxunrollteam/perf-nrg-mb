@@ -22,6 +22,58 @@ public class com_jsyn_unitgen_Delay_method_47 {
         }
     }
 
+    public void benchmark_PERF() {
+        int cursor = 0;
+        int numSamples = arraySize;
+        for (int i = 0; i < 2000; i+=2) {
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            }
+        }
+    }
+
+    public void benchmark_NN() {
+        int cursor = 0;
+        int numSamples = arraySize;
+        for (int i = 0; i < 2000; i+=2) {
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            }
+            outputs[i + 1] = buffer[cursor];
+            cursor += 1;
+        }
+    }
+
+
+    public void benchmark_MN() {
+        int cursor = 0;
+        int numSamples = arraySize;
+
+        outputs[0] = buffer[cursor];
+        buffer[cursor] = (float) inputs[0];
+        cursor += 1;
+        if (cursor >= numSamples) {
+            cursor = 0;
+        }
+
+        for (int i = 2; i < 2000; i+=2) {
+            outputs[i] = buffer[cursor];
+            buffer[cursor] = (float) inputs[i];
+            cursor += 1;
+            if (cursor >= numSamples) {
+                cursor = 0;
+            }
+            outputs[i - 1] = (outputs[i - 2] + outputs[i]) * 0.5f;
+            cursor += 1;
+        }
+    }
+
 
     public void benchmark_MN4() {
         int cursor = 0;

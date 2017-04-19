@@ -16,6 +16,40 @@ public class com_jsyn_unitgen_TriangleOscillator_method_42 extends JsynLoopsMicr
         }
     }
 
+    public void benchmark_PERF() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            double triangle = (phase >= 0.0) ? (0.5 - phase) : (0.5 + phase);
+            outputs[i] = triangle * 2.0 * amplitudes[i];
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            double triangle = (phase >= 0.0) ? (0.5 - phase) : (0.5 + phase);
+            outputs[i] = triangle * 2.0 * amplitudes[i];
+            outputs[i + 1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+        t = (t0 + p * (double) (0)) * frequencies[0];
+        double phase = 2 * (t - Math.floor(t + 0.5));
+        double triangle = (phase >= 0.0) ? (0.5 - phase) : (0.5 + phase);
+        outputs[0] = triangle * 2.0 * amplitudes[0];
+        outputs[0 + 1] = outputs[0];
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            phase = 2 * (t - Math.floor(t + 0.5));
+            triangle = (phase >= 0.0) ? (0.5 - phase) : (0.5 + phase);
+            outputs[i] = triangle * 2.0 * amplitudes[i];
+            outputs[i - 1] = 0.5f * (outputs[i] + outputs[i - 2]);
+        }
+    }
+
     public void benchmark_MN34() {
         for (int i = 0; i < 1; i++) {
             t = (t0 + p * (double) (i)) * frequencies[i];

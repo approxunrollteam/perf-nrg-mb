@@ -8,10 +8,39 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 public class com_jsyn_unitgen_SineOscillator_method_113 extends JsynLoopsMicroBenchs {
 
     public void benchmark() {
+        for (int i = 0; i < 2000000; i++) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
+        }
+    }
+
+    public void benchmark_PERF() {
         for (int i = 0; i < 2000000; i+=2) {
             t = (t0 + p * (double) (i)) * frequencies[i];
             double phase = 2 * (t - Math.floor(t + 0.5));
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
+            outputs[i + 1] = outputs[i];
+        }
+    }
+
+    public void benchmark_MN() {
+        t = (t0 + p * (double) (0)) * frequencies[0];
+        double phase = 2 * (t - Math.floor(t + 0.5));
+        outputs[0] = Math.sin(phase * Math.PI) * amplitudes[0];
+        for (int i = 2; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            phase = 2 * (t - Math.floor(t + 0.5));
+            outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
+            outputs[i - 1] = (outputs[i] + outputs[i - 2]) * 0.5f;
         }
     }
 

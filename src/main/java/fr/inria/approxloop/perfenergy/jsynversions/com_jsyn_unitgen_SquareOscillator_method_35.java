@@ -16,6 +16,39 @@ public class com_jsyn_unitgen_SquareOscillator_method_35 extends JsynLoopsMicroB
         }
     }
 
+    public void benchmark_PERF() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            double ampl = amplitudes[i];
+            outputs[i] = (phase < 0.0) ? -ampl : ampl;
+        }
+    }
+
+    public void benchmark_NN() {
+        for (int i = 0; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            double phase = 2 * (t - Math.floor(t + 0.5));
+            double ampl = amplitudes[i];
+            outputs[i] = (phase < 0.0) ? -ampl : ampl;
+            outputs[i + 1] = outputs[i - 1];
+        }
+    }
+
+    public void benchmark_MN() {
+        t = (t0 + p * (double) (0)) * frequencies[0];
+        double phase = 2 * (t - Math.floor(t + 0.5));
+        double ampl = amplitudes[0];
+        outputs[0] = (phase < 0.0) ? -ampl : ampl;
+        for (int i = 2; i < 2000000; i+=2) {
+            t = (t0 + p * (double) (i)) * frequencies[i];
+            phase = 2 * (t - Math.floor(t + 0.5));
+            ampl = amplitudes[i];
+            outputs[i] = (phase < 0.0) ? -ampl : ampl;
+            outputs[i - 1] = 0.5f*(outputs[i] + outputs[i - 2]);
+        }
+    }
+
     public void benchmark_MN34() {
         for (int i = 0; i < 1; i++) {
             t = (t0 + p * (double) (i)) * frequencies[i];
