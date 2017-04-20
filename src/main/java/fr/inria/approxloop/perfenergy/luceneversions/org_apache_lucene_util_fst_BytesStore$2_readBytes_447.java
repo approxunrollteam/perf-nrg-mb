@@ -52,7 +52,6 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
                 b[offset + fr_ii] = readByte();
                 fr_ii++;
                 b[offset + fr_ii] = readByte();
-                fr_ii++;
                 b[offset + fr_ii + 1] = b[offset + fr_ii];
             }
             for (int i = fr_ii; i < len; i++) {
@@ -65,10 +64,12 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
         {
             int fr_ii;
             for (fr_ii = 0; fr_ii < len - 4; fr_ii += 4) {
-                b[offset + fr_ii] = readByte();
-                b[offset + fr_ii + 1] = b[offset + fr_ii];
-                b[offset + fr_ii + 2] = b[offset + fr_ii];
-                b[offset + fr_ii + 3] = b[offset + fr_ii];
+                int k = offset + fr_ii;
+                byte v = readByte();
+                b[k] = v;
+                b[k + 1] = v;
+                b[k + 2] = v;
+                b[k + 3] = v;
             }
             for (int i = fr_ii; i < len; i++) {
                 b[offset + i] = readByte();
@@ -112,7 +113,7 @@ public class org_apache_lucene_util_fst_BytesStore$2_readBytes_447 {
         {
         b[offset] = readByte();
         int fr_ii;
-        for (fr_ii = 4; fr_ii < len - 4; fr_ii++) {
+        for (fr_ii = 4; fr_ii < len - 4; fr_ii+=4) {
             b[offset + fr_ii] = readByte();
             b[offset + fr_ii - 1] = (byte) ((b[offset + fr_ii] * 3 >> 2) + (b[offset + fr_ii - 4] >> 2));
             b[offset + fr_ii - 2] = (byte) ((b[offset + fr_ii - 4] + b[offset + fr_ii - 4]) >> 1);

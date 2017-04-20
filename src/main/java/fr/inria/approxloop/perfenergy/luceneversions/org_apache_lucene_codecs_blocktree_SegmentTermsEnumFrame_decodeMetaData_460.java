@@ -8,7 +8,7 @@ import java.util.Random;
 public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460 {
 
     private final HasFr ste;
-    public long[] longs = new long[10];
+    public long[] longs = new long[100];
     org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460 bytesReader;
 
     public org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMetaData_460() {
@@ -17,7 +17,7 @@ public class org_apache_lucene_codecs_blocktree_SegmentTermsEnumFrame_decodeMeta
     }
 
     public static class HaslongsSize {
-        public int longsSize = 10;
+        public int longsSize = 100;
     }
 
     public static class HasFr {

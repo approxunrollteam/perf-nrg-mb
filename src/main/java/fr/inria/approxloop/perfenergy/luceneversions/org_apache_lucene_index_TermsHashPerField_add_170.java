@@ -8,9 +8,9 @@ import java.util.Random;
 public class org_apache_lucene_index_TermsHashPerField_add_170 {
 
     public int intUptoStart = 1;
-    public int[] intUptos = new int[100];
+    public int[] intUptos = new int[400];
     public int FIRST_LEVEL_SIZE = 5;
-    public int streamCount = 2;
+    public int streamCount = 200;
     public int byteOffset = -(1 << 15);
     public org_apache_lucene_index_TermsHashPerField_add_170 bytePool;
 

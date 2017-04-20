@@ -135,10 +135,12 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
             for (fr_ii = 0; fr_ii < len - 4; fr_ii += 2) {
                 int k = offset + fr_ii;
                 b[k] = bytes[pos--];
+
                 fr_ii++;
                 k = offset + fr_ii;
                 b[k] = bytes[pos--];
                 pos--;
+
                 fr_ii += 2;
                 k = offset + fr_ii;
                 b[k] = bytes[pos--];

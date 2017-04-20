@@ -24,10 +24,10 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
  */
 public class PerformanceGenerator extends CodeGenerator {
 
-    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
-    //private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
-    private String projectName = "jsyn";
-    //private String projectName = "lucene";
+    //private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
+    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    //private String projectName = "jsyn";
+    private String projectName = "lucene";
 
     private String outputPath =
             "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";

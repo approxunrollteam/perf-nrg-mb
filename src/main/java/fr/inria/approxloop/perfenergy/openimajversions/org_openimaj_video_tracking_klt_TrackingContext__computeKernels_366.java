@@ -53,7 +53,7 @@ public class org_openimaj_video_tracking_klt_TrackingContext__computeKernels_366
             gauss.data[i + hw] = (float) Math.exp(-i * i / (2 * sigma * sigma));
             gaussderiv.data[i + hw] = (-i) * (gauss.data[(i + hw)]);
         }
-        for (i = -hw + 4; i <= hw - 4; i++) {
+        for (i = -hw + 4; i <= hw - 4; i+=4) {
             float k = (float) Math.exp(-i * i / (2 * sigma * sigma));
             gauss.data[i + hw] = k;
             gauss.data[i + hw - 3] = k * 0.25f + gauss.data[i + hw - 4] * 0.75f;

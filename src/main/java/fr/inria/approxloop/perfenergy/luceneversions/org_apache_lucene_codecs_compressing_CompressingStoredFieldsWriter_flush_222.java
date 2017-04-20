@@ -7,8 +7,9 @@ import java.util.Random;
  */
 public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222 {
 
-    public int[] endOffsets = new int[20];
-    public int numBufferedDocs = 17;
+    public int[] endOffsets = new int[200];
+    public int[] lengths = new int[200];
+    public int numBufferedDocs = 170;
 
     public org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_flush_222() {
         Random r = new Random();
@@ -17,8 +18,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark() {
-        final int[] lengths = endOffsets;
-
         for (int i = numBufferedDocs - 1; i > 0; i -= 1) {
             lengths[i] = endOffsets[i] - endOffsets[i - 1];
             assert lengths[i] >= 0;
@@ -26,8 +25,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_PERF() {
-        final int[] lengths = endOffsets;
-
         int fr_ii;
         for (fr_ii = numBufferedDocs - 1; fr_ii > 0; fr_ii -= 2) {
             lengths[fr_ii] = endOffsets[fr_ii] - endOffsets[fr_ii - 1];
@@ -37,7 +34,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_NN() {
-        final int[] lengths = endOffsets;
         {
             int fr_ii;
             for (fr_ii = numBufferedDocs - 1; fr_ii > 0; fr_ii -= 2) {
@@ -53,7 +49,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_NN4() {
-        final int[] lengths = endOffsets;
         {
             int fr_ii;
             for (fr_ii = numBufferedDocs - 1; fr_ii > 4; fr_ii -= 2) {
@@ -73,7 +68,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_NN34() {
-        final int[] lengths = endOffsets;
         {
             int fr_ii;
             for (fr_ii = numBufferedDocs - 1; fr_ii > 4; fr_ii -= 4) {
@@ -91,7 +85,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_MN() {
-        final int[] lengths = endOffsets;
         {
             lengths[0] = endOffsets[0] - endOffsets[numBufferedDocs];
             int fr_ii;
@@ -108,7 +101,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_MN4() {
-        final int[] lengths = endOffsets;
         {
             /*
             for (int i = numBufferedDocs - 1; i > 0; i -= 1) {
@@ -134,7 +126,6 @@ public class org_apache_lucene_codecs_compressing_CompressingStoredFieldsWriter_
     }
 
     public void benchmark_MN34() {
-        final int[] lengths = endOffsets;
         {
             lengths[0] = endOffsets[numBufferedDocs - 1] - endOffsets[numBufferedDocs - 2];
             assert lengths[0] >= 0;

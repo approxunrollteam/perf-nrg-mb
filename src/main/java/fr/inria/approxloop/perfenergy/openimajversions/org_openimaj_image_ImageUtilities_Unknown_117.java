@@ -16,14 +16,12 @@ public class org_openimaj_image_ImageUtilities_Unknown_117 {
 
     public void benchmark_NN34() {
         //@@LOOP BEGIN@@
-        for (int i = 0; i < 1; i++) {
-            BYTE_TO_FLOAT_LUT[i] = i / 255f;
-        }
-        for (int i = 4; i < BYTE_TO_FLOAT_LUT.length - 4; i += 4) {
-            BYTE_TO_FLOAT_LUT[i] = i / 255f;
-            BYTE_TO_FLOAT_LUT[i - 1] = BYTE_TO_FLOAT_LUT[i];
-            BYTE_TO_FLOAT_LUT[i - 2] = BYTE_TO_FLOAT_LUT[i];
-            BYTE_TO_FLOAT_LUT[i - 3] = BYTE_TO_FLOAT_LUT[i];
+        for (int i = 0; i < BYTE_TO_FLOAT_LUT.length - 4; i += 4) {
+            float f = i / 255f;
+            BYTE_TO_FLOAT_LUT[i] = f;
+            BYTE_TO_FLOAT_LUT[i - 1] = f;
+            BYTE_TO_FLOAT_LUT[i - 2] = f;
+            BYTE_TO_FLOAT_LUT[i - 3] = f;
             //System.out.print(".");
         }
         for (int i = BYTE_TO_FLOAT_LUT.length - 4; i < BYTE_TO_FLOAT_LUT.length; i++) {
