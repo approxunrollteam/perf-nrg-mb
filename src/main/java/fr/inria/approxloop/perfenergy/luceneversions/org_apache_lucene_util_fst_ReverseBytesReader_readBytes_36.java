@@ -22,14 +22,14 @@ public class org_apache_lucene_util_fst_ReverseBytesReader_readBytes_36 {
     }
 
     public void benchmark() {
-        pos = 10;
+        pos = len;
         for (int i = 0; i < len; i++) {
             b[offset + i] = bytes[pos--];
         }
     }
 
     public void benchmark_PERF() {
-        pos = 10;
+        pos = len;
         for (int i = 0; i < len; i += 2) {
             b[offset + i] = bytes[pos--];
         }

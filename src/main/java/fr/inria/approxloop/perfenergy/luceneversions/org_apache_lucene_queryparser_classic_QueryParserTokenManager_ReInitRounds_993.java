@@ -55,9 +55,9 @@ public class org_apache_lucene_queryparser_classic_QueryParserTokenManager_ReIni
     }
 
     public void benchmark_MN() {
-        jjrounds[37] = 0x80000000;
+        jjrounds[48] = 0x80000000;
         int i;
-        for (i = 48; i >= 1; i -= 2) {
+        for (i = 46; i >= 1; i -= 2) {
             jjrounds[i] = 0x80000000;
             jjrounds[i + 1] = (jjrounds[i] + jjrounds[i + 2]) >> 1;
         }
