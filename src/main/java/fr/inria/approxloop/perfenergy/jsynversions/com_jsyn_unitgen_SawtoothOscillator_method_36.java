@@ -51,7 +51,7 @@ public class com_jsyn_unitgen_SawtoothOscillator_method_36 extends JsynLoopsMicr
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
         }
 
-        for (int i = 4; i < 2000000; i++) {
+        for (int i = 4; i < 2000000; i+=4) {
             t = (t0 + p * (double) (i)) * frequencies[i];
             double phase = 2 * (t - Math.floor(t + 0.5));
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];

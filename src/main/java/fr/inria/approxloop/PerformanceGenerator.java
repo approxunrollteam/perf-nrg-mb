@@ -58,14 +58,9 @@ public class PerformanceGenerator extends CodeGenerator {
     private String datum_init = "double[] datums = new double[executionPhases];";
     private int measuring = 0;
 
-
     private boolean usesClassAsUid = false;
 
-
-
-
     private HashMap<Integer, String> endings;
-
 
     public void walk(File file) {
         System.out.println(file);

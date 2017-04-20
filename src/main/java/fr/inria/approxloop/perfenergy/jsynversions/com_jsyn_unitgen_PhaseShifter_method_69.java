@@ -11,7 +11,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
         double gain;
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -31,7 +31,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
         double gain;
 
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -52,7 +52,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
         double gain;
 
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -87,7 +87,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
         zm1 = x;
         outputs[0] = inputs[0] + (x * depths[0]);
 
-        for (int i = 2; i < 2000; i+=2) {
+        for (int i = 2; i < 200000; i+=2) {
             currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -123,7 +123,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
             outputs[i] = inputs[i] + (x * depths[i]);
         }
 
-        for (int i = 4; i < 2000000; i++) {
+        for (int i = 4; i < 200000; i++) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -145,7 +145,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
     public void benchmark_MN4() {
         double gain;
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {
@@ -197,7 +197,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
         double gain;
 
-        for (int i = 0; i < 2000; i+=4) {
+        for (int i = 0; i < 200000; i+=4) {
             // Support audio rate modulation.
             double currentOffset = offsets[i];
 
@@ -226,7 +226,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
 
         double gain;
 
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             // Support audio rate modulation.
             double currentOffset = offsets[i];
 

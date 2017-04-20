@@ -31,7 +31,7 @@ public class com_jsyn_unitgen_SquareOscillator_method_35 extends JsynLoopsMicroB
             double phase = 2 * (t - Math.floor(t + 0.5));
             double ampl = amplitudes[i];
             outputs[i] = (phase < 0.0) ? -ampl : ampl;
-            outputs[i + 1] = outputs[i - 1];
+            outputs[i + 1] = outputs[i];
         }
     }
 
@@ -57,7 +57,7 @@ public class com_jsyn_unitgen_SquareOscillator_method_35 extends JsynLoopsMicroB
             outputs[i] = (phase < 0.0) ? -ampl : ampl;
         }
 
-        for (int i = 4; i < 2000000; i++) {
+        for (int i = 4; i < 2000000; i+=4) {
             t = (t0 + p * (double) (i)) * frequencies[i];
             double phase = 2 * (t - Math.floor(t + 0.5));
             double ampl = amplitudes[i];

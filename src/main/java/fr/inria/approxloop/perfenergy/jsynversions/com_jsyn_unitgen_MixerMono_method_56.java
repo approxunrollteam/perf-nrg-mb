@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_MixerMono_method_56 extends JsynLoopsMicroBenchs {
 
     private double[] getValues(int n) {
         if (n == 0)
@@ -22,7 +22,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
     }
 
     public void benchmark() {
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -34,7 +34,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
     }
 
     public void benchmark_PERF() {
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -46,7 +46,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -60,13 +60,13 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
 
     public void benchmark_MN() {
         double sum = 0;
-        for (int n = 0; n < 3; n++) {
+        for (int n = 0; n < 1; n++) {
             double[] inputs = getValues(n);
             double[] gains = getValues2(n);
             sum += inputs[0] * gains[0];
         }
         outputs[0] = sum * amplitudes[0];
-        for (int i = 2; i < 2000; i+=2) {
+        for (int i = 2; i < 200000; i+=2) {
             sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -89,7 +89,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
             outputs[i] = sum * amplitudes[i];
         }
 
-        for (int i = 4; i < 2000000; i++) {
+        for (int i = 4; i < 200000; i+=4) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -104,7 +104,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
     }
 
     public void benchmark_MN4() {
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -136,7 +136,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
 
 
     public void benchmark_NN34() {
-        for (int i = 0; i < 2000; i+=4) {
+        for (int i = 0; i < 200000; i+=4) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);
@@ -151,7 +151,7 @@ public class com_jsyn_unitgen_MixerMono_method_58 extends JsynLoopsMicroBenchs {
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double sum = 0;
             for (int n = 0; n < 3; n++) {
                 double[] inputs = getValues(n);

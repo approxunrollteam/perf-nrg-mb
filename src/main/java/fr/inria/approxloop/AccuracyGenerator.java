@@ -93,7 +93,16 @@ public class AccuracyGenerator extends CodeGenerator {
         return file;
     }
 
-    private void generateAndRun(HashMap<String, Loop> approximate, int init) {
+    private void generateOriginal() {
+        HashMap<String, Object> input = new HashMap<>();
+        for (String outputFile : ouputFiles) {
+            String templateName = getTemplateNameFromFile(outputFile);
+            generate(input, templateName, outputFile, true);
+        }
+        run("none", "original", 0);
+    }
+
+    private void generateAndRunLoops(HashMap<String, Loop> approximate, int init) {
         int  i = -1;
         for (Map.Entry<String, Loop> e : approximate.entrySet()) {
             String uid = e.getKey().replace(".", "_");
@@ -134,16 +143,9 @@ public class AccuracyGenerator extends CodeGenerator {
     }
 
     public static void main(String[] params) throws Exception {
-
-        //HashMap<String, List<String>> loopsPerFile = getLoopFiles(loopUIDs, ouputFiles);
         TakeLoopsToDb.walk(new File(path));
         AccuracyGenerator gen = new AccuracyGenerator();
         gen.initialize(new File(gen.getClass().getClassLoader().getResource(template_dir).toURI()));
-
-        //String project = "OpenImaJ";
-
-        
-        //originals = gen.getLoops(project, 0);
         HashMap<String, Loop> nn = gen.getLoops(project, 128);
         HashMap<String, Loop> mn = gen.getLoops(project, 129);
         HashMap<String, Loop> nn_4 = gen.getLoops(project, 130);
@@ -162,7 +164,7 @@ public class AccuracyGenerator extends CodeGenerator {
         strategies.put(132, "NN34");
         strategies.put(133, "MN34");
 
-
+        gen.generateOriginal();
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -177,7 +179,7 @@ public class AccuracyGenerator extends CodeGenerator {
 
         //Loop 4 does not executes the innter loop
 
-        //gen.generateAndRun(mn_34, 8);
+        //gen.generateAndRunLoops(mn_34, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -190,7 +192,7 @@ public class AccuracyGenerator extends CodeGenerator {
             System.out.println(i + " - " + e.getKey());
             i++;
         }
-        //gen.generateAndRun(nn_34, 8);
+        //gen.generateAndRunLoops(nn_34, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -203,14 +205,14 @@ public class AccuracyGenerator extends CodeGenerator {
             System.out.println(i + " - " + e.getKey());
             i++;
         }
-        //gen.generateAndRun(mn, 0);
+        //gen.generateAndRunLoops(mn, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           NEAREST ");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        //gen.generateAndRun(nn, 0);
+        //gen.generateAndRunLoops(nn, 0);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -222,7 +224,7 @@ public class AccuracyGenerator extends CodeGenerator {
             System.out.println(i + " - " + e.getKey());
             i++;
         }
-        //gen.generateAndRun(mn_4, 7);
+        //gen.generateAndRunLoops(mn_4, 7);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
@@ -235,14 +237,14 @@ public class AccuracyGenerator extends CodeGenerator {
             i++;
         }
 
-        gen.generateAndRun(nn_4, 8);
+        //gen.generateAndRunLoops(nn_4, 8);
 
         System.out.println("*****************************************");
         System.out.println("*****************************************");
         System.out.println("           PERFORATION");
         System.out.println("*****************************************");
         System.out.println("*****************************************");
-        //gen.generateAndRun(perf, 0);
+        //gen.generateAndRunLoops(perf, 0);
 
         //Collect original data first
         //gen.run("original");

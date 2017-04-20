@@ -5,7 +5,7 @@ import fr.inria.approxloop.perfenergy.JsynLoopsMicroBenchs;
 /**
  * Created by elmarce on 16/04/17.
  */
-public class com_jsyn_unitgen_SineOscillator_method_113 extends JsynLoopsMicroBenchs {
+public class com_jsyn_unitgen_SineOscillator_method_47 extends JsynLoopsMicroBenchs {
 
     public void benchmark() {
         for (int i = 0; i < 2000000; i++) {
@@ -51,7 +51,7 @@ public class com_jsyn_unitgen_SineOscillator_method_113 extends JsynLoopsMicroBe
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];
         }
 
-        for (int i = 4; i < 2000000; i++) {
+        for (int i = 4; i < 2000000; i+=4) {
             t = (t0 + p * (double) (i)) * frequencies[i];
             double phase = 2 * (t - Math.floor(t + 0.5));
             outputs[i] = Math.sin(phase * Math.PI) * amplitudes[i];

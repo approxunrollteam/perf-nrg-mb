@@ -10,7 +10,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     public double a0v, a1v, x1;
 
     public void benchmark() {
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -18,7 +18,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     }
 
     public void benchmark_PERF() {
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -26,7 +26,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < 2000; i+=2) {
+        for (int i = 0; i < 200000; i+=2) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -38,7 +38,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
         double x0 = inputs[0];
         outputs[0] = (a0v * x0) + (a1v * x1);
         x1 = x0;
-        for (int i = 2; i < 2000; i+=2) {
+        for (int i = 2; i < 200000; i+=2) {
             x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -51,7 +51,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
             double x0 = inputs[0];
             outputs[0] = (a0v * x0) + (a1v * x1);
             x1 = x0;
-            for (int i = 4; i < 2000000; i++) {
+            for (int i = 4; i < 200000; i+=4) {
                 x0 = inputs[i];
                 outputs[i] = (a0v * x0) + (a1v * x1);
                 x1 = x0;
@@ -63,7 +63,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     }
 
     public void benchmark_MN4() {
-        for (int i = 0; i < 2000000; i++) {
+        for (int i = 0; i < 200000; i++) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -82,7 +82,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     }
 
     public void benchmark_NN34() {
-        for (int i = 0; i < 2000000; i += 4) {
+        for (int i = 0; i < 200000; i += 4) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
@@ -93,7 +93,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     }
 
     public void benchmark_NN4() {
-        for (int i = 0; i < 2000000; i += 2) {
+        for (int i = 0; i < 200000; i += 2) {
             double x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;

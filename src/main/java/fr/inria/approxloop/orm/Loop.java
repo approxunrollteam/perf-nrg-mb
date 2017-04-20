@@ -1,5 +1,8 @@
 package fr.inria.approxloop.orm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by elmarce on 23/03/17.
  */
@@ -8,6 +11,7 @@ public class Loop {
     private String uid;
     private String pos;
     private int strategy;
+    private List<Double> datums;
 
     public Loop(String uid, String code, int strategy, String pos) {
         this(uid, code, strategy);
@@ -18,6 +22,7 @@ public class Loop {
         this.setUid(uid);
         this.setCode(code);
         this.setStrategy(strategy);
+        datums = new ArrayList<>();
     }
 
     @Override
@@ -55,5 +60,9 @@ public class Loop {
 
     public void setPos(String pos) {
         this.pos = pos;
+    }
+
+    public List<Double> getDatums() {
+        return datums;
     }
 }
