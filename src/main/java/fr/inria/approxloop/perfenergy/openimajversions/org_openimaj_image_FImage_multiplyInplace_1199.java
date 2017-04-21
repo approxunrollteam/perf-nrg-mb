@@ -10,7 +10,7 @@ public class org_openimaj_image_FImage_multiplyInplace_1199 {
     public int height = 480 * 2;
     public int width = 640 * 2;
     public float fnum = 5.0f;
-    public float[][] pixels;
+    public float[][] pixels = new float[height][width];
 
     public org_openimaj_image_FImage_multiplyInplace_1199() {
         Random r = new Random();
