@@ -25,17 +25,17 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
 public class PerformanceGenerator extends CodeGenerator {
 
     //private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
-    private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/luceneversions";
+    private static String path = "/media/elmarce/OSDisk/MarcelStuff/Linux project/PHD/benchversions/src/main/java/fr/inria/approxloop/perfenergy/openimajversions";
     //private String projectName = "jsyn";
-    private String projectName = "lucene";
+    private String projectName = "OpenImaJ";
 
-    private String outputPath =
-            "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
+    //private String outputPath = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
+    private String outputPath = "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
     boolean testing = false;
 
-    private int loopBeingMicroBenchmarked = 0;
+    private int loopBeingMicroBenchmarked = 72;
     private int start = 0;
-/*
+
     private String experimentDescription = "JRALP Measure";
     private int measuring = 2;
     //private String before_run = "";
@@ -46,8 +46,8 @@ public class PerformanceGenerator extends CodeGenerator {
     private String after_run = "String longs = EnergyCheckUtils.EnergyStatCheck(); \n" +
             "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
     private String after_mb = "datums[i - start]++;";
-    private String datum_init = "double[] datums = new double[executionPhases];";*/
-
+    private String datum_init = "double[] datums = new double[executionPhases];";
+/*
     private String experimentDescription = "Count operatios per second";
     private String before_run = "";
     //private String before_run = "String a = EnergyCheckUtils.EnergyStatCheck();";
@@ -56,7 +56,7 @@ public class PerformanceGenerator extends CodeGenerator {
     //        "datums[i - start] = EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a);";
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";
-    private int measuring = 0;
+    private int measuring = 0;*/
 
     private boolean usesClassAsUid = false;
 

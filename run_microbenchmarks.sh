@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+mvn assembly:assembly -Dmaven.test.skip=true -DdescriptorId=jar-with-dependencies
 if [ $? -eq 0 ]; then
     echo "Maven succeed"
 else

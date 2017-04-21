@@ -8,10 +8,11 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
     public int height = 480 * 2;
     public int width = 640 * 2;
     public float[] kernel = new float[7];;
+    float buffer[] = new float[height + kernel.length];
+
 
     public float[] benchmark_PERF() {
-        final float buffer[] = new float[height + kernel.length];
-        final int l = buffer.length - kernel.length;
+        int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@ 
         for (int i = 0; i < l; i += 2) {
             float sum = 0.0f;
@@ -24,8 +25,7 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
     }
 
     public float[] benchmark_NN() {
-        final float buffer[] = new float[height + kernel.length];
-        final int l = buffer.length - kernel.length;
+        int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@ 
         for (int i = 0; i < l - 1; i += 2) {
             float sum = 0.0f;
@@ -46,7 +46,6 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
     }
 
     public float[] benchmark_MN() {
-        final float buffer[] = new float[height + kernel.length];
         final int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@
         for (int i = 0; i < 1; i++) {
@@ -68,7 +67,6 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
     }
 
     public float[] benchmark_NN4() {
-        final float buffer[] = new float[height + kernel.length];
         final int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@ 
         for (int i = 0; i < l - 3; i++) {
@@ -107,7 +105,6 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
     }
 
     public float[] benchmark_MN4() {
-        final float buffer[] = new float[height + kernel.length];
         final int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@ 
         for (int i = 0; i < l - 3; i += 2) {

@@ -21,7 +21,7 @@ public class OpenImaJVersions {
 
         public WithData(int height, int width, boolean init) {
             data = new float[71];
-            pixels = new float[width][height];
+            pixels = new float[height][width];
             this.width = width;
             this.height = height;
             if (init) {

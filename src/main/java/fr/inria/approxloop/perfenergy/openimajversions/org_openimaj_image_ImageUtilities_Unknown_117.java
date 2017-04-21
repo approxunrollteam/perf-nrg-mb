@@ -19,9 +19,9 @@ public class org_openimaj_image_ImageUtilities_Unknown_117 {
         for (int i = 0; i < BYTE_TO_FLOAT_LUT.length - 4; i += 4) {
             float f = i / 255f;
             BYTE_TO_FLOAT_LUT[i] = f;
-            BYTE_TO_FLOAT_LUT[i - 1] = f;
-            BYTE_TO_FLOAT_LUT[i - 2] = f;
-            BYTE_TO_FLOAT_LUT[i - 3] = f;
+            BYTE_TO_FLOAT_LUT[i + 1] = f;
+            BYTE_TO_FLOAT_LUT[i + 2] = f;
+            BYTE_TO_FLOAT_LUT[i + 3] = f;
             //System.out.print(".");
         }
         for (int i = BYTE_TO_FLOAT_LUT.length - 4; i < BYTE_TO_FLOAT_LUT.length; i++) {

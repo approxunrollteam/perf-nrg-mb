@@ -9,8 +9,8 @@ public class org_openimaj_image_MBFImage_flatten_247 {
 
     public int width = 640 * 2;
     public int height = 480 * 2;
-    public float[][] outp;
-    public float[][] bnd;
+    public float[][] outp = new float[height][width];
+    public float[][] bnd = new float[height][width];;
 
     public org_openimaj_image_MBFImage_flatten_247() {
         Random r = new Random();
