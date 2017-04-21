@@ -26,14 +26,13 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
 
     public float[] benchmark_NN() {
         int l = buffer.length - kernel.length;
-        //@@LOOP BEGIN@@ 
-        for (int i = 0; i < l - 1; i += 2) {
+        for (int i = 0; i < l - 1; i+=2) {
             float sum = 0.0f;
-            //@@LOOP BEGIN@@ 
+            //@@LOOP BEGIN@@
             for (int j = 0, jj = kernel.length - 1; j < kernel.length; j++, jj--)
                 sum += buffer[i + j] * kernel[jj];
             buffer[i] = sum;
-            buffer[i + 1] = buffer[i];
+            buffer[i + 1] = sum;
         }
         for (int i = l - 1; i < l; i++) {
             float sum = 0.0f;

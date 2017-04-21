@@ -28,9 +28,10 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
     public void benchmark_NN() {
         for (int i = 0; i < 200000; i+=2) {
             double x0 = inputs[i];
-            outputs[i] = (a0v * x0) + (a1v * x1);
+            double k = (a0v * x0) + (a1v * x1);
+            outputs[i] = k;
             x1 = x0;
-            outputs[i+1] = outputs[i];
+            outputs[i+1] = k;
         }
     }
 

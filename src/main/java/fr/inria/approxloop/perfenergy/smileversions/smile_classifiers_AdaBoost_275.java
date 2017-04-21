@@ -15,7 +15,7 @@ public class smile_classifiers_AdaBoost_275 {
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < n - 1; i++) {
+        for (int i = 0; i < n - 1; i+=2) {
             w[i] /= W;
             w[i + 1] = w[i];
         }
@@ -34,7 +34,7 @@ public class smile_classifiers_AdaBoost_275 {
         for (int i = 0; i < 1; i++) {
             w[i] /= W;
         }
-        for (int i = 2; i < n - 1; i++) {
+        for (int i = 2; i < n - 1; i+=2) {
             w[i] /= W;
             w[i - 1] = (w[i - 2] + w[i]) * 0.5f;
         }

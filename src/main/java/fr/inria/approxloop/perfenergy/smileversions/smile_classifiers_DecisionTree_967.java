@@ -37,7 +37,7 @@ public class smile_classifiers_DecisionTree_967 {
     }
 
     public void benchmark_NN() {
-        for (int i = 0; i < k - 1; i++) {
+        for (int i = 0; i < k - 1; i+=2) {
             posteriori[i] = (double) count[i] / n;
             posteriori[i + 1] = posteriori[i];
         }
@@ -50,7 +50,7 @@ public class smile_classifiers_DecisionTree_967 {
         for (int i = 0; i < 1; i++) {
             posteriori[i] = (double) count[i] / n;
         }
-        for (int i = 2; i < k - 1; i++) {
+        for (int i = 2; i < k - 1; i+=2) {
             posteriori[i] = (double) count[i] / n;
             posteriori[i - 1] = (posteriori[i] + posteriori[i - 2]) * 0.5;
         }

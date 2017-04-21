@@ -123,7 +123,7 @@ public class com_jsyn_unitgen_PhaseShifter_method_69 extends JsynLoopsMicroBench
             outputs[i] = inputs[i] + (x * depths[i]);
         }
 
-        for (int i = 4; i < 200000; i++) {
+        for (int i = 4; i < 200000; i+=4) {
             double currentOffset = offsets[i];
             gain = 1.0 - (currentOffset * currentOffset);
             if (gain < -1.0) {

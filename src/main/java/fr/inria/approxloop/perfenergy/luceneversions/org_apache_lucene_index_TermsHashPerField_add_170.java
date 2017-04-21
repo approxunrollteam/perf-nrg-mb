@@ -40,7 +40,7 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
     public void benchmark_NN() {
         {
             int fr_ii;
-            for (fr_ii = 0; fr_ii < streamCount - 1; fr_ii++) {
+            for (fr_ii = 0; fr_ii < streamCount - 1; fr_ii+=2) {
                 final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
                 intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
                 intUptos[intUptoStart + fr_ii + 1] = intUptos[intUptoStart + fr_ii];
@@ -96,7 +96,7 @@ public class org_apache_lucene_index_TermsHashPerField_add_170 {
         {
             intUptos[intUptoStart] = upto1 + bytePool.byteOffset;
             int fr_ii;
-            for (fr_ii = 2; fr_ii < streamCount - 1; fr_ii++) {
+            for (fr_ii = 2; fr_ii < streamCount - 1; fr_ii+=2) {
                 final int upto = bytePool.newSlice(FIRST_LEVEL_SIZE);
                 intUptos[intUptoStart + fr_ii] = upto + bytePool.byteOffset;
                 intUptos[intUptoStart + fr_ii + 1] = (intUptos[intUptoStart + fr_ii] + intUptos[intUptoStart + fr_ii + 2]) >> 1;

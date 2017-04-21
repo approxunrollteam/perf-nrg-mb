@@ -28,7 +28,7 @@ public class org_apache_lucene_util_bkd_BKDWriter$OneDimensionBKDWriter_finish_6
     }
 
     public void benchmark_PERF() {
-        for (int i = 0; i < leafBlockFPs.size(); i++) {
+        for (int i = 0; i < leafBlockFPs.size(); i+=2) {
             arr[i] = leafBlockFPs.get(i);
         }
     }

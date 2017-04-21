@@ -28,7 +28,7 @@ public class smile_util_SmileUtils_53 {
 
     public void benchmark_PERF() {
         int j = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i+=2) {
             a[i] = x[i][j];
         }
     }
