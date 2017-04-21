@@ -14,21 +14,21 @@ public class org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385
     public OpenImaJVersions.WithData gauss = new OpenImaJVersions.WithData(halfsize, halfsize, true);
     public OpenImaJVersions.WithData gaussderiv = new OpenImaJVersions.WithData(halfsize, halfsize, true);
 
-    public void benchmark_org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385() {
+    public void benchmark() {
         int i;
         //@@LOOP BEGIN@@
         for (i = 0; i < gauss.width; i++)
             gaussderiv.data[i] = gaussderiv.data[(i + (((MAX_KERNEL_WIDTH) - gauss.width) / 2))];
     }
 
-    public void benchmark_org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385_PERF() {
+    public void benchmark_PERF() {
         int i;
         //@@LOOP BEGIN@@
         for (i = 0; i < gauss.width; i += 2)
             gaussderiv.data[i] = gaussderiv.data[(i + (((MAX_KERNEL_WIDTH) - gauss.width) / 2))];
     }
 
-    public void benchmark_org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385_NN() {
+    public void benchmark_NN() {
         int i;
         //@@LOOP BEGIN@@
         for (i = 0; i < gauss.width - 1; i += 2) {
@@ -40,7 +40,7 @@ public class org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385
         }
     }
 
-    public void benchmark_org_openimaj_video_tracking_klt_TrackingContext__computeKernels_385_MN() {
+    public void benchmark_MN() {
         int i;
         for (i = 0; i < 1; i++) {
             gauss.data[0] = gauss.data[(MAX_KERNEL_WIDTH - gauss.width) / 2];

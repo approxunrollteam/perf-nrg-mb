@@ -7,8 +7,8 @@ import fr.inria.approxloop.perfenergy.OpenImaJVersions;
  */
 public class org_openimaj_video_tracking_klt_TrackingContext__computeKernels_366 {
 
-    public OpenImaJVersions.WithData gauss;
-    public OpenImaJVersions.WithData gaussderiv;
+    public OpenImaJVersions.WithData gauss = new OpenImaJVersions.WithData(480*2, 640*2, true);
+    public OpenImaJVersions.WithData gaussderiv = new OpenImaJVersions.WithData(480*2, 640*2, true);;
     public float sigma = 0.7f;
 
     public void benchmark() {

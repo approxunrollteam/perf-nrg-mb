@@ -33,7 +33,7 @@ public class PerformanceGenerator extends CodeGenerator {
     private String outputPath = "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
     boolean testing = false;
 
-    private int loopBeingMicroBenchmarked = 72;
+    private int loopBeingMicroBenchmarked = 112;
     private int start = 0;
 
     private String experimentDescription = "JRALP Measure";

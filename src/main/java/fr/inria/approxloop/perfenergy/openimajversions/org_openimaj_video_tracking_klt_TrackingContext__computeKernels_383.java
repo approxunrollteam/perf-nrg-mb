@@ -7,9 +7,12 @@ import fr.inria.approxloop.perfenergy.OpenImaJVersions;
  */
 public class org_openimaj_video_tracking_klt_TrackingContext__computeKernels_383 {
 
-    public OpenImaJVersions.WithData gauss;
-    public OpenImaJVersions.WithData gaussderiv;
+    public OpenImaJVersions.WithData gauss = new OpenImaJVersions.WithData(480*2, 640*2, true);
     public int MAX_KERNEL_WIDTH = 71;
+
+    public org_openimaj_video_tracking_klt_TrackingContext__computeKernels_383() {
+        gauss.width = 71/2;
+    }
 
     public void benchmark() {
         int i;
