@@ -87,7 +87,7 @@ public class smile_classifiers_AdaBoost_287 {
             err[i] = trees[t].predict(x[i]) != y[i];
         }
     }
-
+    //YEAH
     public void benchmark_MN() {
         int t = 0;
         for (int i = 0; i < 1; i++) {

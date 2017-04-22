@@ -22,7 +22,7 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         for (int y = 0; y < image.height; y++)
             //@@LOOP BEGIN@@
             for (int x = 0; x < image.width; x++) {
-                image.pixels[x][y] = r.nextFloat();
+                image.pixels[y][x] = r.nextFloat();
             }
         buffer = new float[image.width * image.height];
 

@@ -55,7 +55,7 @@ public class smile_math_random_UniversalGenerator_92 {
             u[ii] = s;
         }
     }
-
+        //YEAHl
     public void benchmark_PERF() {
         int m;
         double s, t;

@@ -41,6 +41,36 @@ public class smile_util_SmileUtils_53 {
         }
     }
 
+    public void benchmark_NN4() {
+        {
+            int fr_ii;    int j = 0;
+            for (fr_ii = 0; fr_ii < n - 4; fr_ii += 2) {
+                a[fr_ii] = x[fr_ii][j];
+                fr_ii++;
+                a[fr_ii] = x[fr_ii][j];
+                fr_ii++;
+                a[fr_ii] = x[fr_ii][j];
+                a[fr_ii + 1] = a[fr_ii];
+            }
+            for (int i = fr_ii; i < n; i++) {
+                a[fr_ii] = x[fr_ii][j];
+            }
+        }
+    }
+
+    public void benchmark_NN34() {
+        int fr_ii; int j = 0;
+        for (fr_ii = 0; fr_ii < n - 4; fr_ii+=4) {
+            a[fr_ii] = x[fr_ii][j];
+            a[fr_ii + 1] = a[fr_ii];
+            a[fr_ii + 2] = a[fr_ii];
+            a[fr_ii + 3] = a[fr_ii];
+        }
+        for (int i = fr_ii; i < n; i++) {
+            a[fr_ii] = x[fr_ii][j];
+        }
+    }
+
     public void benchmark_MN() {
         int j = 0;
         for (int i = 0; i < 1; i++) {
@@ -54,5 +84,41 @@ public class smile_util_SmileUtils_53 {
             a[i] = x[i][j];
         }
     }
+
+    public void benchmark_MN4() {
+        int j = 0;
+        {
+            int fr_ii;
+
+            for (fr_ii = 0; fr_ii < n - 4; fr_ii += 2) {
+                a[fr_ii] = x[fr_ii][j];
+                fr_ii++;
+                a[fr_ii] = x[fr_ii][j];
+                fr_ii += 2;
+                a[fr_ii] = x[fr_ii][j];
+                a[fr_ii - 1] = (a[fr_ii] + a[fr_ii - 2]) * 0.5;
+            }
+            for (int i = fr_ii; i < n; i++) {
+                a[fr_ii] = x[fr_ii][j];
+            }
+        }
+    }
+
+    public void benchmark_MN34() {
+        int j = 0;
+        {
+            a[0] = x[0][0];
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < n - 4; fr_ii += 4) {
+                a[fr_ii] =  x[fr_ii][j];
+                a[fr_ii - 1] = (a[fr_ii] * 0.75f + a[fr_ii - 4] * 0.25f);
+                a[fr_ii - 2] = (a[fr_ii] + a[fr_ii - 4]) * 0.5f;
+                a[fr_ii - 3] = (a[fr_ii] * 0.25f + a[fr_ii - 4] * 0.75f);
+            }
+            for (int i = fr_ii; i < n; i++) {
+                a[i] =  x[i][j];
+            }
+        }
+    }    
 
 }

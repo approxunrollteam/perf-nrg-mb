@@ -61,7 +61,7 @@ public class org_openimaj_image_processing_convolution_FGaussianConvolve_makeKer
         {
            //@@LOOP BEGIN@@
             int fr_ii;
-            for (fr_ii = 0; fr_ii < ksize; fr_ii ++) {
+            for (fr_ii = 0; fr_ii < ksize - 4; fr_ii ++) {
                 kernel[fr_ii] /= sum;
                 fr_ii++;
                 kernel[fr_ii] /= sum;
@@ -81,7 +81,7 @@ public class org_openimaj_image_processing_convolution_FGaussianConvolve_makeKer
         {
             kernel[0] /= sum;
             int fr_ii;
-            for (fr_ii = 4; fr_ii < ksize; fr_ii += 4) {
+            for (fr_ii = 4; fr_ii < ksize -4; fr_ii += 4) {
                 kernel[fr_ii] /= sum;
                 kernel[fr_ii - 1] = kernel[fr_ii] * 0.75f + kernel[fr_ii - 4] * 0.25f;
                 kernel[fr_ii - 2] = (kernel[fr_ii] + kernel[fr_ii - 4]) * 0.5f;

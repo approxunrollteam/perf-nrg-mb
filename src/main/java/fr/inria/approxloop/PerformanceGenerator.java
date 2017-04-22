@@ -35,9 +35,9 @@ public class PerformanceGenerator extends CodeGenerator {
     private String outputPath = TakeLoopsToDb.energy ?
             "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java" :
             "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
-    boolean testing = true;
+    boolean testing = false;
 
-    private int loopBeingMicroBenchmarked = 0;
+    private int loopBeingMicroBenchmarked = 44;
     private int start = 0;
 /*
     private String experimentDescription = "JRALP Measure";
@@ -85,8 +85,10 @@ public class PerformanceGenerator extends CodeGenerator {
         }
     }
 
-    public static void runGenerator(String path, String projectName) throws Exception {
+    public static void runGenerator(String path, String projectName, boolean t, int loopIndx) throws Exception {
         PerformanceGenerator r = new PerformanceGenerator();
+        r.testing = t;
+        r.loopBeingMicroBenchmarked = loopIndx;
         r.initialize(new File(r.getClass().getClassLoader().getResource("").toURI()));
         File mbs = new File(path);
         r.usesClassAsUid = mbs.isDirectory();
@@ -97,9 +99,11 @@ public class PerformanceGenerator extends CodeGenerator {
 
     }
 
+
+
     public static void main(String[] args) throws Exception {
-        runGenerator(pathOpen, "OpenImaJ");
-        runGenerator(pathSmile, "smile");
+        runGenerator(pathOpen, "OpenImaJ", false, 47);
+        runGenerator(pathSmile, "smile", false, 0);
     }
 
     public PerformanceGenerator() {

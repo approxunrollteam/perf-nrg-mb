@@ -53,6 +53,39 @@ public class smile_data_DataSet_291 {
             a[i] = get(i).x;
         }
     }
+
+    public void benchmark_NN4() {
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < n - 4; fr_ii += 2) {
+                a[fr_ii] = get(fr_ii).x;
+                ;
+                fr_ii++;
+                a[fr_ii] = get(fr_ii).x;
+                ;
+                fr_ii++;
+                a[fr_ii] = get(fr_ii).x;
+                ;
+                a[fr_ii + 1] = a[fr_ii];
+            }
+            for (int i = fr_ii; i < n; i++) {
+                a[fr_ii] = get(fr_ii).x;
+            }
+        }
+    }
+
+    public void benchmark_NN34() {
+        int fr_ii;
+        for (fr_ii = 0; fr_ii < n - 4; fr_ii+=4) {
+             a[fr_ii] = get(fr_ii).x;
+            a[fr_ii + 1] = a[fr_ii];
+            a[fr_ii + 2] = a[fr_ii];
+            a[fr_ii + 3] = a[fr_ii];
+        }
+        for (int i = fr_ii; i < n; i++) {
+            a[fr_ii] = get(fr_ii).x;
+        }
+    }
 /*
     public void benchmark_MN() {
         for (int i = 0; i < 1; i++) {

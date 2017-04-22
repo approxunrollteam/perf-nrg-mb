@@ -50,6 +50,56 @@ public class smile_classifiers_DecisionTree_708 {
         }
     }
 
+    public void benchmark_NN4() {
+        {
+            int fr_ii;
+            for ( fr_ii = 0; fr_ii < k - 4; fr_ii += 2) {
+                trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+                falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+                fr_ii++;
+
+                trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+                falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+                fr_ii++;
+
+                trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+                falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+                trueChildPosteriori[fr_ii + 1] = trueChildPosteriori[fr_ii];
+                falseChildPosteriori[fr_ii + 1] = falseChildPosteriori[fr_ii];
+
+            }
+            for (int i = fr_ii; i < k; i++) {
+                trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
+                falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+            }
+        }
+    }
+
+    public void benchmark_NN34() {
+        {
+        int fr_ii;
+        for (fr_ii = 0; fr_ii < k - 4; fr_ii++) {
+            double kkkk2 = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+            double kkkk1 = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+            trueChildPosteriori[fr_ii] = kkkk2;
+            falseChildPosteriori[fr_ii] = kkkk1;
+            fr_ii++;
+            trueChildPosteriori[fr_ii] = kkkk2;
+            falseChildPosteriori[fr_ii] = kkkk1;
+            fr_ii++;
+            trueChildPosteriori[fr_ii] = kkkk2;
+            falseChildPosteriori[fr_ii] = kkkk1;
+            fr_ii++;
+            trueChildPosteriori[fr_ii] = kkkk2;
+            falseChildPosteriori[fr_ii] = kkkk1;
+        }
+        for (int i = fr_ii; i < k; i++) {
+            trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
+            falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+        }
+    }
+    }
+
     public void benchmark_MN() {
         for (int i = 0; i < 1; i++) {
             trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
@@ -57,13 +107,60 @@ public class smile_classifiers_DecisionTree_708 {
         }
         for (int i = 2; i < k - 1; i+=2) {
             trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
-            trueChildPosteriori[i - 1] = (trueChildPosteriori[i - 2] + trueChildPosteriori[i]) *0.5;
+
             falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+            trueChildPosteriori[i - 1] = (trueChildPosteriori[i - 2] + trueChildPosteriori[i]) *0.5;
             falseChildPosteriori[i - 1] = (falseChildPosteriori[i - 2] + falseChildPosteriori[i]) *0.5;
         }
         for (int i = k - 1; i < k; i++) {
             trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
             falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+        }
+    }
+
+    public void benchmark_MN4() {
+        int fr_ii;
+        for (fr_ii = 0; fr_ii < k - 4; fr_ii+=2) {
+            trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+            falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+            fr_ii++;
+            trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+            falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+            fr_ii+= 2;
+            trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+            falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+
+            trueChildPosteriori[fr_ii - 1] = (trueChildPosteriori[fr_ii - 2] + trueChildPosteriori[fr_ii]) *0.5;
+            falseChildPosteriori[fr_ii - 1] = (falseChildPosteriori[fr_ii - 2] + falseChildPosteriori[fr_ii]) *0.5;
+        }
+        for (int i = fr_ii; i < k; i++) {
+            trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
+            falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+        }
+    }
+
+    public void benchmark_MN34() {
+        {
+        trueChildPosteriori[0] = (trueChildPosteriori[0] + 1) / (tc + k);
+        falseChildPosteriori[0] = (falseChildPosteriori[0] + 1) / (fc + k);
+            int fr_ii;
+        for ( fr_ii= 4; fr_ii < k - 4; fr_ii+=4) {
+            trueChildPosteriori[fr_ii] = (trueChildPosteriori[fr_ii] + 1) / (tc + k);
+            falseChildPosteriori[fr_ii] = (falseChildPosteriori[fr_ii] + 1) / (fc + k);
+
+            trueChildPosteriori[fr_ii - 1] = (trueChildPosteriori[fr_ii] * 0.75f + trueChildPosteriori[fr_ii - 4] * 0.25f);
+            trueChildPosteriori[fr_ii - 2] = (trueChildPosteriori[fr_ii] + trueChildPosteriori[fr_ii - 4]) * 0.5f;
+            trueChildPosteriori[fr_ii - 3] = (trueChildPosteriori[fr_ii] * 0.25f + trueChildPosteriori[fr_ii - 4] * 0.75f);
+
+            falseChildPosteriori[fr_ii - 1] = (falseChildPosteriori[fr_ii] * 0.75f + falseChildPosteriori[fr_ii - 4] * 0.25f);
+            falseChildPosteriori[fr_ii - 2] = (falseChildPosteriori[fr_ii] + falseChildPosteriori[fr_ii - 4]) * 0.5f;
+            falseChildPosteriori[fr_ii - 3] = (falseChildPosteriori[fr_ii] * 0.25f + falseChildPosteriori[fr_ii - 4] * 0.75f);
+
+        }
+        for (int i = fr_ii; i < k; i++) {
+            trueChildPosteriori[i] = (trueChildPosteriori[i] + 1) / (tc + k);
+            falseChildPosteriori[i] = (falseChildPosteriori[i] + 1) / (fc + k);
+        }
         }
     }
 
