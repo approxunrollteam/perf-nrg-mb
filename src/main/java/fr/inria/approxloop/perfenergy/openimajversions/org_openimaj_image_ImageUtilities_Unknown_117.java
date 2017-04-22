@@ -69,7 +69,7 @@ public class org_openimaj_image_ImageUtilities_Unknown_117 {
             BYTE_TO_FLOAT_LUT[i] = i / 255f;
         }
     }
-
+    //YEAHh
     public void benchmark_MN4() {
         //@@LOOP BEGIN@@ 
         for (int i = 0; i < BYTE_TO_FLOAT_LUT.length - 3; i++) {

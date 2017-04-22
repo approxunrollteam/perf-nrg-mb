@@ -102,7 +102,7 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         }
         return buffer;
     }
-
+////
     public float[] benchmark_MN4() {
         final int l = buffer.length - kernel.length;
         //@@LOOP BEGIN@@ 

@@ -20,6 +20,7 @@ public class org_openimaj_image_processing_convolution_FGaussianConvolve_makeKer
         }
         return sum;
     }
+   ///YEAH
 
     public float benchmark_MN34() {
         int ksize = (int) (2.0f * truncate * sigma + 1.0f);

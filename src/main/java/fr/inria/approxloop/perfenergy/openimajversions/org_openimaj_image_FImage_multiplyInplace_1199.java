@@ -47,6 +47,45 @@ public class org_openimaj_image_FImage_multiplyInplace_1199 {
         }
     }
 
+    public void benchmark_NN4() {
+        int r = 0;
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < width - 4; fr_ii += 2) {
+                pixels[r][fr_ii] *= fnum;
+                fr_ii++;
+                pixels[r][fr_ii] *= fnum;
+                fr_ii++;
+                pixels[r][fr_ii] *= fnum;
+                pixels[r][fr_ii + 1] = pixels[r][fr_ii];
+            }
+            for (int c = fr_ii; c < width; c ++) {
+                pixels[r][c] *= fnum;
+            }
+        }
+    }
+
+
+    public void benchmark_NN34() {
+        int r = 0;
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < width - 4; fr_ii ++) {
+                float k = pixels[r][fr_ii] = fnum;
+                pixels[r][fr_ii] = k;
+                fr_ii++;
+                pixels[r][fr_ii] = k;
+                fr_ii++;
+                pixels[r][fr_ii]  = k;
+                fr_ii++;
+                pixels[r][fr_ii] = k;
+            }
+            for (int c = fr_ii; c < width; c ++) {
+                pixels[r][c] *= fnum;
+            }
+        }
+    }
+
     public void benchmark_MN() {
         int r = 0;
         pixels[r][0] *= fnum;
@@ -56,6 +95,41 @@ public class org_openimaj_image_FImage_multiplyInplace_1199 {
         }
     }
 
+    public void benchmark_MN34() {
+        int r = 0;
+        {
+            pixels[r][0] *= fnum;
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < width - 4; fr_ii += 2) {
+                pixels[r][fr_ii] *= fnum;
+                pixels[r][fr_ii - 1] = pixels[r][fr_ii] * 0.75f + pixels[r][fr_ii - 4] * 0.25f;
+                pixels[r][fr_ii - 2] = (pixels[r][fr_ii] + pixels[r][fr_ii - 4]) * 0.5f;
+                pixels[r][fr_ii - 3] = (pixels[r][fr_ii] * 0.25f + pixels[r][fr_ii - 4]) * 0.75f;
+            }
+            for (int c = fr_ii; c < width - 1; c += 2) {
+                pixels[r][c] *= fnum;
+            }
+        }
+    }
+
+    public void benchmark_MN4() {
+        int r = 0;
+        {
+            pixels[r][0] *= fnum;
+            int fr_cc;
+            for (fr_cc = 4; fr_cc < width - 4; fr_cc += 4) {
+                pixels[r][fr_cc] *= fnum;
+                fr_cc++;
+                pixels[r][fr_cc] *= fnum;
+                fr_cc += 2;
+                pixels[r][fr_cc] *= fnum;
+                pixels[r][fr_cc - 1] = (pixels[r][fr_cc] + pixels[r][fr_cc - 2]) * 0.5f;
+            }
+            for (int c = fr_cc; c < width - 1; c++) {
+                pixels[r][c] *= fnum;
+            }
+        }
+    }
 
 
 }

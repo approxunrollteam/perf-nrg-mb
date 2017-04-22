@@ -49,15 +49,96 @@ public class org_openimaj_image_MBFImage_flatten_247 {
         }
     }
 
+    public void benchmark_NN34() {
+        int y = 0;
+        //@@LOOP BEGIN@@
+        {
+            int fr_cc;
+            for (fr_cc = 0; fr_cc < width - 4; fr_cc += 2) {
+                float k = bnd[y][fr_cc] + outp[y][fr_cc];
+                bnd[y][fr_cc] = k;
+                fr_cc++;
+                bnd[y][fr_cc] = k;
+                fr_cc++;
+                bnd[y][fr_cc] = k;
+                fr_cc++;
+                bnd[y][fr_cc ] = k;
+            }
+            for (int c = fr_cc; c < width; c++) {
+                bnd[y][c] += outp[y][c];
+            }
+        }
+    }
+
+    public void benchmark_NN4() {
+        int y = 0;
+        //@@LOOP BEGIN@@
+        {
+            int fr_cc;
+            for (fr_cc = 0; fr_cc < width - 4; fr_cc += 2) {
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                fr_cc++;
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                fr_cc+=2;
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                bnd[y][fr_cc + 1] = bnd[y][fr_cc];
+            }
+            for (int c = fr_cc; c < width; c++) {
+                bnd[y][c] += outp[y][c];
+            }
+        }
+    }
+
     public void benchmark_MN() {
         int y = 0;
-        for (int cccc = 0; cccc < 1; cccc++) {
+        {
             bnd[y][0] += outp[y][0];
+            //@@LOOP BEGIN@@
+            int fr_cc;
+            for (fr_cc = 2; fr_cc < width; fr_cc += 2) {
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                bnd[y][fr_cc - 1] = (bnd[y][fr_cc] + bnd[y][fr_cc - 2]) * 0.5f;
+            }
+            for (int c = fr_cc; c < width; c ++) {
+                bnd[y][c] += outp[y][c];
+            }
         }
-        //@@LOOP BEGIN@@
-        for (int c = 2; c < width; c += 2) {
-            bnd[y][c] += outp[y][c];
-            bnd[y][c - 1] = (bnd[y][c] + bnd[y][c - 2]) * 0.5f;
+    }
+
+    public void benchmark_MN4() {
+        int y = 0;
+        {
+            //@@LOOP BEGIN@@
+            int fr_cc;
+            for (fr_cc = 2; fr_cc < width -4; fr_cc += 2) {
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                fr_cc++;
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                fr_cc+=2;
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                bnd[y][fr_cc - 1] = (bnd[y][fr_cc] + bnd[y][fr_cc - 2]) * 0.5f;
+            }
+            for (int c = fr_cc; c < width; c ++) {
+                bnd[y][c] += outp[y][c];
+            }
+        }
+    }
+
+    public void benchmark_MN34() {
+        int y = 0;
+        {
+            bnd[y][0] += outp[y][0];
+            //@@LOOP BEGIN@@
+            int fr_cc;
+            for ( fr_cc = 4; fr_cc < width - 4; fr_cc +=4) {
+                bnd[y][fr_cc] += outp[y][fr_cc];
+                bnd[y][fr_cc - 1] = (bnd[y][fr_cc]* 0.75f + bnd[y][fr_cc - 4]) * 0.25f;
+                bnd[y][fr_cc - 2] = (bnd[y][fr_cc] + bnd[y][fr_cc - 4]) * 0.5f;
+                bnd[y][fr_cc - 3] = (bnd[y][fr_cc]* 0.25f + bnd[y][fr_cc - 4]) * 0.75f;
+            }
+            for (int c = fr_cc; c < width; c ++) {
+                bnd[y][c] += outp[y][c];
+            }
         }
     }
 

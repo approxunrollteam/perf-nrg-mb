@@ -8,9 +8,11 @@ import java.io.File;
  * Created by elmarce on 23/03/17.
  */
 public class TakeLoopsToDb {
-
-    public static String dbPath = "/home/elmarce/PROJECTS/DATA/approx_unroll_data_with_errors.db3";
-    static String strInputPaths = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/smileversions";
+    public static boolean energy = false;
+    public static String dbPath = energy ?
+            "/home/elmarce/PROJECTS/DATA/approx_unroll_data_with_errors.db3" :
+            "/home/elmarce/MarcelStuff/DATA/APPROX-UNROLL/DBs/approx_unroll_data_with_errors.db3";
+    //static String strInputPaths = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/smileversions";
 
     public static void processFile(File f) {
         try {
@@ -43,7 +45,7 @@ public class TakeLoopsToDb {
         }
     }
 
-    public static void main(String[] args) {
-        walk(new File(strInputPaths));
-    }
+    //public static void main(String[] args) {
+    //    walk(new File(strInputPaths));
+    //}
 }

@@ -13,6 +13,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,17 +26,20 @@ import fr.inria.approxloop.perfenergy.smileversions.*;
 public class PerformanceGenerator extends CodeGenerator {
 
     //private static String path = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/jsynversions";
-    private static String path = "/media/elmarce/OSDisk/MarcelStuff/Linux project/PHD/benchversions/src/main/java/fr/inria/approxloop/perfenergy/openimajversions";
+    private static String pathOpen = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/openimajversions";
+    private static String pathSmile = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java/fr/inria/approxloop/perfenergy/smileversions";
     //private String projectName = "jsyn";
-    private String projectName = "OpenImaJ";
+    //private String projectNameOpen = "OpenImaJ";
+    //private String projectNameSmile = "smile";
 
-    //private String outputPath = "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
-    private String outputPath = "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java";
-    boolean testing = false;
+    private String outputPath = TakeLoopsToDb.energy ?
+            "/home/elmarce/MarcelStuff/Linux project/PHD/benchversions/src/main/java" :
+            "/home/elmarce/MarcelStuff/PROJECTS/PHD/APPROX-LOOP/eval-tools/perf-nrg-mb/src/main/java";
+    boolean testing = true;
 
-    private int loopBeingMicroBenchmarked = 112;
+    private int loopBeingMicroBenchmarked = 0;
     private int start = 0;
-
+/*
     private String experimentDescription = "JRALP Measure";
     private int measuring = 2;
     //private String before_run = "";
@@ -46,8 +50,8 @@ public class PerformanceGenerator extends CodeGenerator {
     private String after_run = "String longs = EnergyCheckUtils.EnergyStatCheck(); \n" +
             "datums[i - start] = (EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a))/datums[i - start];";
     private String after_mb = "datums[i - start]++;";
-    private String datum_init = "double[] datums = new double[executionPhases];";
-/*
+    private String datum_init = "double[] datums = new double[executionPhases];";*/
+
     private String experimentDescription = "Count operatios per second";
     private String before_run = "";
     //private String before_run = "String a = EnergyCheckUtils.EnergyStatCheck();";
@@ -56,13 +60,13 @@ public class PerformanceGenerator extends CodeGenerator {
     //        "datums[i - start] = EnergyCheckUtils.getCPUEnergy(longs) - EnergyCheckUtils.getCPUEnergy(a);";
     private String after_mb = "datums[i - start]++;";
     private String datum_init = "double[] datums = new double[executionPhases];";
-    private int measuring = 0;*/
+    private int measuring = 0;
 
     private boolean usesClassAsUid = false;
 
     private HashMap<Integer, String> endings;
 
-    public void walk(File file) {
+    public void walk(File file, String projectName) {
         System.out.println(file);
         File[] list = file.listFiles();
         if (list == null) {
@@ -70,7 +74,7 @@ public class PerformanceGenerator extends CodeGenerator {
             return;
         }
         for (File f : list) {
-            if (f.isDirectory()) walk(f);
+            if (f.isDirectory()) walk(f, projectName);
             else if (f.getName().endsWith(".java"))
                 try {
                     String mbName = f.getName().substring(0, f.getName().indexOf(".java"));
@@ -81,7 +85,7 @@ public class PerformanceGenerator extends CodeGenerator {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void runGenerator(String path, String projectName) throws Exception {
         PerformanceGenerator r = new PerformanceGenerator();
         r.initialize(new File(r.getClass().getClassLoader().getResource("").toURI()));
         File mbs = new File(path);
@@ -89,7 +93,13 @@ public class PerformanceGenerator extends CodeGenerator {
         System.out.println("READING LOOPS");
         TakeLoopsToDb.walk(new File(path));
         System.out.println("RUNNING MBs");
-        r.walk(mbs);
+        r.walk(mbs, projectName);
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        runGenerator(pathOpen, "OpenImaJ");
+        runGenerator(pathSmile, "smile");
     }
 
     public PerformanceGenerator() {

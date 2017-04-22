@@ -46,6 +46,43 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         }
     }
 
+    public void benchmark_MN4() {
+        int r = 5;
+        {
+            for (int c = 0; c < halfsize - 4; c += 2) {
+                image.pixels[r][c] = buffer[c];
+                c++;
+                image.pixels[r][c] = buffer[c];
+                c += 2;
+                image.pixels[r][c] = buffer[c];
+                image.pixels[r][c - 1] = 0.5f * (image.pixels[r][c] - image.pixels[r][c - 2]);
+            }
+            for (int c = 0; c < halfsize - 4; c += 2) {
+                image.pixels[r][c] = buffer[c];
+            }
+        }
+    }
+
+    public void benchmark_MN34() {
+        int r = 5;
+        {
+            image.pixels[r][0] = buffer[0];
+            //@@LOOP BEGIN@@
+            int fr_ii;
+            for (fr_ii = 4; fr_ii < halfsize - 4; fr_ii += 4) {
+                image.pixels[r][fr_ii] = buffer[fr_ii];
+                image.pixels[r][fr_ii - 1] = image.pixels[r][fr_ii] * 0.75f + image.pixels[r][fr_ii - 4] * 0.25f;
+                image.pixels[r][fr_ii - 2] = (image.pixels[r][fr_ii] + image.pixels[r][fr_ii - 4]) * 0.5f;
+                image.pixels[r][fr_ii - 3] = image.pixels[r][fr_ii] * 0.25f + image.pixels[r][fr_ii - 4] * 0.75f;
+            }
+            for (int i = fr_ii; fr_ii < halfsize; fr_ii ++) {
+                image.pixels[r][i] = buffer[i];
+            }
+        }
+    }
+
+
+
     public void benchmark_NN() {
         int r = 5;
         //@@LOOP BEGIN@@
@@ -55,6 +92,47 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         }
         for (int c = halfsize - 1; c < halfsize; c++) {
             image.pixels[r][c] = buffer[c];
+        }
+    }
+
+    public void benchmark_NN4() {
+        int r = 5;
+        //@@LOOP BEGIN@@
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < halfsize - 4; fr_ii += 2) {
+                image.pixels[r][fr_ii] = buffer[fr_ii];
+                fr_ii++;
+                image.pixels[r][fr_ii] = buffer[fr_ii];
+                fr_ii++;
+                image.pixels[r][fr_ii] = buffer[fr_ii];
+                fr_ii++;
+                image.pixels[r][fr_ii + 1] = image.pixels[r][fr_ii];
+            }
+            for (int c = fr_ii; c < halfsize; c++) {
+                image.pixels[r][c] = buffer[c];
+            }
+        }
+    }
+
+    public void benchmark_NN34() {
+        int r = 5;
+        //@@LOOP BEGIN@@
+        {
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < halfsize - 4; fr_ii += 2) {
+                float k = buffer[fr_ii];
+                image.pixels[r][fr_ii] = k;
+                fr_ii++;
+                image.pixels[r][fr_ii] = k;
+                fr_ii++;
+                image.pixels[r][fr_ii] = k;
+                fr_ii++;
+                image.pixels[r][fr_ii] = k;
+            }
+            for (int c = fr_ii; c < halfsize; c++) {
+                image.pixels[r][c] = buffer[c];
+            }
         }
     }
 }
