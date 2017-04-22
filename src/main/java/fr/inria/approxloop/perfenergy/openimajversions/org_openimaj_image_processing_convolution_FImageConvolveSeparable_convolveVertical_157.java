@@ -39,11 +39,12 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         int c = 5;
         //@@LOOP BEGIN@@
         {
-            for (int i = halfsize; i < halfsize - 1; i += 2) {
-                buffer[i] = image.pixels[0][c];
-                buffer[i + 1] = buffer[i];
+            int fr_ii;
+            for (fr_ii = 0; fr_ii < halfsize - 1; fr_ii += 2) {
+                buffer[fr_ii] = image.pixels[0][c];
+                buffer[fr_ii + 1] = buffer[fr_ii];
             }
-            for (int i = halfsize - 1; i < halfsize; i++) {
+            for (int i = fr_ii; i < halfsize; i++) {
                 buffer[i] = image.pixels[0][c];
             }
         }
@@ -54,7 +55,7 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         //@@LOOP BEGIN@@
         {
             int fr_ii;
-            for (fr_ii = halfsize; fr_ii < halfsize - 4; fr_ii += 2) {
+            for (fr_ii = 0; fr_ii < halfsize - 4; fr_ii += 2) {
                 buffer[fr_ii] = image.pixels[0][c];
                 fr_ii++;
                 buffer[fr_ii] = image.pixels[0][c];
@@ -73,7 +74,7 @@ public class org_openimaj_image_processing_convolution_FImageConvolveSeparable_c
         //@@LOOP BEGIN@@
         {
         int fr_ii;
-        for (fr_ii = halfsize; fr_ii < halfsize - 4; fr_ii++) {
+        for (fr_ii = 0; fr_ii < halfsize - 4; fr_ii++) {
             float k = image.pixels[0][c];
             buffer[fr_ii] = k;
             fr_ii++;

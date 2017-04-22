@@ -42,7 +42,7 @@ public class org_openimaj_image_MBFImage_flatten_257 {
             outp[y][x] = ((outp[y][x]) + (bnd[y][x])) * norm;
         }
     }
-
+//////
     public void benchmark_NN() {
         int y = 0;
         //@@LOOP BEGIN@@
