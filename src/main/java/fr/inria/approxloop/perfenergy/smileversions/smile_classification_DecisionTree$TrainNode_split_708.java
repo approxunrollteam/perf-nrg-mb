@@ -5,14 +5,14 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_DecisionTree_708 {
+public class smile_classification_DecisionTree$TrainNode_split_708 {
     int k = 1000;
     double[] trueChildPosteriori = new double[k];
     double[] falseChildPosteriori = new double[k];
     public int tc;
     public int fc;
 
-    public smile_classifiers_DecisionTree_708() {
+    public smile_classification_DecisionTree$TrainNode_split_708() {
         Random r = new Random();
         for (int i = 0; i < k; i++) {
             trueChildPosteriori[i] = r.nextDouble();

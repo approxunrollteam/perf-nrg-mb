@@ -100,7 +100,7 @@ public class org_openimaj_image_FImage_multiplyInplace_1199 {
         {
             pixels[r][0] *= fnum;
             int fr_ii;
-            for (fr_ii = 4; fr_ii < width - 4; fr_ii += 2) {
+            for (fr_ii = 4; fr_ii < width - 4; fr_ii += 4) {
                 pixels[r][fr_ii] *= fnum;
                 pixels[r][fr_ii - 1] = pixels[r][fr_ii] * 0.75f + pixels[r][fr_ii - 4] * 0.25f;
                 pixels[r][fr_ii - 2] = (pixels[r][fr_ii] + pixels[r][fr_ii - 4]) * 0.5f;

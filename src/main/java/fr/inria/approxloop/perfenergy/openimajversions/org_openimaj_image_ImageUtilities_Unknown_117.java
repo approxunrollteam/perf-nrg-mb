@@ -95,7 +95,7 @@ public class org_openimaj_image_ImageUtilities_Unknown_117 {
             BYTE_TO_FLOAT_LUT[i] = i / 255f;
             BYTE_TO_FLOAT_LUT[i + 1] = BYTE_TO_FLOAT_LUT[i];
         }
-        for (int i = 0; i < BYTE_TO_FLOAT_LUT.length; i++) {
+        for (int i = BYTE_TO_FLOAT_LUT.length - 1; i < BYTE_TO_FLOAT_LUT.length; i++) {
             BYTE_TO_FLOAT_LUT[i] = i / 255f;
         }
     }

@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_DecisionTree_967 {
+public class smile_classification_DecisionTree_Unknown_967 {
     int k = 1000;
     int n = 10;
     double[] posteriori = new double[k];
@@ -14,7 +14,7 @@ public class smile_classifiers_DecisionTree_967 {
     public int tc;
     public int fc;
 
-    public smile_classifiers_DecisionTree_967() {
+    public smile_classification_DecisionTree_Unknown_967() {
         Random r = new Random();
         for (int i = 0; i < k; i++) {
             posteriori[i] = r.nextDouble();

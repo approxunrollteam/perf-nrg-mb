@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_data_DataSet_291 {
+public class smile_data_Dataset_toArray_291 {
 
     private static class WithX {
         double x;
@@ -19,7 +19,7 @@ public class smile_data_DataSet_291 {
     int n = 1000;
     double[] a = new double[n];
     List<WithX> withX = new ArrayList<>();
-    public smile_data_DataSet_291() {
+    public smile_data_Dataset_toArray_291() {
 
         withX = new ArrayList<>();
         Random r = new Random();

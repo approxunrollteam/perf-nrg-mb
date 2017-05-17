@@ -3,7 +3,7 @@ package fr.inria.approxloop.perfenergy.smileversions;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_math_random_UniversalGenerator_92 {
+public class smile_math_random_UniversalGenerator_setSeed_92 {
 
     static final int BIG_PRIME = 899999963;
     int i;
@@ -18,7 +18,7 @@ public class smile_math_random_UniversalGenerator_92 {
 
     double u[] = new double[97];
 
-    public smile_math_random_UniversalGenerator_92() {
+    public smile_math_random_UniversalGenerator_setSeed_92() {
         int ijkl = Math.abs((int) (seed % BIG_PRIME));
         int ij = ijkl / 30082;
         int kl = ijkl % 30082;

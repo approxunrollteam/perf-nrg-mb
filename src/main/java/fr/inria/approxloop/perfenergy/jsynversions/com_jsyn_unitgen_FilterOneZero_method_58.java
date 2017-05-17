@@ -78,6 +78,7 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
             x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
+
             outputs[i - 1] = 0.5f * (outputs[i] + outputs[i - 2]);
         }
     }
@@ -99,13 +100,16 @@ public class com_jsyn_unitgen_FilterOneZero_method_58 extends JsynLoopsMicroBenc
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
 
+            i++;
             x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
 
+            i++;
             x0 = inputs[i];
             outputs[i] = (a0v * x0) + (a1v * x1);
             x1 = x0;
+
             outputs[i + 1] = outputs[i];
         }
     }

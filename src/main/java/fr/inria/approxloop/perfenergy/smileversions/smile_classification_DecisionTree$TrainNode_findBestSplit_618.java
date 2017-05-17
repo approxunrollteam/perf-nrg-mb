@@ -5,13 +5,13 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_DecisionTree_618 {
+public class smile_classification_DecisionTree$TrainNode_findBestSplit_618 {
     int k = 1000;
     int[] falseCount = new int[k];
     int[] count = new int[k];
     int[] trueCount = new int[k];
 
-    public smile_classifiers_DecisionTree_618() {
+    public smile_classification_DecisionTree$TrainNode_findBestSplit_618() {
         Random r = new Random();
         for (int i = 0; i < k; i++) {
             trueCount[i] = r.nextInt();
@@ -112,7 +112,7 @@ public class smile_classifiers_DecisionTree_618 {
             int fr_ii = 0;
 
             falseCount[fr_ii] = count[fr_ii] - trueCount[fr_ii];
-            for (fr_ii = 4; fr_ii < k - 4; fr_ii += 2) {
+            for (fr_ii = 4; fr_ii < k - 4; fr_ii += 4) {
                 falseCount[fr_ii] = count[fr_ii] - trueCount[fr_ii];
                 falseCount[fr_ii - 1] = (falseCount[fr_ii] * 3 >> 2) + (falseCount[fr_ii - 4] >> 2);
                 falseCount[fr_ii - 2] = (falseCount[fr_ii] + falseCount[fr_ii - 4]) >> 1;

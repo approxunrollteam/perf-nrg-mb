@@ -3,7 +3,7 @@ package fr.inria.approxloop.perfenergy.smileversions;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_AdaBoost_275 {
+public class smile_classification_AdaBoost_Unknown_275 {
     int n = 1000;
     double[] w = new double[n];
     public double W = 10;

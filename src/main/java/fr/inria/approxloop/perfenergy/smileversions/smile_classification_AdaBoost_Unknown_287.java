@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_AdaBoost_287 {
+public class smile_classification_AdaBoost_Unknown_287 {
     int n = 1000;
     double[] w = new double[n];
     public int t = 0;
@@ -24,7 +24,7 @@ public class smile_classifiers_AdaBoost_287 {
         }
     }
 
-    public smile_classifiers_AdaBoost_287() {
+    public smile_classification_AdaBoost_Unknown_287() {
         trees[0] = new FakeDecisionTree();
         Random r = new Random();
         for (int i = 0; i < n; i++) {

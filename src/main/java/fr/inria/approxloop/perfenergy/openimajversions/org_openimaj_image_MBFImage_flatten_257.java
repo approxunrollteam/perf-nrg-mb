@@ -49,7 +49,7 @@ public class org_openimaj_image_MBFImage_flatten_257 {
         int fr_ii;
         for (fr_ii = 0; fr_ii < width - 1; fr_ii+=2) {
             outp[y][fr_ii] = ((outp[y][fr_ii]) + (bnd[y][fr_ii])) * norm;
-            outp[y][fr_ii + 1] += outp[y][fr_ii];
+            outp[y][fr_ii + 1] = outp[y][fr_ii];
         }
         for (int x = fr_ii; x < width; x++) {
             outp[y][x] = ((outp[y][x]) + (bnd[y][x])) * norm;
@@ -114,7 +114,7 @@ public class org_openimaj_image_MBFImage_flatten_257 {
             outp[y][0] = ((outp[y][0]) + (bnd[y][0])) * norm;
             //@@LOOP BEGIN@@
             int fr_ii;
-            for (fr_ii = 4; fr_ii < width; fr_ii+=2) {
+            for (fr_ii = 4; fr_ii < width; fr_ii+=4) {
                 outp[y][fr_ii] = ((outp[y][fr_ii]) + (bnd[y][fr_ii])) * norm;
                 outp[y][fr_ii - 1] = (outp[y][fr_ii] * 0.75f + outp[y][fr_ii - 4] * 0.25f);
                 outp[y][fr_ii - 2] = (outp[y][fr_ii] + outp[y][fr_ii - 4]) * 0.5f;

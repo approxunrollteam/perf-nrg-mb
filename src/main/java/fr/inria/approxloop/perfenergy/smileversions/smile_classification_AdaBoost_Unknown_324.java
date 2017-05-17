@@ -5,13 +5,13 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_AdaBoost_324 {
+public class smile_classification_AdaBoost_Unknown_324 {
     int n = 1000;
     double[] importance = new double[n];
     double[] imp = new double[n];
     public double W = 10;
 
-    public smile_classifiers_AdaBoost_324() {
+    public smile_classification_AdaBoost_Unknown_324() {
         Random r = new Random();
         for (int i = 0; i < n; i++) {
             imp[i] = r.nextDouble();
@@ -102,7 +102,7 @@ public class smile_classifiers_AdaBoost_324 {
     public void benchmark_MN34() {
         importance[0] += imp[0];
         int fr_ii;
-        for (fr_ii = 4; fr_ii < imp.length-4; fr_ii+=2) {
+        for (fr_ii = 4; fr_ii < imp.length-4; fr_ii+=4) {
             importance[fr_ii] += imp[fr_ii];
             importance[fr_ii - 1] = (importance[fr_ii] * 0.75f + importance[fr_ii - 4] * 0.25f);
             importance[fr_ii - 2] = (importance[fr_ii] + importance[fr_ii - 4]) * 0.5f;

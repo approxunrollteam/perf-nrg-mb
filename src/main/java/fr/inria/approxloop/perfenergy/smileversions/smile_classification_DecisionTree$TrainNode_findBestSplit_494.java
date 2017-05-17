@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_classifiers_DecisionTree_494 {
+public class smile_classification_DecisionTree$TrainNode_findBestSplit_494 {
     int p = 1000;
     int[] variables = new int[p];
 

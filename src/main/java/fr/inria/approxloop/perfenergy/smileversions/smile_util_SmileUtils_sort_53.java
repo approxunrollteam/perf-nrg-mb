@@ -5,12 +5,12 @@ import java.util.Random;
 /**
  * Created by elmarce on 07/04/17.
  */
-public class smile_util_SmileUtils_53 {
+public class smile_util_SmileUtils_sort_53 {
     int n = 1000;
     double[] a = new double[n];
     double[][] x = new double[n][n];
 
-    public smile_util_SmileUtils_53() {
+    public smile_util_SmileUtils_sort_53() {
         Random r = new Random();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
